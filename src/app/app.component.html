@@ -1,25 +1,26 @@
 <section class="mat-typography">
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav-container (backdropClick)="changeSize()" fullscreen>
+    <mat-sidenav #sidenav class="color-white background-secondary sidenav" fixedInViewport="true"
+      (keydown.escape)="sidenav.toggle()" autosize fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-      <mat-toolbar color="primary">Menü</mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item>Option 1</a>
-        <a mat-list-item>Option 2</a>
-        <a mat-list-item>Option 3</a>
-      </mat-nav-list>
+      <mat-toolbar color="accent">Menü</mat-toolbar>
+      <nav-button [name]="'Dashboard'" [icon]="'home'" ></nav-button>
+      <nav-button [name]="'Karte'" [icon]="'map'" ></nav-button>
+      <nav-button [name]="'Standorte'" [icon]="'location_on'" ></nav-button>
+      <nav-button [name]="'Gebäude'" [icon]="'business'" ></nav-button>
+      <nav-button [name]="'Stockwerke'" [icon]="'swap_vertical_cirlce'" ></nav-button>
+      <nav-button [name]="'Räume'" [icon]="'people'" ></nav-button>
+      <span class="fill-remaining-space"></span>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="sidenav-container">
+      <!-- Toolbar -->
       <mat-toolbar color="primary">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <button mat-button (click)="sidenav.toggle(); changeSize()" *ngIf="isHandset$ | async">
+          <mat-icon>menu</mat-icon>
         </button>
-        <span>Ausbildungsnachweis Generator</span>
+        <h1>Ausbildungsnachweis Generator</h1>
+        <span class="fill-remaining-space"></span>
       </mat-toolbar>
-
-
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </section>

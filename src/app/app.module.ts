@@ -10,9 +10,11 @@ import {
 
 // Components
 import { AppComponent } from './app.component';
+import { NavButtonComponent } from './nav-button/nav-button.component';
 @NgModule({
   declarations: [
     AppComponent,
+    NavButtonComponent
   ],
   imports: [
     BrowserModule,
