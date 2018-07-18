@@ -1,26 +1,29 @@
 <section class="mat-typography">
-  <mat-sidenav-container (backdropClick)="changeSize()" fullscreen>
+  <mat-sidenav-container (backdropClick)="sidenav.toggle()" fullscreen>
     <mat-sidenav #sidenav class="color-white background-secondary sidenav" fixedInViewport="true"
       (keydown.escape)="sidenav.toggle()" autosize fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
       <mat-toolbar color="accent">Menü</mat-toolbar>
-      <nav-button [name]="'Dashboard'" [icon]="'home'" ></nav-button>
-      <nav-button [name]="'Karte'" [icon]="'map'" ></nav-button>
-      <nav-button [name]="'Standorte'" [icon]="'location_on'" ></nav-button>
-      <nav-button [name]="'Gebäude'" [icon]="'business'" ></nav-button>
-      <nav-button [name]="'Stockwerke'" [icon]="'swap_vertical_cirlce'" ></nav-button>
-      <nav-button [name]="'Räume'" [icon]="'people'" ></nav-button>
+      <!-- Actions -->
+      <nav-button [name]="'Dashboard'" [icon]="'home'"></nav-button>
+      <nav-button [name]="'Karte'" [icon]="'map'"></nav-button>
+      <nav-button [name]="'Standorte'" [icon]="'location_on'"></nav-button>
+      <nav-button [name]="'Gebäude'" [icon]="'business'"></nav-button>
+      <nav-button [name]="'Stockwerke'" [icon]="'swap_vertical_cirlce'"></nav-button>
+      <nav-button [name]="'Räume'" [icon]="'people'"></nav-button>
       <span class="fill-remaining-space"></span>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-container">
       <!-- Toolbar -->
       <mat-toolbar color="primary">
-        <button mat-button (click)="sidenav.toggle(); changeSize()" *ngIf="isHandset$ | async">
+        <button mat-button (click)="sidenav.toggle();" *ngIf="isHandset$ | async">
           <mat-icon>menu</mat-icon>
         </button>
         <h1>Ausbildungsnachweis Generator</h1>
         <span class="fill-remaining-space"></span>
       </mat-toolbar>
+      <!-- Content -->
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </section>
