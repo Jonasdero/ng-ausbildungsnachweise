@@ -8,6 +8,8 @@ import {
   MatSidenavModule, MatToolbarModule,
 } from '@angular/material';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Components
 import { AppComponent } from './app.component';
 import { NavButtonComponent } from './nav-button/nav-button.component';
@@ -19,6 +21,7 @@ import { NavButtonComponent } from './nav-button/nav-button.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule, ReactiveFormsModule,
 
     // Angular Material
     LayoutModule,

@@ -4,6 +4,8 @@
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
+  $error: mat-palette($md-error);
+  $info: mat-palette($md-info);
   .background-primary {
     background-color: mat-color($primary);
   }
@@ -14,10 +16,10 @@
     background-color: mat-color($warn);
   }
   .background-error {
-    background-color: mat-color(mat-palette($md-error));
+    background-color: mat-color($error);
   }
   .background-info {
-    background-color: mat-color(mat-palette($md-info));
+    background-color: mat-color($info);
   }
   .color-primary {
     color: mat-color($primary);
@@ -29,10 +31,10 @@
     color: mat-color($warn);
   }
   .color-error {
-    color: mat-color(mat-palette($md-error));
+    color: mat-color($error);
   }
   .color-info {
-    color: mat-color(mat-palette($md-info));
+    color: mat-color($info);
   }
   .color-white {
     color: #fff !important;

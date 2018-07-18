@@ -1,6 +1,6 @@
 <section class="mat-typography">
   <mat-sidenav-container (backdropClick)="sidenav.toggle()" fullscreen>
-    <mat-sidenav #sidenav class="color-white background-secondary sidenav" fixedInViewport="true"
+    <mat-sidenav #sidenav class="sidenav color-white" fixedInViewport="true"
       (keydown.escape)="sidenav.toggle()" autosize fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
       <mat-toolbar color="accent">Menü</mat-toolbar>
