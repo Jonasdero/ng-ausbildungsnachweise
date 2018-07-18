@@ -1,7 +1,7 @@
 <section class="mat-typography">
   <mat-sidenav-container (backdropClick)="sidenav.toggle()" fullscreen>
-    <mat-sidenav #sidenav class="sidenav color-white" fixedInViewport="true"
-      (keydown.escape)="sidenav.toggle()" autosize fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    <mat-sidenav #sidenav class="sidenav color-white" fixedInViewport="true" (keydown.escape)="sidenav.toggle()"
+      autosize fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
       <mat-toolbar color="accent">Menü</mat-toolbar>
       <!-- Actions -->
@@ -23,7 +23,7 @@
         <span class="fill-remaining-space"></span>
       </mat-toolbar>
       <!-- Content -->
-
+      <router-outlet> </router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </section>
