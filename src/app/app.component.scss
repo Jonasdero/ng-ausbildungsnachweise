@@ -1,12 +1,24 @@
-.sidenav-container {
-  height: 100%;
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.sidenav {
-  width: 200px;
+.sidenav-container {
+  margin-left: 0; // height: 100%;
+}
+
+.nav-button {
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  min-width: 50px;
+  width: 100%;
 }
 
 .mat-toolbar.mat-primary {
-  position: sticky;
+  // position: sticky;
   top: 0;
 }

@@ -1,58 +1,84 @@
 @import '~@angular/material/theming';
+@import './palette.scss';
 @mixin app-theme($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    .background-primary {
-        background-color: mat-color($primary);
-    }
-    .background-secondary {
-        background-color: mat-color($accent);
-    }
-    .background-warn {
-        background-color: mat-color($warn);
-    }
-    .color-primary {
-        color: mat-color($primary);
-    }
-    .color-accent {
-        color: mat-color($accent);
-    }
-    .color-warn {
-        color: mat-color($warn);
-    }
-    .color-white {
-        color: #fff;
-    }
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  .background-primary {
+    background-color: mat-color($primary);
+  }
+  .background-secondary {
+    background-color: mat-color($accent);
+  }
+  .background-warn {
+    background-color: mat-color($warn);
+  }
+  .background-error {
+    background-color: mat-color(mat-palette($md-error));
+  }
+  .background-info {
+    background-color: mat-color(mat-palette($md-info));
+  }
+  .color-primary {
+    color: mat-color($primary);
+  }
+  .color-accent {
+    color: mat-color($accent);
+  }
+  .color-warn {
+    color: mat-color($warn);
+  }
+  .color-error {
+    color: mat-color(mat-palette($md-error));
+  }
+  .color-info {
+    color: mat-color(mat-palette($md-info));
+  }
+  .color-white {
+    color: #fff !important;
+  }
+  .mat-drawer {
+    background-color: mat-color($accent);
+  }
+  .mat-drawer.mat-drawer-push {
+    background-color: mat-color($accent);
+  }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
 
 .fill-remaining-space {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .centered {
-    margin: auto;
-    text-align:center;
+  margin: auto;
+  text-align: center;
 }
 
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
 // Floating Button on the left corner
 .floating-button-div {
-    z-index: 5;
-    position: fixed;
-    display: flex;
-    align-self: flex-end;
-    bottom: 2%;
-    margin-left: 2%;
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  align-self: flex-end;
+  bottom: 2%;
+  margin-left: 2%;
 }
 
 .floating-button-div button {
-    margin-left: 3px;
-    flex-basis: auto;
+  margin-left: 3px;
+  flex-basis: auto;
 }
