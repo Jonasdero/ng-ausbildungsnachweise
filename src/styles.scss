@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@mixin app-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    .background-primary {
+        background-color: mat-color($primary);
+    }
+    .background-secondary {
+        background-color: mat-color($accent);
+    }
+    .background-warn {
+        background-color: mat-color($warn);
+    }
+    .color-primary {
+        color: mat-color($primary);
+    }
+    .color-accent {
+        color: mat-color($accent);
+    }
+    .color-warn {
+        color: mat-color($warn);
+    }
+    .color-white {
+        color: #fff;
+    }
+    .mat-drawer {
+        background-color: mat-color($accent);
+    }
+    .mat-drawer.mat-drawer-push {
+        background-color: mat-color($accent);
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+// Flex-item to fill space
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.centered {
+    margin: auto;
+    text-align:center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+// Floating Button on the left corner
+.floating-button-div {
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    align-self: flex-end;
+    bottom: 2%;
+    margin-left: 2%;
+}
+
+.floating-button-div button {
+    margin-left: 3px;
+    flex-basis: auto;
+}
