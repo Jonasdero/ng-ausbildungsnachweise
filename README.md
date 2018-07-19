@@ -8,10 +8,11 @@
 - Einstellen von beliebigen Abteilungsnamen
 - Hinzufügen von Ausbildungswochen mit Startdatum, Stunden pro Tag und Tätigkeiten pro Tag
 - Speichern aller Ausbildungswoche nach Schema `0NR_dd.MM.yyyy.docx`
+- Import von JSON zur Batch-Worderstellung
 
 ## Todo
 
-- Import einer JSON Datei zur Batch-Worderstellung
+- ?
 
 ## Fragen, Anmerkungen oder Fehler?
 
