@@ -7,14 +7,18 @@
   </button>
 </div>
 
+<div class="floating-button-div-right">
+  <button *ngIf="weeks.length>0" mat-fab (click)="save()" color="accent" class="color-white">
+    <mat-icon>save</mat-icon>
+  </button>
+
+</div>
 <button routerLink="/settings" mat-fab class="fab-button" color="accent">
   <mat-icon class="color-white">settings</mat-icon>
 </button>
 
 <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"></input-week>
 <div *ngIf="weeks.length === 0" class="centered color-error">
-  <br>
-  <br>
   <br>
   <h1>Keine Wochen vorhanden.. </h1>
   <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
