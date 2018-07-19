@@ -1,4 +1,5 @@
 interface Week {
+  id?: number,
   nr: number,
   department: string,
   year: number,

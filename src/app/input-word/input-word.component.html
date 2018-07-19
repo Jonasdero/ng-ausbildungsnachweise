@@ -2,27 +2,24 @@
   <mat-card-content>
     <h2 class="centered color-primary">Wichtige Daten</h2>
     <form [formGroup]="form">
-      <mat-grid-list cols="2" rowHeight="24px" class="row">
-        <mat-grid-tile>
-          <b>Vorname:</b>
-          <span class="fill-column"></span>
-          <mat-form-field>
-            <input matInput formControlName="surname" required placeholder="Vorname">
-            <mat-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">Bitte Vornamen eingeben</mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <b>Nachname:</b>
-          <span class="fill-column"></span>
-          <mat-form-field>
-            <input matInput formControlName="name" required placeholder="Nachname">
-            <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Bitte Nachnamen eingeben</mat-error>
-          </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <div class="row">
+        <b class="column">Vorname:</b>
+        <mat-form-field class="column">
+          <input matInput formControlName="surname" required placeholder="Vorname">
+          <mat-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">Bitte Vornamen eingeben</mat-error>
+        </mat-form-field>
+        <b class="column">Nachname:</b>
+        <mat-form-field class="column">
+          <input matInput formControlName="name" required placeholder="Nachname">
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Bitte Nachnamen eingeben</mat-error>
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
   <mat-card-actions [attr.align]="'center'">
-    <button mat-raised-button [disabled]="!name.valid && !surname.valid" class="background-info" (click)="newWeek()">Neue Woche</button>
+    <button mat-button [disabled]="!name.valid || !surname.valid" class="color-info"
+      (click)="newWeek()">Neue Woche</button>
   </mat-card-actions>
 </mat-card>
+
+<input-week *ngFor="let week of weeks" [week]="week"></input-week>

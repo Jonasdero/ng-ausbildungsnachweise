@@ -6,5 +6,4 @@ import { Department } from './department';
 })
 export class WordService {
 
-  constructor() { }
 }
