@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Department } from '../shared/department';
+import { WeekService } from '../shared/week.service';
 
 @Component({
   selector: 'app-input-word',
@@ -14,20 +15,25 @@ export class InputWordComponent implements OnInit {
 
   get surname() { return this.form.get('surname'); }
   get name() { return this.form.get('name'); }
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private weekService: WeekService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       'surname': new FormControl('', Validators.required),
       'name': new FormControl('', Validators.required),
     })
+    this.weekService.getWeeks().subscribe((weeks: Week[]) => {
+      this.weeks = weeks;
+      console.log(this.weeks);
+    })
   }
 
   newWeek() {
     this.weeks.push({
+      id: this.weeks.length,
       nr: 0, department: Department.Praxis.toString(), year: 1, startDate: new Date().toLocaleDateString(),
       endDate: new Date().toLocaleDateString(), date: new Date(),
-      hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo:7.5, hFr: 7.5,
+      hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
       contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '',
       contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
 
@@ -45,5 +51,4 @@ export class InputWordComponent implements OnInit {
     })
     console.log(this.weeks);
   }
-
 }
