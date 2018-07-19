@@ -37,4 +37,9 @@ export class DateService {
   getLocaleDateString(d: Date): string {
     return d.toLocaleDateString('de', { day: "2-digit", month: "2-digit", year: "numeric" });
   }
+
+  germanLocalToDate(dateString: string): Date {
+    var parts = dateString.split('.');
+    return new Date(+parts[2], +parts[1] - 1, +parts[0]);
+  }
 }

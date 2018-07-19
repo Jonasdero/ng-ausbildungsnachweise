@@ -9,7 +9,7 @@ interface Week {
   year?: number,
   startDate?: string,
   endDate?: string,
-  date: Date,
+  date?: Date,
 
   hMo: number,
   hDi: number,

@@ -28,6 +28,28 @@ export class WeekService {
   deleteWeek(week: Week) { this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1); }
   saveWeek(week: Week) { this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week; }
   addWeek(week: Week) { week.id = this.weeks.length; this.weeks.push(week); }
-  getWeeks() { return this.weeks; }
+  getWeeks(): Week[] { return this.weeks; }
   clearWeeks() { this.weeks = []; }
+  importWeeks(weeks: Week[]): Week[] {
+    this.clearWeeks();
+    var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+    for (let week of weeks) {
+      try {
+        for (let weekDay of weekDays) {
+          let content = week['content' + weekDay];
+          let splitted = [];
+          if (content.length > 0)
+            splitted = content.split('\n');
+          while (splitted.length < 8) splitted.push('');
+          for (let i = 1; i <= 8; i++)
+            week['content' + weekDay + i] = splitted[i - 1];
+        }
+        week.startDate = this.dateService.germanLocalToDate(week.startDate).toUTCString();
+        week.date = this.dateService.getMonday(new Date(week.startDate));
+        this.addWeek(week);
+      }
+      catch (e) { console.log('Invalid Week'); }
+    }
+    return this.getWeeks();
+  }
 }
