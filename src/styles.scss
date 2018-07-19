@@ -81,6 +81,17 @@ body {
   margin-left: 2%;
 }
 
+.floating-button-div-right {
+  z-index: 5;
+  position: fixed;
+    bottom: 0;
+    right: 0;
+  display: flex;
+  align-self: flex-start;
+  bottom: 2%;
+  margin-right: 2%;
+}
+
 .floating-button-div button {
   margin-left: 3px;
   flex-basis: auto;

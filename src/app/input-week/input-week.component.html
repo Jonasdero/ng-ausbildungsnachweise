@@ -24,6 +24,38 @@
           <mat-error *ngIf="get(hour.value).invalid && (get(hour.value).dirty || get(hour.value).touched)">Bitte Vornamen eingeben</mat-error>
         </mat-form-field>
       </div>
+      <div class="row">
+        <mat-form-field class="column">
+          <textarea matInput formControlName="contentMo" placeholder="Montag" [cdkTextareaAutosize]="true"
+            [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
+          <mat-error *ngIf="get('contentMo').invalid ">Bitte den Inhalt für Montag eingeben</mat-error>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <textarea matInput formControlName="contentDi" placeholder="Dienstag" [cdkTextareaAutosize]="true"
+            [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
+          <mat-error *ngIf="get('contentDi').invalid">Bitte den Inhalt für Dienstag eingeben</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="column">
+          <textarea matInput formControlName="contentMi" placeholder="Mittwoch" [cdkTextareaAutosize]="true"
+            [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
+          <mat-error *ngIf="get('contentMi').invalid">Bitte den Inhalt für Mittwoch eingeben</mat-error>
+        </mat-form-field>
+        <mat-form-field class="column">
+          <textarea matInput formControlName="contentDo" placeholder="Donnerstag" [cdkTextareaAutosize]="true"
+            [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
+          <mat-error *ngIf="get('contentDo').invalid">Bitte den Inhalt für Donnerstag eingeben</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="row">
+        <mat-form-field class="column">
+          <textarea matInput formControlName="contentFr" placeholder="Freitag" [cdkTextareaAutosize]="true"
+            [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
+          <mat-error *ngIf="get('contentFr').invalid">Bitte den Inhalt für Freitag eingeben</mat-error>
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
   <mat-card-actions [attr.align]="'center'">

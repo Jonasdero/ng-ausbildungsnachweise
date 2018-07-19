@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeekService } from '../shared/week.service';
 import { SettingsService } from '../shared/settings.service';
+import { WordService } from '../shared/word.service';
 
 @Component({
   selector: 'app-input-word',
@@ -10,7 +11,8 @@ import { SettingsService } from '../shared/settings.service';
 export class InputWordComponent implements OnInit {
   weeks: Week[] = [];
   departments: string[] = [];
-  constructor(private weekService: WeekService, private settingsService: SettingsService) { }
+  constructor(private weekService: WeekService, private settingsService: SettingsService,
+    private wordService: WordService) { }
 
   ngOnInit() {
     this.getWeeks();
@@ -50,5 +52,9 @@ export class InputWordComponent implements OnInit {
   clearWeeks() {
     this.weekService.clearWeeks();
     this.getWeeks();
+  }
+
+  save() {
+    this.wordService.save(this.weeks);
   }
 }
