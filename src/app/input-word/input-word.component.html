@@ -17,9 +17,13 @@
   <mat-icon class="color-white">settings</mat-icon>
 </button>
 
-<input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"></input-week>
+<br>
+<br>
+<mat-accordion>
+  <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments" matExpansionPanelContent></input-week>
+</mat-accordion>
+
 <div *ngIf="weeks.length === 0" class="centered">
-  <br>
   <h1>Keine Wochen vorhanden.. </h1>
   <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { WeekService } from '../shared/services/week.service';
+import { DateService } from '../shared/services/date.service';
 
 function validateContent(c: AbstractControl) {
   return c.value.split('\n').length <= 8 ? null : { length: c.value.split('\n').length };
@@ -23,7 +24,7 @@ export class InputWeekComponent implements OnInit {
 
   get(type: string): AbstractControl { return this.form.get(type); }
 
-  constructor(private weekService: WeekService) { }
+  constructor(private weekService: WeekService, private dateService: DateService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -46,8 +47,6 @@ export class InputWeekComponent implements OnInit {
         if (prop.startsWith('content')) this.splitContent(prop, this.get(prop).value);
         else this.week[prop] = this.get(prop).value;
       }
-      this.week.startDate = this.weekService.getMonday(this.week.date).toLocaleDateString();
-      this.week.endDate = this.weekService.getFriday(this.week.date).toLocaleDateString();
       this.weekService.saveWeek(this.week);
       this.action.emit(this.week);
     })
@@ -70,6 +69,7 @@ export class InputWeekComponent implements OnInit {
     for (let i = 1; i <= 8; i++)
       this.week[name + i] = splitted[i - 1];
   }
+  getAusbildungsnachweisNr() {return this.dateService.getAusbildungsNachweisNr(this.week.date);}
   onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
   duplicate() { this.weekService.duplicateWeek(this.week); this.action.emit(this.week); }
   delete() { this.weekService.deleteWeek(this.week); this.action.emit(this.week); }

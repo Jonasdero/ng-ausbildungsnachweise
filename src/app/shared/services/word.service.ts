@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { SettingsService } from './settings.service';
-import { WeekService } from './week.service';
-
 import * as JSZip from 'jszip';
 import * as JSZipUtils from 'jszip-utils';
 import * as Docxtemplater from 'docxtemplater';
 import * as FileSaver from 'file-saver';
+
+import { SettingsService } from './settings.service';
+import { DateService } from './date.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WordService {
 
-  constructor(private settingsService: SettingsService, private weekService: WeekService) { }
+  constructor(private settingsService: SettingsService,private dateService:DateService ) { }
   save(weeks: Week[]) {
     for (let week of weeks) {
       this.improveWeekDate(week);
@@ -22,17 +22,11 @@ export class WordService {
 
   private improveWeekDate(week: Week) {
     let settings = this.settingsService.settings;
-    let ausbildungsStart = new Date(settings.ausbildungsStart);
-    week.nr = Math.floor(Math.ceil(Math.abs(week.date.getTime()
-      - ausbildungsStart.getTime()) / (1000 * 3600 * 24)) / 7) + 1;
+    week.nr = this.dateService.getAusbildungsNachweisNr(week.date);
+    week.year = this.dateService.getAusbildungsJahr(week.date);
 
-    week.year = Math.ceil(Math.abs(week.date.getTime() - ausbildungsStart.getTime())
-      / (1000 * 3600 * 24 * 365))
-
-    week.startDate = week.date
-      .toLocaleDateString('de', { day: "2-digit", month: "2-digit", year: "numeric" })
-    week.endDate = this.weekService.getFriday(week.date)
-      .toLocaleDateString('de', { day: "2-digit", month: "2-digit", year: "numeric" })
+    week.startDate = this.dateService.getLocaleDateString(week.date);
+    week.endDate = this.dateService.getLocaleDateString(this.dateService.getFriday(week.date))
 
     week.beruf = settings.beruf;
     week.name = settings.nachname;
@@ -47,20 +41,12 @@ export class WordService {
       var doc = new Docxtemplater().loadZip(zip)
       doc.setData(week);
 
-      try {
-        doc.render()
-      }
+      try { doc.render() }
       catch (error) {
-        var e = {
-          message: error.message,
-          name: error.name,
-          stack: error.stack,
-          properties: error.properties,
-        }
+        var e = { message: error.message, name: error.name, stack: error.stack, properties: error.properties, }
         console.log(JSON.stringify({ error: e }));
         throw error;
       }
-
       var out = doc.getZip().generate({
         type: "blob",
         mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -69,5 +55,4 @@ export class WordService {
       FileSaver.saveAs(out, filename);
     })
   }
-
 }
