@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { WeekService } from '../shared/week.service';
-import { SettingsService } from '../shared/settings.service';
-import { WordService } from '../shared/word.service';
+import { WeekService } from '../shared/services/week.service';
+import { SettingsService } from '../shared/services/settings.service';
+import { WordService } from '../shared/services/word.service';
 
 @Component({
   selector: 'input-word',
