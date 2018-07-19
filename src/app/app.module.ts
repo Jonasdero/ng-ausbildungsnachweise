@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './shared/material.module';
+import { MaterialModule } from './shared/modules/material.module';
 
 // Components
 import { AppComponent } from './app.component';
