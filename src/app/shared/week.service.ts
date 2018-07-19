@@ -11,8 +11,10 @@ export class WeekService {
   duplicateWeek(week: Week) {
     this.weeks.push({
       id: this.weeks.length,
-      nr: week.nr + 1, department: week.department, year: week.year, startDate: week.startDate,
-      endDate: week.endDate, date: week.date,
+      nr: week.nr + 1, department: week.department, year: week.year,
+      startDate: week.startDate, endDate: week.endDate,
+      // nextWeek
+      date: new Date(week.date.getTime() + 7 * 24 * 60 * 60 * 1000),
       hMo: week.hMo, hDi: week.hDi, hMi: week.hMi, hDo: week.hDo, hFr: week.hFr,
       contentMo1: week.contentMo1, contentMo2: week.contentMo2, contentMo3: week.contentMo3, contentMo4: week.contentMo4,
       contentMo5: week.contentMo5, contentMo6: week.contentMo6, contentMo7: week.contentMo7, contentMo8: week.contentMo8,
@@ -32,17 +34,35 @@ export class WeekService {
   }
 
   deleteWeek(week: Week) {
-    let index: number = this.weeks.findIndex((w) => w.id === week.id);
-    this.weeks.splice(index, 1);
+    this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
   }
 
   saveWeek(week: Week) {
-    let index: number = this.weeks.findIndex((w) => w.id === week.id);
-    this.weeks[index] = week;
+    this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week;
   }
 
-  getWeeks(): Observable<Week[]> {
-    return of(this.weeks);
+  addWeek(week: Week) {
+    week.id = this.weeks.length;
+    this.weeks.push(week);
+  }
 
+  getWeeks() { return this.weeks; }
+
+  getMonday(d): Date {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+  }
+
+  getFriday(d: Date): Date {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -2 : 5);
+    return new Date(d.setDate(diff));
+  }
+
+  clearWeeks() {
+    this.weeks = [];
   }
 }
