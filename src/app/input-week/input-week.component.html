@@ -1,6 +1,7 @@
 <mat-card *ngIf="departments">
   <mat-card-content>
     <form [formGroup]="form">
+
       <div class="row">
         <mat-form-field class="column">
           <mat-select placeholder="Abteilung" formControlName="department" name="departments">
@@ -9,44 +10,50 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field class="column">
-          <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="picker1" placeholder="Startdatum"
+          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1" placeholder="Startdatum"
             formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
       </div>
+
       <div class="row">
         <mat-form-field *ngFor="let hour of hours" class="column">
           <input type="number" matInput formControlName="{{hour.value}}" required placeholder="Stunden {{hour.day}}">
           <mat-error *ngIf="get(hour.value).invalid && (get(hour.value).dirty || get(hour.value).touched)">Bitte Vornamen eingeben</mat-error>
         </mat-form-field>
       </div>
+
       <div class="row">
         <mat-form-field class="column">
           <textarea matInput formControlName="contentMo" placeholder="Montag" [cdkTextareaAutosize]="true"
             [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
           <mat-error *ngIf="get('contentMo').invalid ">Bitte den Inhalt für Montag eingeben</mat-error>
         </mat-form-field>
+
         <mat-form-field class="column">
           <textarea matInput formControlName="contentDi" placeholder="Dienstag" [cdkTextareaAutosize]="true"
             [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
           <mat-error *ngIf="get('contentDi').invalid">Bitte den Inhalt für Dienstag eingeben</mat-error>
         </mat-form-field>
       </div>
+
       <div class="row">
         <mat-form-field class="column">
           <textarea matInput formControlName="contentMi" placeholder="Mittwoch" [cdkTextareaAutosize]="true"
             [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
           <mat-error *ngIf="get('contentMi').invalid">Bitte den Inhalt für Mittwoch eingeben</mat-error>
         </mat-form-field>
+
         <mat-form-field class="column">
           <textarea matInput formControlName="contentDo" placeholder="Donnerstag" [cdkTextareaAutosize]="true"
             [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
           <mat-error *ngIf="get('contentDo').invalid">Bitte den Inhalt für Donnerstag eingeben</mat-error>
         </mat-form-field>
-
       </div>
+
       <div class="row">
         <mat-form-field class="column">
           <textarea matInput formControlName="contentFr" placeholder="Freitag" [cdkTextareaAutosize]="true"
@@ -54,6 +61,7 @@
           <mat-error *ngIf="get('contentFr').invalid">Bitte den Inhalt für Freitag eingeben</mat-error>
         </mat-form-field>
       </div>
+
     </form>
   </mat-card-content>
   <mat-card-actions [attr.align]="'center'">
