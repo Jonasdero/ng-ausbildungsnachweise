@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Department } from '../shared/department';
 import { WeekService } from '../shared/week.service';
+import { SettingsService } from '../shared/settings.service';
 
 @Component({
   selector: 'app-input-word',
@@ -9,10 +9,14 @@ import { WeekService } from '../shared/week.service';
 })
 export class InputWordComponent implements OnInit {
   weeks: Week[] = [];
-  constructor(private weekService: WeekService) { }
+  departments: string[] = [];
+  constructor(private weekService: WeekService, private settingsService: SettingsService) { }
 
   ngOnInit() {
     this.getWeeks();
+    this.settingsService.getSettings().subscribe((settings: Settings) => {
+      this.departments = [settings.atiw, settings.spe, settings.praxis];
+    })
   }
   getWeeks() {
     this.weeks = this.weekService.getWeeks();
@@ -20,7 +24,7 @@ export class InputWordComponent implements OnInit {
 
   newWeek() {
     this.weekService.addWeek({
-      nr: 0, department: Department.Praxis.toString(), year: 1,
+      nr: 0, department: 'Atiw Paderborn', year: 1,
       startDate: this.weekService.getMonday(new Date).toLocaleDateString(),
       endDate: this.weekService.getFriday(new Date).toLocaleDateString(),
       date: this.weekService.getMonday(new Date),

@@ -6,13 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SettingsService {
-  settings: Settings;
+  path = 'assets/settings.json';
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
   constructor(private http: HttpClient) { }
 
   getSettings(): Observable<Settings> {
-    return this.http.get<Settings>('assets/settings.json')
+    return this.http.get<Settings>(this.path);
   }
+
+  saveSettings(settings: Settings): void {
+    //TODOSS
+  }
+
   getAusbildungsjahr(d: Date): number {
     return 1;
   }

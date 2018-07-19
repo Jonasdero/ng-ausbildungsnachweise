@@ -1,22 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { InputWordComponent } from './input-word/input-word.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: InputWordComponent
-  },
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
-  // {
-  //   path: 'about',
-  //   component: AboutComponent,
-  // },
+  { path: '', component: InputWordComponent },
+  { path: 'settings', component: SettingsComponent },
   // Example of Lazy Loading a module
   // {
   //     path: 'login',
