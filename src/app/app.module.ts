@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { NavButtonComponent } from './nav-button/nav-button.component';
 import { InputWordComponent } from './input-word/input-word.component';
 import { InputWeekComponent } from './input-week/input-week.component';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { InputWeekComponent } from './input-week/input-week.component';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule, ReactiveFormsModule,
 
     // Angular Material
