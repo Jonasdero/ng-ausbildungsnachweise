@@ -48,7 +48,6 @@ export class WordService {
       doc.setData(week);
 
       try {
-        // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
         doc.render()
       }
       catch (error) {
