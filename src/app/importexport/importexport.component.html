@@ -14,18 +14,25 @@
   <mat-card-header>
     <h1>Export & Import</h1>
   </mat-card-header>
-  <mat-divider></mat-divider>
-  <h3>Datenformat</h3>
-  <p>Damit die Daten richtig akzepiert werden ist folgendes Datenformat zu beachten:
+  <h3 class="centered">Datenformat</h3>
+  <p class="centered">Damit die Daten richtig akzepiert werden ist folgendes Datenformat zu beachten:
   </p>
+  <mat-divider></mat-divider>
   <div class="code">
     <code><pre>{{importObject |json}}</pre></code>
   </div>
   <mat-divider></mat-divider>
-  <mat-card-actions [attr.align]="'center'">
-
-    <button mat-button color="primary" (click)="export()">
-      Export
-    </button>
-  </mat-card-actions>
+  <p class="centered">Probier es aus, indem du einfach den aktuellen Stand exportierst.</p>
+  <p class="centered">
+    <b>Achte darauf, die Kommas direkt vor den Klammern zu entfernen!</b>
+  </p>
 </mat-card>
+
+<div class="floating-div-bottom-right">
+  <button mat-raised-button color="primary" (click)="import()" class="color-white">
+    <mat-icon>keyboard_arrow_up</mat-icon> Import
+  </button>
+  <button mat-raised-button (click)="export()" color="primary" class="color-white">
+    <mat-icon>keyboard_arrow_down</mat-icon> Export
+  </button>
+</div>

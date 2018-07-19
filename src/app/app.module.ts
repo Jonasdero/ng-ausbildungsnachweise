@@ -25,6 +25,7 @@ import { InputWeekComponent } from './input-week/input-week.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
 import { ImportexportComponent } from './importexport/importexport.component';
+import { ImportDialogComponent } from './import-dialog/import-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ImportexportComponent } from './importexport/importexport.component';
     InputWordComponent, InputWeekComponent,
     SettingsComponent,
     HelpComponent,
-    ImportexportComponent
+    ImportexportComponent,
+    ImportDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -47,7 +49,8 @@ import { ImportexportComponent } from './importexport/importexport.component';
     LayoutModule,
     MaterialModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "de" } ],
+  providers: [{ provide: LOCALE_ID, useValue: "de" }],
+  entryComponents: [ImportDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

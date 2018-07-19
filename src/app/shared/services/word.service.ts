@@ -12,7 +12,7 @@ import { DateService } from './date.service';
 })
 export class WordService {
 
-  constructor(private settingsService: SettingsService,private dateService:DateService ) { }
+  constructor(private settingsService: SettingsService, private dateService: DateService) { }
   save(weeks: Week[]) {
     for (let week of weeks) {
       this.improveWeekDate(week);
