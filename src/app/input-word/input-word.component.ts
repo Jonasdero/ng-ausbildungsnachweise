@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeekService } from '../shared/services/week.service';
 import { SettingsService } from '../shared/services/settings.service';
 import { WordService } from '../shared/services/word.service';
+import { DateService } from '../shared/services/date.service';
 
 @Component({
   selector: 'input-word',
@@ -11,7 +12,7 @@ export class InputWordComponent implements OnInit {
   weeks: Week[] = [];
   departments: string[] = [];
   constructor(private weekService: WeekService, private settingsService: SettingsService,
-    private wordService: WordService) { }
+    private wordService: WordService, private dateService: DateService) { }
 
   ngOnInit() {
     this.getWeeks();
@@ -24,9 +25,8 @@ export class InputWordComponent implements OnInit {
   newWeek() {
     this.weekService.addWeek({
       nr: 0, department: 'Atiw Paderborn', year: 1,
-      startDate: this.weekService.getMonday(new Date).toLocaleDateString(),
-      endDate: this.weekService.getFriday(new Date).toLocaleDateString(),
-      date: this.weekService.getMonday(new Date),
+      startDate: '', endDate: '',
+      date: this.dateService.getMonday(new Date),
       hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
       contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '',
       contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
@@ -46,10 +46,6 @@ export class InputWordComponent implements OnInit {
     this.getWeeks();
   }
 
-  clearWeeks() {
-    this.weekService.clearWeeks();
-    this.getWeeks();
-  }
-
+  clearWeeks() { this.weekService.clearWeeks(); this.getWeeks(); }
   save() { this.wordService.save(this.weeks); }
 }
