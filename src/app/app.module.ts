@@ -23,12 +23,14 @@ import { AppComponent } from './app.component';
 import { InputWordComponent } from './input-word/input-word.component';
 import { InputWeekComponent } from './input-week/input-week.component';
 import { SettingsComponent } from './settings/settings.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputWordComponent, InputWeekComponent,
-    SettingsComponent
+    SettingsComponent,
+    HelpComponent
   ],
   imports: [
     AppRoutingModule,

@@ -13,14 +13,20 @@
   </button>
 </div>
 
-<button routerLink="/settings" mat-fab class="fab-button" color="accent">
-  <mat-icon class="color-white">settings</mat-icon>
-</button>
+<div class="floating-div-top-right">
+  <button routerLink="/help" mat-fab class="background-error">
+    <mat-icon class="color-white">help</mat-icon>
+  </button>
+  <button routerLink="/settings" mat-fab color="accent">
+    <mat-icon class="color-white">settings</mat-icon>
+  </button>
+</div>
 
 <br>
 <br>
-<mat-accordion>
-  <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments" matExpansionPanelContent></input-week>
+<mat-accordion *ngIf="settingsService.settings">
+  <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
+    matExpansionPanelContent></input-week>
 </mat-accordion>
 
 <div *ngIf="weeks.length === 0" class="centered">
