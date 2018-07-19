@@ -1,9 +1,1 @@
-{
-  "vorname": "Jonas",
-  "nachname": "Roser",
-  "ausbildungsStart": "04.09.2016",
-  "beruf": "Fachinformatiker Anwendungsentwicklung",
-  "atiw": "Atiw Paderborn",
-  "spe": "Siemens Professional Education Paderborn",
-  "praxis": "Atos, AIS GER HR PD Azubi"
-}
+{"vorname":"Jonas","nachname":"Roser","ausbildungsStart":"2016-09-03T22:00:00.000Z","beruf":"Fachinformatiker Anwendungsentwicklung","spe":"Siemens Professional Education Paderborn","atiw":"Atiw Paderborn","praxis":"Atos, AIS GER HR PD Azubi"}

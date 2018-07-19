@@ -7,10 +7,8 @@
   </button>
 </div>
 
-<button mat-fab class="fab-button" color="accent">
-  <a routerLink="/settings" class="color-white">
-    <mat-icon>settings</mat-icon>
-  </a>
+<button routerLink="/settings" mat-fab class="fab-button" color="accent">
+  <mat-icon class="color-white">settings</mat-icon>
 </button>
 
 <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"></input-week>
