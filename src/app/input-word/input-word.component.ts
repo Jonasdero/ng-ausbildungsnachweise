@@ -4,7 +4,7 @@ import { SettingsService } from '../shared/settings.service';
 import { WordService } from '../shared/word.service';
 
 @Component({
-  selector: 'app-input-word',
+  selector: 'input-word',
   templateUrl: './input-word.component.html'
 })
 export class InputWordComponent implements OnInit {
@@ -19,9 +19,7 @@ export class InputWordComponent implements OnInit {
       this.departments = [settings.atiw, settings.spe, settings.praxis];
     })
   }
-  getWeeks() {
-    this.weeks = this.weekService.getWeeks();
-  }
+  getWeeks() { this.weeks = this.weekService.getWeeks(); }
 
   newWeek() {
     this.weekService.addWeek({
@@ -53,7 +51,5 @@ export class InputWordComponent implements OnInit {
     this.getWeeks();
   }
 
-  save() {
-    this.wordService.save(this.weeks);
-  }
+  save() { this.wordService.save(this.weeks); }
 }

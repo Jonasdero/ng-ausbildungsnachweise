@@ -1,11 +1,17 @@
 <section class="mat-typography">
   <!-- Toolbar -->
+  <div class="floating-div-top-left">
+    <mat-card>
+      <h3>{{description}}</h3>
+    </mat-card>
+  </div>
   <mat-toolbar color="primary">
-    {{description}}
     <span class="fill-remaining-space"></span>
     Ausbildungsnachweis Generator
     <span class="fill-remaining-space"></span>
   </mat-toolbar>
   <!-- Content -->
   <router-outlet> </router-outlet>
+
+
 </section>

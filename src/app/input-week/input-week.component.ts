@@ -57,9 +57,11 @@ export class InputWeekComponent implements OnInit {
   mergeContent(day: string) {
     let result: string = '';
     for (let i = 1; i <= 8; i++) {
-      if (this.week['content' + day + i].trim().length > 0)
-        if (i == 8) result += this.week['content' + day + i];
-        else result += this.week['content' + day + i] + '\n';
+      let content = this.week['content' + day + i];
+      if (content.trim().length === 0 && result.length === 0) continue;
+
+      if (i == 8) result += content;
+      else result += content + '\n';
     }
     return result;
   }
