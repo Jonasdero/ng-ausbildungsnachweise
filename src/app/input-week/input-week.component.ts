@@ -41,10 +41,9 @@ export class InputWeekComponent implements OnInit {
       'contentFr': new FormControl(this.mergeContent('Fr'), [Validators.required, validateContent]),
     })
 
-    this.form.valueChanges.subscribe((data) => {
+    this.form.valueChanges.subscribe(() => {
       for (var prop in this.form.value) {
-        if (prop.startsWith('content'))
-          this.splitContent(prop, this.get(prop).value);
+        if (prop.startsWith('content')) this.splitContent(prop, this.get(prop).value);
         else this.week[prop] = this.get(prop).value;
       }
       this.week.startDate = this.weekService.getMonday(this.week.date).toLocaleDateString();
@@ -58,8 +57,7 @@ export class InputWeekComponent implements OnInit {
     let result: string = '';
     for (let i = 1; i <= 8; i++) {
       let content = this.week['content' + day + i];
-      if (content.trim().length === 0 && result.length === 0) continue;
-
+      if (content.trim().length === 0) continue;
       if (i == 8) result += content;
       else result += content + '\n';
     }
@@ -68,13 +66,11 @@ export class InputWeekComponent implements OnInit {
 
   splitContent(name: string, content: string) {
     let splitted = content.split('\n');
-    while (splitted.length < 8) {
-      splitted.push('');
-    }
+    while (splitted.length < 8) splitted.push('');
     for (let i = 1; i <= 8; i++)
       this.week[name + i] = splitted[i - 1];
   }
-  dateFilter = (d: Date): boolean => { return d.getDay() === 1; }
+  onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
   duplicate() { this.weekService.duplicateWeek(this.week); this.action.emit(this.week); }
   delete() { this.weekService.deleteWeek(this.week); this.action.emit(this.week); }
 }
