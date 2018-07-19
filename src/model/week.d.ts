@@ -1,4 +1,8 @@
 interface Week {
+  name?: string,
+  surname?: string,
+  beruf?: string,
+  hSum?: string,
   id?: number,
   nr: number,
   department: string,
