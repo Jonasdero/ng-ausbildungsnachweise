@@ -1,0 +1,31 @@
+<div class="floating-div-top-right">
+  <button routerLink="/help" mat-fab class="background-error">
+    <mat-icon class="color-white">help</mat-icon>
+  </button>
+  <button routerLink="/settings" mat-fab class="background-error">
+    <mat-icon class="color-white">settings</mat-icon>
+  </button>
+  <button routerLink="/" mat-fab color="accent">
+    <mat-icon class="color-white">home</mat-icon>
+  </button>
+</div>
+
+<mat-card>
+  <mat-card-header>
+    <h1>Export & Import</h1>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <h3>Datenformat</h3>
+  <p>Damit die Daten richtig akzepiert werden ist folgendes Datenformat zu beachten:
+  </p>
+  <div class="code">
+    <code><pre>{{importObject |json}}</pre></code>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-card-actions [attr.align]="'center'">
+
+    <button mat-button color="primary" (click)="export()">
+      Export
+    </button>
+  </mat-card-actions>
+</mat-card>

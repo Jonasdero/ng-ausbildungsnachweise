@@ -1,6 +1,6 @@
 # Ausbildungsnachweisgenerator
 
-[![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://ng-ausbildungsnachweise.firebaseapp.com/)
+[![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://github.com/Jonasdero/ng-ausbildungsnachweise)
 [![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://ng-ausbildungsnachweise.firebaseapp.com/)
 ## Funktionen
 

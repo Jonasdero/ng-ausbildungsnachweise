@@ -8,6 +8,9 @@
 </div>
 
 <div class="floating-div-bottom-right">
+  <button  mat-fab routerLink="/importexport" color="primary" class="color-white">
+    <mat-icon>import_export</mat-icon>
+  </button>
   <button *ngIf="weeks.length>0" mat-fab (click)="save()" color="accent" class="color-white">
     <mat-icon>save</mat-icon>
   </button>
@@ -17,7 +20,7 @@
   <button routerLink="/help" mat-fab class="background-error">
     <mat-icon class="color-white">help</mat-icon>
   </button>
-  <button routerLink="/settings" mat-fab color="accent">
+  <button routerLink="/settings" mat-fab class="background-error">
     <mat-icon class="color-white">settings</mat-icon>
   </button>
 </div>

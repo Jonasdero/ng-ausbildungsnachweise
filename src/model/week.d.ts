@@ -4,11 +4,11 @@ interface Week {
   beruf?: string,
   hSum?: string,
   id?: number,
-  nr: number,
+  nr?: number,
   department: string,
-  year: number,
-  startDate: string,
-  endDate: string,
+  year?: number,
+  startDate?: string,
+  endDate?: string,
   date: Date,
 
   hMo: number,
@@ -16,6 +16,12 @@ interface Week {
   hMi: number,
   hDo: number,
   hFr: number,
+
+  contentMo?: string,
+  contentDi?: string,
+  contentMi?: string,
+  contentDo?: string,
+  contentFr?: string,
 
   contentMo1: string,
   contentMo2: string,
