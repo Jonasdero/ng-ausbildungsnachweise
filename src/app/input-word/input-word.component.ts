@@ -24,9 +24,7 @@ export class InputWordComponent implements OnInit {
 
   newWeek() {
     this.weekService.addWeek({
-      nr: 0, department: 'Atiw Paderborn', year: 1,
-      startDate: '', endDate: '',
-      date: this.dateService.getMonday(new Date),
+      department: 'Atiw Paderborn', date: this.dateService.getMonday(new Date),
       hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
       contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '', contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
       contentDi1: '', contentDi2: '', contentDi3: '', contentDi4: '', contentDi5: '', contentDi6: '', contentDi7: '', contentDi8: '',

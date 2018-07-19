@@ -94,7 +94,7 @@ body {
 
 .floating-div-top-left {
   z-index: 5;
-  position: fixed;
+  position: absolute;
   display: flex;
   top: 35px;
   margin-left: 2%;
@@ -106,7 +106,7 @@ body {
 
 .floating-div-top-right {
   z-index: 5;
-  position: fixed;
+  position: absolute;
   display: flex;
   top: 35px;
   right: 0;
@@ -140,4 +140,10 @@ body {
 
 mat-card {
   margin: 24px;
+}
+
+.code {
+  margin-left: 30%;
+  margin-right: 30%;
+  background-color: #F5F5F5;
 }
