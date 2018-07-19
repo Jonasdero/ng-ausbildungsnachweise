@@ -5,8 +5,7 @@ import { WordService } from '../shared/word.service';
 
 @Component({
   selector: 'app-input-word',
-  templateUrl: './input-word.component.html',
-  styleUrls: ['./input-word.component.scss']
+  templateUrl: './input-word.component.html'
 })
 export class InputWordComponent implements OnInit {
   weeks: Week[] = [];

@@ -8,8 +8,7 @@ function validateContent(c: AbstractControl) {
 
 @Component({
   selector: 'input-week',
-  templateUrl: './input-week.component.html',
-  styleUrls: ['./input-week.component.scss']
+  templateUrl: './input-week.component.html'
 })
 export class InputWeekComponent implements OnInit {
   @Input() week: Week;
