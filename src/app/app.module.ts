@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatDialog,
   MatButtonModule, MatCardModule, MatDialogModule, MatIconModule,
@@ -16,16 +17,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { NavButtonComponent } from './nav-button/nav-button.component';
 import { InputWordComponent } from './input-word/input-word.component';
 import { InputWeekComponent } from './input-week/input-week.component';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavButtonComponent,
     InputWordComponent,
     InputWeekComponent
   ],
