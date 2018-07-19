@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { Department } from '../shared/department';
 import { WeekService } from '../shared/week.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { WeekService } from '../shared/week.service';
 export class InputWeekComponent implements OnInit {
   @Input() week: Week;
   @Output() action = new EventEmitter<Week>();
-  departments: Department[] = [Department.Atiw, Department.Praxis, Department.Spe];
+  @Input() departments: string[];
   hours = [
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
     { value: 'hMi', day: 'Mittwoch' }, { value: 'hDo', day: 'Donnerstag' },
@@ -21,7 +20,7 @@ export class InputWeekComponent implements OnInit {
 
   get(type: string): AbstractControl { return this.form.get(type); }
 
-  constructor(private weekService: WeekService, private formBuilder: FormBuilder) { }
+  constructor(private weekService: WeekService) { }
 
   ngOnInit() {
     this.form = new FormGroup({

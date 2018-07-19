@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputWordComponent } from './input-word/input-word.component';
 import { InputWeekComponent } from './input-week/input-week.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -26,7 +27,8 @@ import { InputWeekComponent } from './input-week/input-week.component';
   declarations: [
     AppComponent,
     InputWordComponent,
-    InputWeekComponent
+    InputWeekComponent,
+    SettingsComponent
   ],
   imports: [
     AppRoutingModule,

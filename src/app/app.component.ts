@@ -13,8 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.settingsService.getSettings().subscribe((settings: Settings) => {
-      this.settingsService.settings = settings;
-      this.description = settings.name + " " + settings.surname;
+      this.description = settings.vorname + " " + settings.nachname;
     });
   }
 }

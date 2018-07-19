@@ -1,6 +1,9 @@
 {
-  "name": "Jonas",
-  "surname": "Roser",
+  "vorname": "Jonas",
+  "nachname": "Roser",
   "ausbildungsStart": "04.09.2016",
-  "beruf": "Fachinformatiker Anwendungsentwicklung"
+  "beruf": "Fachinformatiker Anwendungsentwicklung",
+  "atiw": "Atiw Paderborn",
+  "spe": "Siemens Professional Education Paderborn",
+  "praxis": "Atos, AIS GER HR PD Azubi"
 }
