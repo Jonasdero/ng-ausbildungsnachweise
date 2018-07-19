@@ -15,7 +15,14 @@ export class SettingsService {
   }
 
   saveSettings(settings: Settings): void {
-    //TODOSS
+    var sJson = JSON.stringify(settings);
+    var element = document.createElement('a');
+    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
+    element.setAttribute('download', "settings.json");
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click(); // simulate click
+    document.body.removeChild(element);
   }
 
   getAusbildungsjahr(d: Date): number {

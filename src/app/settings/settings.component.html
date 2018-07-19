@@ -1,9 +1,8 @@
-<button mat-fab class="fab-button" color="accent">
-  <a routerLink="/" class="color-white">
-    <mat-icon>home</mat-icon>
-  </a>
+<button routerLink="/" mat-fab class="fab-button" color="accent">
+  <mat-icon class="color-white">home</mat-icon>
 </button>
-
+<br>
+<h1 class="centered color-error">Nach dem Speichern die Settings Datei im Assets Ordner ersetzen</h1>
 <mat-card *ngIf="form">
   <mat-card-header>
     <h1>Settings</h1>
@@ -11,23 +10,37 @@
   <form [formGroup]="form">
     <div class="row">
       <mat-form-field class="column">
-        <input matInput formControlName="surname" required placeholder="Vorname">
-        <mat-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">Bitte Vornamen eingeben</mat-error>
+        <input matInput formControlName="vorname" required placeholder="Vorname">
+        <mat-error *ngIf="get('vorname').invalid && (get('vorname').dirty || get('vorname').touched)">Bitte Vornamen eingeben</mat-error>
       </mat-form-field>
       <mat-form-field class="column">
-        <input matInput formControlName="name" required placeholder="Nachname">
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Bitte Nachnamen eingeben</mat-error>
+        <input matInput formControlName="nachname" required placeholder="Nachname">
+        <mat-error *ngIf="get('nachname').invalid && (get('nachname').dirty || get('nachname').touched)">Bitte Nachnamen eingeben</mat-error>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field class="column">
         <input matInput formControlName="beruf" required placeholder="Beruf">
-        <mat-error *ngIf="beruf.invalid && (beruf.dirty || beruf.touched)">Bitte Beruf eingeben</mat-error>
+        <mat-error *ngIf="get('beruf').invalid && (get('beruf').dirty || get('beruf').touched)">Bitte Beruf eingeben</mat-error>
       </mat-form-field>
       <mat-form-field class="column">
         <input matInput [matDatepicker]="picker1" placeholder="Startdatum" formControlName="ausbildungsStart">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="column">
+        <input matInput formControlName="spe" required placeholder="Vorname">
+        <mat-error *ngIf="get('spe').invalid && (get('spe').dirty || get('spe').touched)">Bitte Spe eingeben</mat-error>
+      </mat-form-field>
+      <mat-form-field class="column">
+        <input matInput formControlName="atiw" required placeholder="Atiw">
+        <mat-error *ngIf="get('atiw').invalid && (get('atiw').dirty || get('atiw').touched)">Bitte Atiw eingeben</mat-error>
+      </mat-form-field>
+      <mat-form-field class="column">
+        <input matInput formControlName="praxis" required placeholder="Praxisphase">
+        <mat-error *ngIf="get('praxis').invalid && (get('praxis').dirty || get('praxis').touched)">Bitte Praxisphase eingeben</mat-error>
       </mat-form-field>
     </div>
   </form>
