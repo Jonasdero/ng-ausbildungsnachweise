@@ -1,4 +1,4 @@
-<mat-expansion-panel *ngIf="departments">
+<mat-expansion-panel *ngIf="departments" [expanded]="week.id === 0">
   <mat-expansion-panel-header>
     <b>Nr {{getAusbildungsnachweisNr()}} </b> ---- {{week.date | date: 'dd. MMMM yyyy'}} ---- {{week.department}}
   </mat-expansion-panel-header>
@@ -65,7 +65,7 @@
     </div>
   </form>
 
-  <mat-action-row [attr.align]="'center'">
+  <mat-action-row>
     <button mat-button class="color-warn" (click)="delete(week)">
       <mat-icon>delete</mat-icon> Löschen
     </button>

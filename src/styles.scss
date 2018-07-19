@@ -96,8 +96,21 @@ body {
   z-index: 5;
   position: fixed;
   display: flex;
-  top: 2%;
+  top: 35px;
   margin-left: 2%;
+  button {
+    margin-left: 3px;
+    flex-basis: auto;
+  }
+}
+
+.floating-div-top-right {
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  top: 35px;
+  right: 0;
+  margin-right: 2%;
   button {
     margin-left: 3px;
     flex-basis: auto;
@@ -123,13 +136,6 @@ body {
 
 .fill-column {
   width: 10px;
-}
-
-.fab-button {
-  position: absolute !important;
-  right: 2%;
-  top: 35px;
-  z-index: 1;
 }
 
 mat-card {
