@@ -1,4 +1,4 @@
-<div class="floating-button-div">
+<div class="floating-div-bottom-left">
   <button mat-fab (click)="clearWeeks()" color="warn">
     <mat-icon>delete_sweep</mat-icon>
   </button>
@@ -7,18 +7,18 @@
   </button>
 </div>
 
-<div class="floating-button-div-right">
+<div class="floating-div-bottom-right">
   <button *ngIf="weeks.length>0" mat-fab (click)="save()" color="accent" class="color-white">
     <mat-icon>save</mat-icon>
   </button>
-
 </div>
+
 <button routerLink="/settings" mat-fab class="fab-button" color="accent">
   <mat-icon class="color-white">settings</mat-icon>
 </button>
 
 <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"></input-week>
-<div *ngIf="weeks.length === 0" class="centered color-error">
+<div *ngIf="weeks.length === 0" class="centered">
   <br>
   <h1>Keine Wochen vorhanden.. </h1>
   <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>

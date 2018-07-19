@@ -28,9 +28,7 @@ export class SettingsComponent implements OnInit {
   }
   save() {
     let settings: Settings = {};
-    console.log(this.form);
     for (var prop in this.form.value) {
-      console.log(prop);
       settings[prop] = this.get(prop).value;
     }
     this.settingsService.saveSettings(settings);

@@ -50,7 +50,7 @@
 html,
 body {
   height: 100%;
-  background-color:#eeeeee;
+  background-color: #eeeeee;
 }
 
 body {
@@ -67,34 +67,41 @@ body {
   text-align: center;
 }
 
-.full-width {
-  width: 100%;
-}
-
-// Floating Button on the left corner
-.floating-button-div {
+.floating-div-bottom-left {
   z-index: 5;
   position: fixed;
   display: flex;
-  align-self: flex-end;
   bottom: 2%;
   margin-left: 2%;
+  button {
+    margin-left: 3px;
+    flex-basis: auto;
+  }
 }
 
-.floating-button-div-right {
+.floating-div-bottom-right {
   z-index: 5;
   position: fixed;
-    bottom: 0;
-    right: 0;
-  display: flex;
-  align-self: flex-start;
+  right: 0;
   bottom: 2%;
   margin-right: 2%;
+  display: flex;
+  button {
+    margin-left: 3px;
+    flex-basis: auto;
+  }
 }
 
-.floating-button-div button {
-  margin-left: 3px;
-  flex-basis: auto;
+.floating-div-top-left {
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  top: 2%;
+  margin-left: 2%;
+  button {
+    margin-left: 3px;
+    flex-basis: auto;
+  }
 }
 
 .row {
@@ -119,10 +126,10 @@ body {
 }
 
 .fab-button {
-    position: absolute !important;
-    right: 2%;
-    top: 35px;
-    z-index: 1;
+  position: absolute !important;
+  right: 2%;
+  top: 35px;
+  z-index: 1;
 }
 
 mat-card {

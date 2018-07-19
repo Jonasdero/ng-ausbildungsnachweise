@@ -16,4 +16,8 @@ export class AppComponent implements OnInit {
       this.description = settings.vorname + " " + settings.nachname;
     });
   }
+
+  ngOnChanges() {
+    this.description = this.settingsService.settings.vorname + this.settingsService.settings.nachname;
+  }
 }
