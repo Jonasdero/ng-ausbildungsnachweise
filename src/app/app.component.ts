@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    this.settingsService.updatedSettings.subscribe(() => {
+      this.description = this.settingsService.settings.vorname + " " + this.settingsService.settings.nachname;
+    })
     this.settingsService.getSettings().subscribe((settings: Settings) => {
       this.description = settings.vorname + " " + settings.nachname;
     });
@@ -28,9 +31,5 @@ export class AppComponent implements OnInit {
       contentDo1: '', contentDo2: '', contentDo3: '', contentDo4: '', contentDo5: '', contentDo6: '', contentDo7: '', contentDo8: '',
       contentFr1: '', contentFr2: '', contentFr3: '', contentFr4: '', contentFr5: '', contentFr6: '', contentFr7: '', contentFr8: '',
     })
-  }
-
-  ngOnChanges() {
-    this.description = this.settingsService.settings.vorname + this.settingsService.settings.nachname;
   }
 }
