@@ -17,7 +17,7 @@ const MY_DATE_FORMATS = {
   }
 };
 
-class GermanDateAdapter extends NativeDateAdapter {
+export class GermanDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
     if (displayFormat != "input")
       return date.toDateString();
