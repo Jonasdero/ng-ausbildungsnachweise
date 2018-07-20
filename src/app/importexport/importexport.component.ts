@@ -26,7 +26,7 @@ export class ImportexportComponent implements OnInit {
       try {
         var obj = JSON.parse(paramsDialog.data);
         obj.settings.ausbildungsStart = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
-        this.settingsService.settings = obj.settings;
+        this.settingsService.saveSettings(obj.settings);
         let weeks = this.weekService.importWeeks(obj.weeks);
         this.wordService.save(weeks);
       }
