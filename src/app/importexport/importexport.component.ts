@@ -28,7 +28,7 @@ export class ImportexportComponent implements OnInit {
         obj.settings.ausbildungsStart = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
         this.settingsService.saveSettings(obj.settings);
         let weeks = this.weekService.importWeeks(obj.weeks);
-        this.wordService.save(weeks);
+        if (paramsDialog.checked) this.wordService.save(weeks);
       }
       catch (e) { console.log(e); }
     });
