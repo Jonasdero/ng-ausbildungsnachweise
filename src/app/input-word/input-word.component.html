@@ -8,7 +8,7 @@
 </div>
 
 <div class="floating-div-bottom-right">
-  <button  mat-fab routerLink="/importexport" color="primary" class="color-white">
+  <button mat-fab routerLink="/importexport" color="primary" class="color-white">
     <mat-icon>import_export</mat-icon>
   </button>
   <button *ngIf="weeks.length>0" mat-fab (click)="save()" color="accent" class="color-white">
@@ -27,11 +27,12 @@
 
 <br>
 <br>
-<mat-accordion *ngIf="settingsService.settings">
-  <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
-    matExpansionPanelContent></input-week>
-</mat-accordion>
-
+<div class="accordion-content">
+  <mat-accordion *ngIf="settingsService.settings">
+    <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
+      matExpansionPanelContent></input-week>
+  </mat-accordion>
+</div>
 <div *ngIf="weeks.length === 0" class="centered">
   <h1>Keine Wochen vorhanden.. </h1>
   <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>

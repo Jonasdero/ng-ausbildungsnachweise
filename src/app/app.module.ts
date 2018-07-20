@@ -26,6 +26,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
 import { ImportexportComponent } from './importexport/importexport.component';
 import { ImportDialogComponent } from './import-dialog/import-dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ImportDialogComponent } from './import-dialog/import-dialog.component';
     SettingsComponent,
     HelpComponent,
     ImportexportComponent,
-    ImportDialogComponent
+    ImportDialogComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,
