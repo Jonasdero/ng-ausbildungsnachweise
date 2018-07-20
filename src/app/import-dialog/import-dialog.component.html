@@ -7,6 +7,7 @@
       required [cdkTextareaAutosize]="true" [cdkAutosizeMinRows]="5" [cdkAutosizeMaxRows]="10"></textarea>
     <mat-error>Falsches Format</mat-error>
   </mat-form-field>
+  <mat-checkbox [(ngModel)]="checked">Sofortiger Download</mat-checkbox>
 </mat-dialog-content>
 
 <mat-dialog-actions [attr.align]="'center'">
