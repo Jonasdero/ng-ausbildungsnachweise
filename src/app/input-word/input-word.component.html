@@ -1,26 +1,29 @@
 <div class="floating-div-bottom-left">
-  <button mat-fab (click)="clearWeeks()" color="warn">
+  <button matTooltip="Löschen aller Einträge" mat-fab (click)="clearWeeks()" color="warn">
     <mat-icon>delete_sweep</mat-icon>
   </button>
-  <button mat-fab (click)="newWeek()" color="accent" class="color-white">
+  <button matTooltip="Einfügen eines neuen Eintrags" mat-fab (click)="newWeek()" color="accent"
+    class="color-white">
     <mat-icon>playlist_add</mat-icon>
   </button>
 </div>
 
 <div class="floating-div-bottom-right">
-  <button mat-fab routerLink="/importexport" color="warn" class="color-white">
+  <button matTooltip="Export und Import" mat-fab routerLink="/importexport" color="warn"
+    class="color-white">
     <mat-icon>import_export</mat-icon>
   </button>
-  <button *ngIf="weeks.length>0" mat-fab (click)="save()" color="accent" class="color-white">
+  <button matTooltip="Speichern und Downloaden der generierten Workddokumente" *ngIf="weeks.length>0"
+    mat-fab (click)="save()" color="accent" class="color-white">
     <mat-icon>save</mat-icon>
   </button>
 </div>
 
 <div class="floating-div-top-right">
-  <button routerLink="/help" mat-fab class="background-error">
+  <button matTooltip="Hilfe" routerLink="/help" mat-fab class="background-error">
     <mat-icon class="color-white">help</mat-icon>
   </button>
-  <button routerLink="/settings" mat-fab class="background-error">
+  <button matTooltip="Einstellungen" routerLink="/settings" mat-fab class="background-error">
     <mat-icon class="color-white">settings</mat-icon>
   </button>
 </div>
