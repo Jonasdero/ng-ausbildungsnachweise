@@ -1,35 +1,21 @@
-<div class="floating-div-bottom-left">
-  <button matTooltip="Löschen aller Einträge" mat-fab (click)="clearWeeks()" color="warn">
-    <mat-icon>delete_sweep</mat-icon>
+<div class="action-bar">
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button class="action-bar-button" (click)="clearWeeks()" color="warn">
+    <mat-icon>delete_sweep</mat-icon> Löschen
   </button>
-  <button matTooltip="Einfügen eines neuen Eintrags" mat-fab (click)="newWeek()" color="accent"
-    class="color-white">
-    <mat-icon>playlist_add</mat-icon>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button class="action-bar-button color-white" (click)="newWeek()"
+    color="accent">
+    <mat-icon>playlist_add</mat-icon> Neuer Eintrag
   </button>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button class="action-bar-button color-white" (click)="save()"
+    color="accent" [disabled]="weeks.length<=0 ">
+    <mat-icon>playlist_add</mat-icon> Speichern und Download
+  </button>
+  <span class="fill-remaining-space"></span>
 </div>
 
-<div class="floating-div-bottom-right">
-  <button matTooltip="Export und Import" mat-fab routerLink="/importexport" color="warn"
-    class="color-white">
-    <mat-icon>import_export</mat-icon>
-  </button>
-  <button matTooltip="Speichern und Downloaden der generierten Workddokumente" *ngIf="weeks.length>0"
-    mat-fab (click)="save()" color="accent" class="color-white">
-    <mat-icon>save</mat-icon>
-  </button>
-</div>
-
-<div class="floating-div-top-right">
-  <button matTooltip="Hilfe" routerLink="/help" mat-fab class="background-error">
-    <mat-icon class="color-white">help</mat-icon>
-  </button>
-  <button matTooltip="Einstellungen" routerLink="/settings" mat-fab class="background-error">
-    <mat-icon class="color-white">settings</mat-icon>
-  </button>
-</div>
-
-<br>
-<br>
 <div class="accordion-content">
   <mat-accordion *ngIf="settingsService.settings">
     <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"

@@ -1,28 +1,15 @@
-.sidenav {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.sidenav-container {
-  margin-left: 0;
-}
-
-.nav-button {
-  text-align: left;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  min-width: 50px;
-  width: 100%;
-}
-
-.mat-toolbar.mat-primary {
-  top: 0;
-}
-
 mat-card {
   padding: 10px;
   margin:0;
+}
+
+button {
+  margin: 0 10px 10px 10px;
+  flex-grow: 1;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

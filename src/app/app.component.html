@@ -1,17 +1,26 @@
 <section class="mat-typography">
-  <!-- Toolbar -->
-  <div class="floating-div-top-left">
-    <mat-card>
-      <h3>{{description}}</h3>
-    </mat-card>
+  <mat-card>
+    <mat-card-title>Ausbildungsnachweis Generator</mat-card-title>
+    <mat-card-subtitle>Eingeloggt als xxxxx</mat-card-subtitle>
+    <span class="flex">
+      <span class="fill-remaining-space"></span>
+      <button mat-button [routerLink]="['']">
+        <mat-icon class="color-primary">home</mat-icon> Home
+      </button>
+      <button mat-button [routerLink]="['/importexport']">
+        <mat-icon class="color-primary">import_export</mat-icon> Import & Export
+      </button>
+      <button mat-button [routerLink]="['/settings']">
+        <mat-icon class="color-primary">settings</mat-icon> Einstellungen
+      </button>
+      <button mat-button [routerLink]="['/help']">
+        <mat-icon class="color-primary">help</mat-icon> Hilfe
+      </button>
+      <span class="fill-remaining-space"></span>
+    </span>
+  </mat-card>
+  <div class="content">
+    <router-outlet> </router-outlet>
   </div>
-  <mat-toolbar color="primary">
-    <span class="fill-remaining-space"></span>
-    Ausbildungsnachweis Generator
-    <span class="fill-remaining-space"></span>
-  </mat-toolbar>
-  <!-- Content -->
-  <router-outlet> </router-outlet>
-
   <footer></footer>
 </section>

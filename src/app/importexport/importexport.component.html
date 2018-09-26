@@ -1,13 +1,15 @@
-<div class="floating-div-top-right">
-  <button matTooltip="Hilfe" routerLink="/help" mat-fab class="background-error">
-    <mat-icon class="color-white">help</mat-icon>
+<div class="action-bar">
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button class="action-bar-button color-white" (click)="import()"
+    color="warn">
+    <mat-icon>keyboard_arrow_up</mat-icon> Import
   </button>
-  <button matTooltip="Einstellungen" routerLink="/settings" mat-fab class="background-error">
-    <mat-icon class="color-white">settings</mat-icon>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button class="action-bar-button color-white" (click)="export()"
+    color="warn">
+    <mat-icon>keyboard_arrow_down</mat-icon> Export
   </button>
-  <button matTooltip="Zurück zum Start" routerLink="/" mat-fab color="accent">
-    <mat-icon class="color-white">home</mat-icon>
-  </button>
+  <span class="fill-remaining-space"></span>
 </div>
 
 <mat-card>
@@ -27,12 +29,3 @@
     <b>Achte darauf, die Kommas direkt vor den Klammern zu entfernen!</b>
   </p>
 </mat-card>
-
-<div class="floating-div-bottom-right">
-  <button mat-raised-button (click)="import()" color="warn" class="color-white">
-    <mat-icon>keyboard_arrow_up</mat-icon> Import
-  </button>
-  <button mat-raised-button (click)="export()" color="warn" class="color-white">
-    <mat-icon>keyboard_arrow_down</mat-icon> Export
-  </button>
-</div>
