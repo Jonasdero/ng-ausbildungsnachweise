@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
-import { WeekService } from '../shared/services/week.service';
-import { SettingsService } from '../shared/services/settings.service';
+import { WeekService, SettingsService, DateService, WordService } from '../../shared';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
-import { WordService } from '../shared/services/word.service';
-import { DateService } from '../shared/services/date.service';
 
 @Component({
   selector: 'app-importexport',

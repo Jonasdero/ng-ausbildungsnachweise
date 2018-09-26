@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { WeekService } from '../shared/services/week.service';
-import { DateService } from '../shared/services/date.service';
+import { WeekService, DateService } from '../../shared';
 
 function validateContent(c: AbstractControl) {
   return c.value.split('\n').length <= 8 ? null : { length: c.value.split('\n').length };

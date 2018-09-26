@@ -17,26 +17,20 @@ import { environment } from '../environments/environment';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/modules/material.module';
+import { CoreModule } from './core/core.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { InputWordComponent } from './input-word/input-word.component';
-import { InputWeekComponent } from './input-week/input-week.component';
+
 import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
-import { ImportexportComponent } from './importexport/importexport.component';
-import { ImportDialogComponent } from './import-dialog/import-dialog.component';
-import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputWordComponent, InputWeekComponent,
     SettingsComponent,
     HelpComponent,
-    ImportexportComponent,
-    ImportDialogComponent,
-    FooterComponent
   ],
   imports: [
     AppRoutingModule,
@@ -50,9 +44,10 @@ import { FooterComponent } from './footer/footer.component';
     // Angular Material
     LayoutModule,
     MaterialModule,
+
+    CoreModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "de" }],
-  entryComponents: [ImportDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
