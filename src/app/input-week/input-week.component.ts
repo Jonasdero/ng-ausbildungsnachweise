@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { WeekService } from '../shared/services/week.service';
 import { DateService } from '../shared/services/date.service';
 
@@ -69,7 +69,7 @@ export class InputWeekComponent implements OnInit {
     for (let i = 1; i <= 8; i++)
       this.week[name + i] = splitted[i - 1];
   }
-  getAusbildungsnachweisNr() {return this.dateService.getAusbildungsNachweisNr(this.week.date);}
+  getAusbildungsnachweisNr() { return this.dateService.getAusbildungsNachweisNr(this.week.date); }
   onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
   duplicate() { this.weekService.duplicateWeek(this.week); this.action.emit(this.week); }
   delete() { this.weekService.deleteWeek(this.week); this.action.emit(this.week); }

@@ -26,18 +26,39 @@ export class ImportexportComponent implements OnInit {
       try {
         var obj = JSON.parse(paramsDialog.data);
         obj.settings.ausbildungsStart = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
-        this.settingsService.settings = obj.settings;
+        this.settingsService.saveSettings(obj.settings);
         let weeks = this.weekService.importWeeks(obj.weeks);
-        this.wordService.save(weeks);
+        if (paramsDialog.checked) this.wordService.save(weeks);
       }
       catch (e) { console.log(e); }
     });
   }
 
   export() {
-    var sJson = JSON.stringify({ settings: this.settingsService.settings, weeks: this.weekService.getWeeks() }, null, 4);
+    var weeks = this.weekService.getWeeks();
+    var userWeeks = [];
+
+    for (let week of weeks) {
+      let userWeek = {};
+      userWeek['startDate'] = this.dateService.getLocaleDateString(week.date);
+      userWeek['department'] = week.department;
+      let weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+      for (let weekday of weekDays) {
+        userWeek['h' + weekday] = week['h' + weekday];
+        userWeek['content' + weekday] = '';
+        for (let i = 1; i <= 8; i++) {
+          if (week['content' + weekday + i].length === 0) continue;
+          userWeek['content' + weekday] += week['content' + weekday + i];
+          if (i <= 8) userWeek['content' + weekday] += '\n';
+        }
+      }
+      userWeeks.push(userWeek);
+    }
+    var settings = this.settingsService.settings;
+    settings.ausbildungsStart = this.dateService.getLocaleDateString(new Date(settings.ausbildungsStart));
+    var obj = JSON.stringify({ settings: settings, weeks: userWeeks }, null, 4);
     var element = document.createElement('a');
-    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
+    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(obj));
     element.setAttribute('download', "export.json");
     element.style.display = 'none';
     document.body.appendChild(element);

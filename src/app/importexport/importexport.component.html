@@ -1,11 +1,11 @@
 <div class="floating-div-top-right">
-  <button routerLink="/help" mat-fab class="background-error">
+  <button matTooltip="Hilfe" routerLink="/help" mat-fab class="background-error">
     <mat-icon class="color-white">help</mat-icon>
   </button>
-  <button routerLink="/settings" mat-fab class="background-error">
+  <button matTooltip="Einstellungen" routerLink="/settings" mat-fab class="background-error">
     <mat-icon class="color-white">settings</mat-icon>
   </button>
-  <button routerLink="/" mat-fab color="accent">
+  <button matTooltip="Zurück zum Start" routerLink="/" mat-fab color="accent">
     <mat-icon class="color-white">home</mat-icon>
   </button>
 </div>
@@ -29,10 +29,10 @@
 </mat-card>
 
 <div class="floating-div-bottom-right">
-  <button mat-raised-button color="primary" (click)="import()" class="color-white">
+  <button mat-raised-button (click)="import()" color="warn" class="color-white">
     <mat-icon>keyboard_arrow_up</mat-icon> Import
   </button>
-  <button mat-raised-button (click)="export()" color="primary" class="color-white">
+  <button mat-raised-button (click)="export()" color="warn" class="color-white">
     <mat-icon>keyboard_arrow_down</mat-icon> Export
   </button>
 </div>

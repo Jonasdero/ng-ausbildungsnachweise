@@ -4,7 +4,7 @@ import {
   MatDialog, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS,
   MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
   MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule,
+  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule
 } from '@angular/material';
 
 const MY_DATE_FORMATS = {
@@ -17,7 +17,7 @@ const MY_DATE_FORMATS = {
   }
 };
 
-class GermanDateAdapter extends NativeDateAdapter {
+export class GermanDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
     if (displayFormat != "input")
       return date.toDateString();
@@ -38,12 +38,14 @@ class GermanDateAdapter extends NativeDateAdapter {
     CommonModule,
     MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule
+    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
+    MatTooltipModule,
   ],
   exports: [
     MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule
+    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
+    MatTooltipModule
   ],
   providers: [
     MatDialog,

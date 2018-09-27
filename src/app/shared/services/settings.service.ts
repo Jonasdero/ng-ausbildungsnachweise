@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
+
+  @Output() updatedSettings = new EventEmitter<Settings>();
   settings: Settings;
   path = 'assets/settings.json';
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
@@ -18,5 +20,8 @@ export class SettingsService {
     });
     return this.http.get<Settings>(this.path);
   }
-  saveSettings(settings: Settings): void { this.settings = settings; }
+  saveSettings(settings: Settings): void {
+    this.settings = settings;
+    this.updatedSettings.emit(settings);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, Form } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SettingsService } from '../shared/services/settings.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { SettingsService } from '../shared/services/settings.service';
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
-
   form: FormGroup;
   constructor(private settingsService: SettingsService, private formBuilder: FormBuilder) { }
 

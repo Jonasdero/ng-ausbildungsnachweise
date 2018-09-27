@@ -1,10 +1,10 @@
 {
   "name": "ng-ausbildungsnachweise",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

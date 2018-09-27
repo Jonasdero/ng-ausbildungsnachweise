@@ -1,13 +1,22 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, AbstractControl } from '@angular/forms';
+
+function validateJSON(c: AbstractControl) {
+  if (/^[\],:{}\s]*$/.test(c.value.replace(/\\["\\\/bfnrtu]/g, '@').
+    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+    replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) return null;
+  else return { validJSON: false };
+}
+
 @Component({
   selector: 'app-import-dialog',
   templateUrl: './import-dialog.component.html',
   styleUrls: ['./import-dialog.component.scss']
 })
 export class ImportDialogComponent implements OnInit {
-  importControl = new FormControl('', [Validators.required]);
+  importControl = new FormControl('', [Validators.required, validateJSON]);
+  checked: boolean = false;
   constructor(public dialogRef: MatDialogRef<ImportDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public params: any) {
 
@@ -17,7 +26,8 @@ export class ImportDialogComponent implements OnInit {
 
   public onSave(): void {
     this.dialogRef.close({
-      data: this.importControl.value
+      data: this.importControl.value,
+      instantSave: this.checked
     });
   }
 }
