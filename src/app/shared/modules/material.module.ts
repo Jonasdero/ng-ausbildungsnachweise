@@ -4,7 +4,8 @@ import {
   MatDialog, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS,
   MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
   MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule
+  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
+  MatTooltipModule
 } from '@angular/material';
 
 const MY_DATE_FORMATS = {

@@ -6,16 +6,11 @@ import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: './input/input.module#InputModule', },
-  { path: 'importexport', loadChildren: './import/import.module#ImportModule', },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'help', component: HelpComponent },
-  // Example of Lazy Loading a module
-  // {
-  //     path: 'login',
-  //     loadChildren: './login/login.module#LoginModule',
-  // },
-  { path: '**', redirectTo: '', }
+  { path: '', loadChildren: './input/input.module#InputModule', pathMatch: 'full' },
+  { path: 'importexport', loadChildren: './import/import.module#ImportModule', pathMatch: 'full' },
+  { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
+  { path: 'help', component: HelpComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

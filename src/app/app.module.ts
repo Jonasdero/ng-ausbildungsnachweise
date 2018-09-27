@@ -4,8 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 // Localization
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
@@ -40,7 +38,6 @@ import { HelpComponent } from './help/help.component';
     BrowserModule, BrowserAnimationsModule,
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    NgbModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),

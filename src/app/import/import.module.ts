@@ -5,6 +5,7 @@ import { MaterialModule } from '../shared';
 
 import { ImportexportComponent } from './importexport/importexport.component';
 import { ImportDialogComponent } from './import-dialog/import-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 
 const routes: Routes = [
   { path: '', component: ImportexportComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    FormsModule, ReactiveFormsModule
   ],
   declarations: [ImportexportComponent, ImportDialogComponent],
   entryComponents: [ImportDialogComponent],
