@@ -9,9 +9,9 @@ export class NotificationService {
 
   notifications: NotificationContent[] = [
     // Test Notifications
-    { id: 1, text: "Sample Info that is way too long for the notification and should be bla bla", duration: 10, type: 0 },
-    { id: 2, text: "Sample Warning", duration: 10, type: 1 },
-    { id: 3, text: "Sample Error", duration: 10, type: 2 }
+    // { id: 1, text: "Sample Info that is way too long for the notification and should be bla bla", duration: 10, type: 0 },
+    // { id: 2, text: "Sample Warning", duration: 10, type: 1 },
+    // { id: 3, text: "Sample Error", duration: 10, type: 2 }
   ]
 
   @Output() notificationChange: EventEmitter<NotificationContent[]> = new EventEmitter()

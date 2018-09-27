@@ -1,7 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +17,6 @@ export class AuthService {
       this.authChanged.emit(this.loggedIn);
     })
   }
+
+
 }

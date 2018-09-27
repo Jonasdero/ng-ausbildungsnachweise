@@ -10,7 +10,8 @@ import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe, 'de');
 
 // Firebase
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireAuthModule } from 'angularfire2/auth';;
 import { environment } from '../environments/environment';
 
 // Modules
@@ -24,6 +25,7 @@ import { AppComponent } from './app.component';
 
 import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
+
 
 
 
@@ -41,6 +43,7 @@ import { HelpComponent } from './help/help.component';
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
 
     // Angular Material
     LayoutModule,
