@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Localization
 import { registerLocaleData } from '@angular/common';
@@ -16,14 +17,16 @@ import { environment } from '../environments/environment';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './shared/modules/material.module';
 import { CoreModule } from './core/core.module';
+import { ComponentsModule } from './components/components.module';
+import { MaterialModule } from './shared/modules/material.module';
 
 // Components
 import { AppComponent } from './app.component';
 
 import { SettingsComponent } from './settings/settings.component';
 import { HelpComponent } from './help/help.component';
+
 
 
 @NgModule({
@@ -37,6 +40,7 @@ import { HelpComponent } from './help/help.component';
     BrowserModule, BrowserAnimationsModule,
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
+    NgbModule,
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
@@ -46,6 +50,7 @@ import { HelpComponent } from './help/help.component';
     MaterialModule,
 
     CoreModule,
+    ComponentsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "de" }],
   bootstrap: [AppComponent]
