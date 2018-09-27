@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, NotificationService } from '../../shared';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 @Component({

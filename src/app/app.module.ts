@@ -10,8 +10,8 @@ import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe, 'de');
 
 // Firebase
-import { AngularFireModule } from 'angularfire2'
-import { AngularFireAuthModule } from 'angularfire2/auth';;
+import { AngularFireModule } from '@angular/fire'
+import { AngularFireAuthModule } from '@angular/fire/auth';;
 import { environment } from '../environments/environment';
 
 // Modules
