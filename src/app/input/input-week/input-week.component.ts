@@ -11,9 +11,10 @@ function validateContent(c: AbstractControl) {
   templateUrl: './input-week.component.html'
 })
 export class InputWeekComponent implements OnInit {
-  @Input() week: Week;
-  @Output() action = new EventEmitter<Week>();
+  @Input() step: number;
   @Input() departments: string[];
+  @Input() week: Week;
+  @Output() stepChanged: EventEmitter<number> = new EventEmitter();
   hours = [
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
     { value: 'hMi', day: 'Mittwoch' }, { value: 'hDo', day: 'Donnerstag' },
@@ -47,7 +48,6 @@ export class InputWeekComponent implements OnInit {
         else this.week[prop] = this.get(prop).value;
       }
       this.weekService.saveWeek(this.week);
-      this.action.emit(this.week);
     })
   }
 
@@ -70,6 +70,12 @@ export class InputWeekComponent implements OnInit {
   }
   getAusbildungsnachweisNr() { return this.dateService.getAusbildungsNachweisNr(this.week.date); }
   onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
-  duplicate() { this.weekService.duplicateWeek(this.week); this.action.emit(this.week); }
-  delete() { this.weekService.deleteWeek(this.week); this.action.emit(this.week); }
+  duplicate() {
+    this.stepChanged.emit(this.step + 1);
+    setTimeout(() => this.weekService.duplicateWeek(this.week), 100);
+  }
+  delete() {
+    this.stepChanged.emit(this.step - 1);
+    setTimeout(() => this.weekService.deleteWeek(this.week), 100);
+  }
 }

@@ -1,6 +1,7 @@
 <div class="action-bar">
   <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button" (click)="clearWeeks()" color="warn">
+  <button mat-raised-button class="action-bar-button" (click)="clearWeeks()"
+    color="warn">
     <mat-icon>delete_sweep</mat-icon> Löschen
   </button>
   <span class="fill-remaining-space"></span>
@@ -19,6 +20,7 @@
 <div class="accordion-content">
   <mat-accordion *ngIf="settingsService.settings">
     <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
+      [step]="step" (stepChanged)="stepChanged($event)"
       matExpansionPanelContent></input-week>
   </mat-accordion>
 </div>

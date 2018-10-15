@@ -6,6 +6,7 @@ import { WeekService, SettingsService, DateService, WordService } from '../../sh
   templateUrl: './input-word.component.html'
 })
 export class InputWordComponent implements OnInit {
+  step = 0;
   weeks: Week[] = [];
   departments: string[] = [];
   constructor(private weekService: WeekService, public settingsService: SettingsService,
@@ -20,6 +21,7 @@ export class InputWordComponent implements OnInit {
   getWeeks() { this.weeks = this.weekService.getWeeks(); }
 
   newWeek() {
+    this.step++;
     this.weekService.addWeek({
       department: 'Atiw Paderborn', date: this.dateService.getMonday(new Date),
       hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
@@ -31,7 +33,7 @@ export class InputWordComponent implements OnInit {
     })
     this.getWeeks();
   }
-
-  clearWeeks() { this.weekService.clearWeeks(); this.getWeeks(); }
+  stepChanged(value) { this.step = value; }
+  clearWeeks() { this.step = -1; this.weekService.clearWeeks(); this.getWeeks(); }
   save() { this.wordService.save(this.weeks); }
 }

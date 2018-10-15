@@ -20,13 +20,11 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
-      this.notificationService.info('Eingeloggt :)')
-    });
+    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
   }
 
   logout() {
     this.afAuth.auth.signOut();
-    this.notificationService.info('Ausgeloggt :)')
+    this.notificationService.warning('Ausgeloggt :)')
   }
 }

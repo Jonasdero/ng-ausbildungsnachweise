@@ -1,4 +1,4 @@
-<mat-expansion-panel *ngIf="departments" [expanded]="week.id === 0">
+<mat-expansion-panel *ngIf="departments" [expanded]="step === week.id">
   <mat-expansion-panel-header>
     <b>Nr {{getAusbildungsnachweisNr()}} </b> ---- {{week.date | date: 'dd. MMMM yyyy'}} ---- {{week.department}}
   </mat-expansion-panel-header>
