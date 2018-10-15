@@ -15,11 +15,13 @@ export class InputWeekComponent implements OnInit {
   @Input() departments: string[];
   @Input() week: Week;
   @Output() stepChanged: EventEmitter<number> = new EventEmitter();
-  hours = [
+  everyWeekdayEqual: boolean = false;
+  fullHours = [
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
     { value: 'hMi', day: 'Mittwoch' }, { value: 'hDo', day: 'Donnerstag' },
     { value: 'hFr', day: 'Freitag' }
   ]
+  hours = [];
   form: FormGroup;
 
   get(type: string): AbstractControl { return this.form.get(type); }
@@ -27,28 +29,50 @@ export class InputWeekComponent implements OnInit {
   constructor(private weekService: WeekService, private dateService: DateService) { }
 
   ngOnInit() {
+    this.hours = this.fullHours;
     this.form = new FormGroup({
       'department': new FormControl(this.week.department, Validators.required),
       'date': new FormControl(this.week.date, Validators.required),
+      'h': new FormControl(this.week.hMo, Validators.required),
       'hMo': new FormControl(this.week.hMo, Validators.required),
       'hDi': new FormControl(this.week.hDi, Validators.required),
       'hMi': new FormControl(this.week.hMi, Validators.required),
       'hDo': new FormControl(this.week.hDo, Validators.required),
       'hFr': new FormControl(this.week.hFr, Validators.required),
+      'content': new FormControl(this.mergeContent('Mo'), [Validators.required, validateContent]),
       'contentMo': new FormControl(this.mergeContent('Mo'), [Validators.required, validateContent]),
       'contentDi': new FormControl(this.mergeContent('Di'), [Validators.required, validateContent]),
       'contentMi': new FormControl(this.mergeContent('Mi'), [Validators.required, validateContent]),
       'contentDo': new FormControl(this.mergeContent('Do'), [Validators.required, validateContent]),
       'contentFr': new FormControl(this.mergeContent('Fr'), [Validators.required, validateContent]),
     })
-
     this.form.valueChanges.subscribe(() => {
       for (var prop in this.form.value) {
-        if (prop.startsWith('content')) this.splitContent(prop, this.get(prop).value);
-        else this.week[prop] = this.get(prop).value;
+        if (this.everyWeekdayEqual) {
+          if (prop === 'content') { this.splitContentFullWeek(prop, this.get(prop).value); }
+          else if (prop === 'h') {
+            var weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+            for (var weekday in weekdays)
+              this.week[prop + weekday] = this.get(prop).value;
+          }
+          else this.week[prop] = this.get(prop).value;
+        }
+        else {
+          if (prop === 'content' || prop === 'h') continue;
+          if (prop.startsWith('content')) this.splitContent(prop, this.get(prop).value);
+          else this.week[prop] = this.get(prop).value;
+        }
       }
       this.weekService.saveWeek(this.week);
     })
+  }
+
+  everyWeekDayChange() {
+    this.everyWeekdayEqual = !this.everyWeekdayEqual;
+    if (!this.everyWeekdayEqual) {
+      this.hours = this.fullHours;
+    }
+    else this.hours = [{ value: 'h', day: 'Wochenstunden' },]
   }
 
   mergeContent(day: string) {
@@ -67,6 +91,12 @@ export class InputWeekComponent implements OnInit {
     while (splitted.length < 8) splitted.push('');
     for (let i = 1; i <= 8; i++)
       this.week[name + i] = splitted[i - 1];
+  }
+  splitContentFullWeek(name: string, content: string) {
+    let weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+    for (let weekday of weekdays) {
+      this.splitContent(name + weekday, content);
+    }
   }
   getAusbildungsnachweisNr() { return this.dateService.getAusbildungsNachweisNr(this.week.date); }
   onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
