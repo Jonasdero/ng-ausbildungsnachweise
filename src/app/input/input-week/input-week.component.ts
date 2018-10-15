@@ -88,7 +88,12 @@ export class InputWeekComponent implements OnInit {
 
   splitContent(name: string, content: string) {
     let splitted = content.split('\n');
-    while (splitted.length < 8) splitted.push('');
+    let pushLast = true;
+    while (splitted.length < 8) {
+      pushLast ? splitted.push('') : splitted.unshift('');
+      pushLast = !pushLast;
+    }
+
     for (let i = 1; i <= 8; i++)
       this.week[name + i] = splitted[i - 1];
   }
