@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { NotificationService } from './notification.service';
+import { NotificationService } from '../components/notification.service';
 
 @Injectable({
   providedIn: 'root'

@@ -15,10 +15,10 @@
     <button mat-button [routerLink]="['/importexport']">
       <mat-icon class="color-primary">import_export</mat-icon> Import & Export
     </button>
-    <button mat-button [routerLink]="['/settings']">
+    <button mat-button [routerLink]="['/pages/settings']" *ngIf="loggedIn">
       <mat-icon class="color-primary">settings</mat-icon> Einstellungen
     </button>
-    <button mat-button [routerLink]="['/help']">
+    <button mat-button [routerLink]="['/pages/']">
       <mat-icon class="color-primary">help</mat-icon> Hilfe
     </button>
     <span class="fill-remaining-space"></span>

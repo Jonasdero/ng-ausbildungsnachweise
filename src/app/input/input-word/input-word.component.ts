@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeekService, SettingsService, DateService, WordService } from '../../shared';
+import { WeekService, SettingsService, DateService, WordService, AuthService } from '../../shared';
 
 @Component({
   selector: 'input-word',
@@ -9,12 +9,12 @@ export class InputWordComponent implements OnInit {
   step = 0;
   weeks: Week[] = [];
   departments: string[] = [];
-  constructor(private weekService: WeekService, public settingsService: SettingsService,
-    private wordService: WordService, private dateService: DateService) { }
+  constructor(private weekService: WeekService, public settings: SettingsService,
+    private word: WordService, private date: DateService, public authService: AuthService) { }
 
   ngOnInit() {
     this.getWeeks();
-    this.settingsService.getSettings().subscribe((settings: Settings) => {
+    this.settings.getSettings().subscribe((settings: Settings) => {
       this.departments = [settings.atiw, settings.spe, settings.praxis];
     })
   }
@@ -23,7 +23,7 @@ export class InputWordComponent implements OnInit {
   newWeek() {
     this.step++;
     this.weekService.addWeek({
-      department: 'Atiw Paderborn', date: this.dateService.getMonday(new Date),
+      department: 'Atiw Paderborn', date: this.date.getMonday(new Date),
       hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
       contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '', contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
       contentDi1: '', contentDi2: '', contentDi3: '', contentDi4: '', contentDi5: '', contentDi6: '', contentDi7: '', contentDi8: '',
@@ -35,5 +35,5 @@ export class InputWordComponent implements OnInit {
   }
   stepChanged(value) { this.step = value; }
   clearWeeks() { this.step = -1; this.weekService.clearWeeks(); this.getWeeks(); }
-  save() { this.wordService.save(this.weeks); }
+  save() { this.word.save(this.weeks); }
 }

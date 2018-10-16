@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { SettingsService } from '../shared/services/settings.service';
+import { SettingsService } from '../../shared';
 
 @Component({
   selector: 'app-settings',

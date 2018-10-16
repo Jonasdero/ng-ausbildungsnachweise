@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 // Localization
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
@@ -23,17 +24,9 @@ import { MaterialModule } from './shared/modules/material.module';
 // Components
 import { AppComponent } from './app.component';
 
-import { SettingsComponent } from './settings/settings.component';
-import { HelpComponent } from './help/help.component';
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
-    SettingsComponent,
-    HelpComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from './shared/services/settings.service';
-import { WeekService } from './shared/services/week.service';
-import { DateService } from './shared/services/date.service';
+import { SettingsService } from './shared/services/components/settings.service';
+import { WeekService } from './shared/services/components/week.service';
+import { DateService } from './shared/services/util/date.service';
 
 @Component({
   selector: 'app-root',

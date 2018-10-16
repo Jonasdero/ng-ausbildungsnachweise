@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DateService } from './date.service';
+import { DateService } from '../util/date.service';
 
 @Injectable({
   providedIn: 'root'

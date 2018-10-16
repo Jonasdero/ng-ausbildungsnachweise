@@ -4,7 +4,7 @@ import * as JSZipUtils from 'jszip-utils';
 import * as Docxtemplater from 'docxtemplater';
 import * as FileSaver from 'file-saver';
 
-import { SettingsService } from './settings.service';
+import { SettingsService } from '../components/settings.service';
 import { DateService } from './date.service';
 
 @Injectable({
