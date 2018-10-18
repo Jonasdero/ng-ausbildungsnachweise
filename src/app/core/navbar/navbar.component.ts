@@ -9,13 +9,17 @@ import { auth } from 'firebase/app';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  activateLogin: boolean = false;
   loggedIn: boolean = false;
   constructor(private authService: AuthService, public afAuth: AngularFireAuth,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.authService.authChanged.subscribe((loggedIn: boolean) => {
-      this.loggedIn = loggedIn;
+      this.activateLogin = this.authService.activateLogin;
+      if (this.activateLogin)
+        this.loggedIn = loggedIn;
+      else this.loggedIn = true;
     })
   }
 

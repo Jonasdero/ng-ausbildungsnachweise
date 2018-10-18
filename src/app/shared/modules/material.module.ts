@@ -5,7 +5,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
   MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
   MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-  MatTooltipModule, MatSlideToggleModule
+  MatTooltipModule, MatSlideToggleModule, MatChipsModule
 } from '@angular/material';
 
 const MY_DATE_FORMATS = {
@@ -40,13 +40,13 @@ export class GermanDateAdapter extends NativeDateAdapter {
     MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
     MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatTooltipModule, MatSlideToggleModule
+    MatTooltipModule, MatSlideToggleModule, MatChipsModule
   ],
   exports: [
     MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
     MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
     MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatTooltipModule, MatSlideToggleModule
+    MatTooltipModule, MatSlideToggleModule, MatChipsModule
   ],
   providers: [
     MatDialog,

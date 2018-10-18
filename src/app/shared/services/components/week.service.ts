@@ -27,6 +27,7 @@ export class WeekService {
     })
   }
   deleteWeek(week: Week) {
+    this.id--;
     this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
     this.sortWeeks();
   }
@@ -70,5 +71,9 @@ export class WeekService {
     this.weeks.sort(function (a, b) {
       return a.nr - b.nr;
     });
+    var id = 0;
+    for (let week of this.weeks) {
+      week.id = id++;
+    }
   }
 }

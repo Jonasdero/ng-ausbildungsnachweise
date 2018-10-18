@@ -6,6 +6,7 @@ import { NotificationService } from '../components/notification.service';
   providedIn: 'root'
 })
 export class AuthService {
+  activateLogin: boolean = false;
   loggedIn: boolean = false;
   authChanged: EventEmitter<boolean> = new EventEmitter();
 

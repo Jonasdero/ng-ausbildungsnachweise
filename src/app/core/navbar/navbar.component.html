@@ -1,12 +1,14 @@
 <mat-card>
   <mat-card-title>Ausbildungsnachweis Generator</mat-card-title>
-  <mat-card-subtitle *ngIf="loggedIn && afAuth.auth.currentUser">
-    <button mat-stroked-button (click)="logout()">Ausloggen</button>
-    Eingeloggt als {{afAuth.auth.currentUser.displayName}}
-  </mat-card-subtitle>
-  <mat-card-subtitle *ngIf="!loggedIn">
-    <button mat-stroked-button (click)="login()">Einloggen</button>
-  </mat-card-subtitle>
+  <div *ngIf="activateLogin">
+    <mat-card-subtitle *ngIf="loggedIn && afAuth.auth.currentUser">
+      <button mat-stroked-button (click)="logout()">Ausloggen</button>
+      Eingeloggt als {{afAuth.auth.currentUser.displayName}}
+    </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!loggedIn">
+      <button mat-stroked-button (click)="login()">Einloggen</button>
+    </mat-card-subtitle>
+  </div>
   <span class="flex">
     <span class="fill-remaining-space"></span>
     <button mat-button [routerLink]="['']">
@@ -14,6 +16,9 @@
     </button>
     <button mat-button [routerLink]="['/importexport']">
       <mat-icon class="color-primary">import_export</mat-icon> Import & Export
+    </button>
+    <button mat-button [routerLink]="['/random-fill']" *ngIf="loggedIn">
+      <mat-icon class="color-primary">cached</mat-icon> Zufällige Generierung
     </button>
     <button mat-button [routerLink]="['/settings']" *ngIf="loggedIn">
       <mat-icon class="color-primary">settings</mat-icon> Einstellungen

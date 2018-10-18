@@ -42,4 +42,23 @@ export class DateService {
     var parts = dateString.split('.');
     return new Date(+parts[2], +parts[1] - 1, +parts[0]);
   }
+
+  // https://stackoverflow.com/questions/22859704/number-of-weeks-between-two-dates-using-javascript
+  calculateWeeksBetween(date1: Date, date2: Date) {
+    // The number of milliseconds in one week
+    var ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+    // Convert both dates to milliseconds
+    var date1_ms = date1.getTime();
+    var date2_ms = date2.getTime();
+    // Calculate the difference in milliseconds
+    var difference_ms = Math.abs(date1_ms - date2_ms);
+    // Convert back to weeks and return hole weeks
+    return Math.floor(difference_ms / ONE_WEEK);
+  }
+
+  addWeeksToDate(date: Date, weeks: number): Date {
+    var d = new Date(date);
+    d.setDate(date.getDate() + 7 * weeks);
+    return d;
+  }
 }

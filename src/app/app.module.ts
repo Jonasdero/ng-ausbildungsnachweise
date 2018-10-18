@@ -25,6 +25,7 @@ import { MaterialModule } from './shared/modules/material.module';
 import { AppComponent } from './app.component';
 import { HelpComponent } from './pages/help/help.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { RandomFillComponent } from './pages/random-fill/random-fill.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 
     HelpComponent,
     SettingsComponent,
+    RandomFillComponent,
   ],
   imports: [
     AppRoutingModule,
