@@ -17,10 +17,10 @@
     <button mat-button [routerLink]="['/importexport']">
       <mat-icon class="color-primary">import_export</mat-icon> Import & Export
     </button>
-    <button mat-button [routerLink]="['/random-fill']" *ngIf="loggedIn">
+    <button mat-button [routerLink]="['/random-fill']" *ngIf="loggedIn || !activateLogin">
       <mat-icon class="color-primary">cached</mat-icon> Zufällige Generierung
     </button>
-    <button mat-button [routerLink]="['/settings']" *ngIf="loggedIn">
+    <button mat-button [routerLink]="['/settings']" *ngIf="loggedIn || !activateLogin">
       <mat-icon class="color-primary">settings</mat-icon> Einstellungen
     </button>
     <button mat-button [routerLink]="['/help']">

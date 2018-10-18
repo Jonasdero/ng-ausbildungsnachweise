@@ -1,5 +1,5 @@
 <div class="floating-div-bottom-right">
   <div *ngFor="let notification of notifications">
-    <notification [notification]="notification" (finished)="onFinished($event)"></notification>
+    <app-notification [notification]="notification" (finished)="onFinished($event)"></app-notification>
   </div>
 </div>

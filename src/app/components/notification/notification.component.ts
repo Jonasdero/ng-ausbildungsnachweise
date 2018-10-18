@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angu
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
-  selector: 'notification',
+  selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   animations: [
@@ -29,7 +29,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (!this.notification.currentDuration)
       this.notification.currentDuration = 0;
-
     this.startTimer();
   }
 
@@ -56,14 +55,16 @@ export class NotificationComponent implements OnInit, OnDestroy {
       this.progressbarvalue = Math.round(this.notification.currentDuration / this.notification.duration * 100);
       if (this.notification.currentDuration >= this.notification.duration) {
         this.notification.currentDuration = this.notification.duration;
-        this.ngOnDestroy();
+        if (this)
+          this.ngOnDestroy();
         setTimeout(() => this.finished.emit(this.notification), 1000);
       }
     }, 1000)
   }
 
   close() {
-    this.ngOnDestroy();
+    if (this)
+      this.ngOnDestroy();
     this.notification.currentDuration = this.notification.duration;
     setTimeout(() => this.finished.emit(this.notification), 1000);
   }

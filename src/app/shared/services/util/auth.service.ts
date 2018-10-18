@@ -7,10 +7,15 @@ import { NotificationService } from '../components/notification.service';
 })
 export class AuthService {
   activateLogin: boolean = false;
-  loggedIn: boolean = false;
+  loggedIn: boolean = true;
   authChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public afAuth: AngularFireAuth, private notificationService: NotificationService) {
+    if (!this.activateLogin) {
+      this.loggedIn = true;
+      this.authChanged.emit(this.loggedIn);
+      return;
+    }
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid && res.emailVerified) {
         if (!this.loggedIn && this.activateLogin)
