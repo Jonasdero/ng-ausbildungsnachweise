@@ -10,9 +10,8 @@
 - Speichern aller Ausbildungswoche nach Schema `0NR_dd.MM.yyyy.docx`
 - Import von JSON zur Batch-Worderstellung
 
-## Todo
-
-- ?
+https://grokonez.com/frontend/angular/how-to-integrate-angular-6-firebase-tutorial-angularfire2-v5
+https://grokonez.com/frontend/angular/angular-6-firebase-tutorial-crud-operations-angularfire2-v5
 
 ## Fragen, Anmerkungen oder Fehler?
 
