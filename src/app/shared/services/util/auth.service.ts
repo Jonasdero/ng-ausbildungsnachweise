@@ -13,7 +13,7 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, private notificationService: NotificationService) {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid && res.emailVerified) {
-        if (!this.loggedIn)
+        if (!this.loggedIn && this.activateLogin)
           this.notificationService.info('Eingeloggt :)');
         this.loggedIn = true;
       }
