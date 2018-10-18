@@ -23,10 +23,15 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // Components
 import { AppComponent } from './app.component';
+import { HelpComponent } from './pages/help/help.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    HelpComponent,
+    SettingsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -43,7 +48,8 @@ import { AppComponent } from './app.component';
     MaterialModule,
 
     CoreModule,
-    ComponentsModule
+    ComponentsModule,
+
   ],
   providers: [{ provide: LOCALE_ID, useValue: "de" }],
   bootstrap: [AppComponent]

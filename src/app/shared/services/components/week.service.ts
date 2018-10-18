@@ -5,12 +5,13 @@ import { DateService } from '../util/date.service';
   providedIn: 'root'
 })
 export class WeekService {
-  private weeks: Week[] = [];
+  weeks: Week[] = [];
+  id = 0;
   constructor(private dateService: DateService) { }
 
   duplicateWeek(week: Week) {
     this.weeks.push({
-      id: this.weeks.length, nr: week.nr + 1, department: week.department, year: week.year,
+      id: this.id++, nr: week.nr + 1, department: week.department, year: week.year,
       startDate: week.startDate, endDate: week.endDate, date: this.dateService.getNextWeekDate(week.date),
       hMo: week.hMo, hDi: week.hDi, hMi: week.hMi, hDo: week.hDo, hFr: week.hFr,
       contentMo1: week.contentMo1, contentMo2: week.contentMo2, contentMo3: week.contentMo3, contentMo4: week.contentMo4,
@@ -25,9 +26,15 @@ export class WeekService {
       contentFr5: week.contentFr5, contentFr6: week.contentFr6, contentFr7: week.contentFr7, contentFr8: week.contentFr8,
     })
   }
-  deleteWeek(week: Week) { this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1); }
-  saveWeek(week: Week) { this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week; }
-  addWeek(week: Week) { week.id = this.weeks.length; this.weeks.push(week); }
+  deleteWeek(week: Week) {
+    this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
+    this.sortWeeks();
+  }
+  saveWeek(week: Week) {
+    this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week;
+    this.sortWeeks();
+  }
+  addWeek(week: Week) { week.id = this.id++; this.weeks.push(week); }
   getWeeks(): Week[] { return this.weeks; }
   clearWeeks() { this.weeks = []; }
   importWeeks(weeks: Week[]): Week[] {
@@ -40,16 +47,28 @@ export class WeekService {
           let splitted = [];
           if (content.length > 0)
             splitted = content.split('\n');
-          while (splitted.length < 8) splitted.push('');
+          let pushLast = true;
+          while (splitted.length < 8) {
+            pushLast ? splitted.push('') : splitted.unshift('');
+            pushLast = !pushLast;
+          }
           for (let i = 1; i <= 8; i++)
             week['content' + weekDay + i] = splitted[i - 1];
         }
         week.startDate = this.dateService.germanLocalToDate(week.startDate).toUTCString();
         week.date = this.dateService.getMonday(new Date(week.startDate));
+        week.nr = this.dateService.getAusbildungsNachweisNr(week.date);
         this.addWeek(week);
       }
       catch (e) { console.log('Invalid Week'); }
     }
-    return this.getWeeks();
+    this.sortWeeks();
+    return weeks;
+  }
+
+  sortWeeks() {
+    this.weeks.sort(function (a, b) {
+      return a.nr - b.nr;
+    });
   }
 }

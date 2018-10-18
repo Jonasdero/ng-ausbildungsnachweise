@@ -33,7 +33,7 @@ export class InputWordComponent implements OnInit {
     })
     this.getWeeks();
   }
-  stepChanged(value) { this.step = value; }
+  stepChanged(value: number) { this.step = value; }
   clearWeeks() { this.step = -1; this.weekService.clearWeeks(); this.getWeeks(); }
   save() { this.word.save(this.weeks); }
 }

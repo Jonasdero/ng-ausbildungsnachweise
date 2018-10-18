@@ -27,7 +27,7 @@ export class DateService {
   }
 
   getAusbildungsNachweisNr(d: Date): number {
-    return Math.ceil(Math.abs(d.getTime() - new Date(this.settingsService.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 7));
+    return Math.ceil(Math.abs(d.getTime() - new Date(this.settingsService.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 7)) + 1;
   }
 
   getAusbildungsJahr(d: Date): number {

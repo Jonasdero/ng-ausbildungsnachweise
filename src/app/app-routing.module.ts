@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HelpComponent } from './pages/help/help.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AuthGuard } from './shared';
 
 const routes: Routes = [
   { path: '', loadChildren: './input/input.module#InputModule', pathMatch: 'full' },
   { path: 'importexport', loadChildren: './import/import.module#ImportModule', pathMatch: 'full' },
-  { path: 'pages', loadChildren: './pages/pages.module#PagesModule', pathMatch: 'full' },
+  { path: 'help', component: HelpComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

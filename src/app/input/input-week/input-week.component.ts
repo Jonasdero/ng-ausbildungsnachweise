@@ -15,6 +15,7 @@ export class InputWeekComponent implements OnInit {
   @Input() departments: string[];
   @Input() week: Week;
   @Output() stepChanged: EventEmitter<number> = new EventEmitter();
+  @Output() weekChanged: EventEmitter<Week> = new EventEmitter();
   everyWeekdayEqual: boolean = false;
   fullHours = [
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
@@ -49,11 +50,14 @@ export class InputWeekComponent implements OnInit {
     this.form.valueChanges.subscribe(() => {
       for (var prop in this.form.value) {
         if (this.everyWeekdayEqual) {
-          if (prop === 'content') { this.splitContentFullWeek(prop, this.get(prop).value); }
+          if (prop.startsWith('content') && prop.length === 8
+            || prop.startsWith('h') && prop.length === 3) continue;
+          else if (prop === 'content') { this.splitContentFullWeek(prop, this.get(prop).value); }
           else if (prop === 'h') {
-            var weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-            for (var weekday in weekdays)
-              this.week[prop + weekday] = this.get(prop).value;
+            var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+            for (let i = 0; i < days.length; i++) {
+              this.week[prop + days[i]] = this.get(prop).value;
+            }
           }
           else this.week[prop] = this.get(prop).value;
         }
