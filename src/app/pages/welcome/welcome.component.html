@@ -1,0 +1,74 @@
+<mat-card>
+  <h1>Willkommen beim Ausbildungsnachweisgenerator</h1>
+  <h3>Bevor wir starten können brauchen wir kurz einige Informationen über
+    dich.</h3>
+  <br>
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="nameGroup">
+      <form [formGroup]="nameGroup">
+        <ng-template matStepLabel>Dein Name</ng-template>
+        <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Vorname" formControlName="firstName"
+              required>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Nachname" formControlName="lastName"
+              required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext [disabled]="!nameGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="settingsGroup">
+      <form [formGroup]="settingsGroup">
+        <ng-template matStepLabel>Deine Ausbildung</ng-template>
+        <div class="row">
+          <mat-form-field class="column">
+            <input matInput formControlName="beruf" required placeholder="Beruf">
+            <mat-error *ngIf="settingsGroup.get('beruf').invalid
+            && (settingsGroup.get('beruf').dirty || settingsGroup.get('beruf').touched)">Bitte
+              Beruf eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="column">
+            <input matInput [matDatepicker]="picker1" placeholder="Startdatum"
+              formControlName="ausbildungsStart">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="column">
+            <input matInput formControlName="spe" required placeholder="Betrieb 1 (SPE)">
+            <mat-error *ngIf="settingsGroup.get('spe').invalid
+              && (settingsGroup.get('spe').dirty || settingsGroup.get('spe').touched)">
+              Bitte Betrieb 1 eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="column">
+            <input matInput formControlName="atiw" required placeholder="Betrieb 2 (ATIW)">
+            <mat-error *ngIf="settingsGroup.get('atiw').invalid
+              && (settingsGroup.get('atiw').dirty || settingsGroup.get('atiw').touched)">
+              Bitte Betrieb 2 eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="column">
+            <input matInput formControlName="praxis" required placeholder="Betrieb 3 (Praxisphase)">
+            <mat-error *ngIf="settingsGroup.get('praxis').invalid
+              && (settingsGroup.get('praxis').dirty || settingsGroup.get('praxis').touched)">
+              Bitte Betrieb 3 eingeben</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="!settingsGroup.valid"
+            (click)="this.saveSettings()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Fertig</ng-template>
+      Du wirst in wenigen Sekunden zur Startseite weitergeleitet.
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

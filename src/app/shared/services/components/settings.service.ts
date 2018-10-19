@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 export class SettingsService {
   @Output() updatedSettings = new EventEmitter<Settings>();
   private settings: Settings;
+  initialSettingsSet: boolean = false;
   demoSettings = {
     vorname: "",
     nachname: "",
