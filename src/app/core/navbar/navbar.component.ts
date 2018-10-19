@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, NotificationService } from '../../shared';
+import { AuthService, NotificationService, SettingsService } from '../../shared';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   activateLogin: boolean = false;
   loggedIn: boolean = false;
   constructor(private authService: AuthService, public afAuth: AngularFireAuth,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService, public settingsService: SettingsService) { }
 
   ngOnInit() {
     this.authService.authChanged.subscribe((loggedIn: boolean) => {

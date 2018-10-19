@@ -9,7 +9,9 @@
       <button mat-stroked-button (click)="login()">Einloggen</button>
     </mat-card-subtitle>
   </div>
-  <span class="flex">
+  <br *ngIf="!settingsService.initialSettingsSet">
+  <br *ngIf="!settingsService.initialSettingsSet">
+  <span class="flex" *ngIf="settingsService.initialSettingsSet">
     <span class="fill-remaining-space"></span>
     <button mat-button [routerLink]="['']">
       <mat-icon class="color-primary">home</mat-icon> Home
