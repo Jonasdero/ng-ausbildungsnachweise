@@ -51,22 +51,23 @@ export class ImportexportComponent implements OnInit {
       }
       userWeeks.push(userWeek);
     }
-    var settings = this.settingsService.settings;
-    settings.ausbildungsStart = this.dateService.getLocaleDateString(new Date(settings.ausbildungsStart));
-    var obj = JSON.stringify({ settings: settings, weeks: userWeeks }, null, 4);
-    var element = document.createElement('a');
-    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(obj));
-    element.setAttribute('download', "export.json");
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    this.settingsService.getSettings().subscribe(settings => {
+      settings.ausbildungsStart = this.dateService.getLocaleDateString(new Date(settings.ausbildungsStart));
+      var obj = JSON.stringify({ settings: settings, weeks: userWeeks }, null, 4);
+      var element = document.createElement('a');
+      element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(obj));
+      element.setAttribute('download', "export.json");
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    })
   }
 
   importObject = {
     "settings": {
-      "vorname": "Marc",
-      "nachname": "Roser",
+      "vorname": "Klaus",
+      "nachname": "Frieder",
       "ausbildungsStart": "07.09.2016",
       "beruf": "Fachinformatiker Anwendungsentwicklung",
       "spe": "Siemens Professional Education Paderborn",

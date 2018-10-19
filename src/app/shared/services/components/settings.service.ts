@@ -5,7 +5,8 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class SettingsService {
-
+  @Output() updatedSettings = new EventEmitter<Settings>();
+  private settings: Settings;
   demoSettings = {
     vorname: "",
     nachname: "",
@@ -15,14 +16,12 @@ export class SettingsService {
     atiw: "Atiw Paderborn",
     praxis: "Atos, AIS GER HR PD Azubi"
   }
-
-  @Output() updatedSettings = new EventEmitter<Settings>();
-  settings: Settings;
   constructor() { }
 
   getSettings(): Observable<Settings> {
     if (this.settings) return of(this.settings);
     this.settings = this.demoSettings;
+    this.updatedSettings.emit(this.settings);
     return of(this.settings);
   }
   saveSettings(settings: Settings): void {

@@ -5,8 +5,12 @@ import { SettingsService } from '../components/settings.service';
   providedIn: 'root'
 })
 export class DateService {
-
-  constructor(private settingsService: SettingsService) { }
+  private settings: Settings;
+  constructor(private settingsService: SettingsService) {
+    this.settingsService.updatedSettings.subscribe(settings => {
+      this.settings = settings;
+    })
+  }
 
   getMonday(d): Date {
     d = new Date(d);
@@ -27,11 +31,11 @@ export class DateService {
   }
 
   getAusbildungsNachweisNr(d: Date): number {
-    return Math.ceil(Math.abs(d.getTime() - new Date(this.settingsService.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 7)) + 1;
+    return Math.ceil(Math.abs(d.getTime() - new Date(this.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 7)) + 1;
   }
 
   getAusbildungsJahr(d: Date): number {
-    return Math.ceil(Math.abs(d.getTime() - new Date(this.settingsService.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 365));
+    return Math.ceil(Math.abs(d.getTime() - new Date(this.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 365));
   }
 
   getLocaleDateString(d: Date): string {

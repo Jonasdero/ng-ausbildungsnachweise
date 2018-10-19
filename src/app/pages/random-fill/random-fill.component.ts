@@ -44,30 +44,32 @@ export class RandomFillComponent implements OnInit {
         content.importance--;
       }
     }
-    for (var i = 0; i < weeks; i++) {
-      let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
-      var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-      let week: Week = {
-        date: currentDate, nr: this.dateService.getAusbildungsNachweisNr(currentDate),
-        department: this.settingsService.settings.praxis, year: this.dateService.getAusbildungsJahr(currentDate),
-        startDate: this.dateService.getLocaleDateString(currentDate),
-        endDate: this.dateService.getLocaleDateString(this.dateService.getFriday(currentDate)),
-        hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
-        contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '',
-        contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
-        contentDi1: '', contentDi2: '', contentDi3: '', contentDi4: '',
-        contentDi5: '', contentDi6: '', contentDi7: '', contentDi8: '',
-        contentMi1: '', contentMi2: '', contentMi3: '', contentMi4: '',
-        contentMi5: '', contentMi6: '', contentMi7: '', contentMi8: '',
-        contentDo1: '', contentDo2: '', contentDo3: '', contentDo4: '',
-        contentDo5: '', contentDo6: '', contentDo7: '', contentDo8: '',
-        contentFr1: '', contentFr2: '', contentFr3: '', contentFr4: '',
-        contentFr5: '', contentFr6: '', contentFr7: '', contentFr8: '',
+    this.settingsService.getSettings().subscribe(settings => {
+      for (var i = 0; i < weeks; i++) {
+        let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
+        var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+        let week: Week = {
+          date: currentDate, nr: this.dateService.getAusbildungsNachweisNr(currentDate),
+          department: settings.praxis, year: this.dateService.getAusbildungsJahr(currentDate),
+          startDate: this.dateService.getLocaleDateString(currentDate),
+          endDate: this.dateService.getLocaleDateString(this.dateService.getFriday(currentDate)),
+          hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
+          contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '',
+          contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
+          contentDi1: '', contentDi2: '', contentDi3: '', contentDi4: '',
+          contentDi5: '', contentDi6: '', contentDi7: '', contentDi8: '',
+          contentMi1: '', contentMi2: '', contentMi3: '', contentMi4: '',
+          contentMi5: '', contentMi6: '', contentMi7: '', contentMi8: '',
+          contentDo1: '', contentDo2: '', contentDo3: '', contentDo4: '',
+          contentDo5: '', contentDo6: '', contentDo7: '', contentDo8: '',
+          contentFr1: '', contentFr2: '', contentFr3: '', contentFr4: '',
+          contentFr5: '', contentFr6: '', contentFr7: '', contentFr8: '',
+        }
+        for (let day of weekDays)
+          this.splitContent(week, 'content' + day, this.getRandomContents(contents));
+        this.weekService.addWeek(week);
       }
-      for (let day of weekDays)
-        this.splitContent(week, 'content' + day, this.getRandomContents(contents));
-      this.weekService.addWeek(week);
-    }
+    })
   }
   getRandomContents(contents: string[]): string[] {
     var result = [];
