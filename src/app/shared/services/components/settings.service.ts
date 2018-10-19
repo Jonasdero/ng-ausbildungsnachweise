@@ -1,5 +1,4 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -7,18 +6,24 @@ import { Observable, of } from 'rxjs';
 })
 export class SettingsService {
 
+  demoSettings = {
+    vorname: "",
+    nachname: "",
+    ausbildungsStart: "2016-09-03T22:00:00.000Z",
+    beruf: "Fachinformatiker Anwendungsentwicklung",
+    spe: "Siemens Professional Education Paderborn",
+    atiw: "Atiw Paderborn",
+    praxis: "Atos, AIS GER HR PD Azubi"
+  }
+
   @Output() updatedSettings = new EventEmitter<Settings>();
   settings: Settings;
-  path = 'assets/settings.json';
-  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getSettings(): Observable<Settings> {
     if (this.settings) return of(this.settings);
-    this.http.get<Settings>(this.path).subscribe((s) => {
-      this.settings = s;
-    });
-    return this.http.get<Settings>(this.path);
+    this.settings = this.demoSettings;
+    return of(this.settings);
   }
   saveSettings(settings: Settings): void {
     this.settings = settings;

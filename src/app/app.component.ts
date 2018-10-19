@@ -9,19 +9,11 @@ import { DateService } from './shared/services/util/date.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  description: string = "";
-  constructor(private settingsService: SettingsService, private weekService: WeekService,
+  constructor(private weekService: WeekService,
     private dateService: DateService) { }
 
 
   ngOnInit() {
-    this.settingsService.updatedSettings.subscribe(() => {
-      this.description = this.settingsService.settings.vorname + " " + this.settingsService.settings.nachname;
-    })
-    this.settingsService.getSettings().subscribe((settings: Settings) => {
-      this.description = settings.vorname + " " + settings.nachname;
-    });
-
     this.weekService.addWeek({
       department: 'Atiw Paderborn', date: this.dateService.getMonday(new Date),
       hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
