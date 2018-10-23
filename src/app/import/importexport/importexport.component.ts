@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
-import { WeekService, SettingsService, DateService, WordService } from '../../shared';
+import { WeekService, SettingsService, DateService, WordService, NotificationService } from '../../shared';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
 
 @Component({
@@ -12,7 +12,8 @@ export class ImportexportComponent implements OnInit {
   dialogRef: MatDialogRef<ImportDialogComponent> | null;
 
   constructor(private weekService: WeekService, private settingsService: SettingsService,
-    private wordService: WordService, private dateService: DateService, public dialog: MatDialog) { }
+    private wordService: WordService, private dateService: DateService, public dialog: MatDialog,
+    private notificationService: NotificationService) { }
 
   ngOnInit() { }
 
@@ -26,6 +27,7 @@ export class ImportexportComponent implements OnInit {
         this.settingsService.saveSettings(obj.settings);
         let weeks = this.weekService.importWeeks(obj.weeks);
         if (paramsDialog.checked) this.wordService.save(weeks);
+        this.notificationService.info(weeks.length + " Wochen importiert!");
       }
       catch (e) { console.log(e); }
     });
@@ -61,6 +63,7 @@ export class ImportexportComponent implements OnInit {
       document.body.appendChild(element);
       element.click();
       document.body.removeChild(element);
+      this.notificationService.info(userWeeks.length + " Wochen exportiert!");
     })
   }
 
