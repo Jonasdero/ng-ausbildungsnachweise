@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Localization
 import { registerLocaleData } from '@angular/common';
@@ -42,6 +43,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     BrowserModule, BrowserAnimationsModule,
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
+    MDBBootstrapModule.forRoot(),
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),
