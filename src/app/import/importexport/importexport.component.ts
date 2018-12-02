@@ -41,16 +41,7 @@ export class ImportexportComponent implements OnInit {
       let userWeek = {};
       userWeek['startDate'] = this.dateService.getLocaleDateString(week.date);
       userWeek['department'] = week.department;
-      let weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-      for (let weekday of weekDays) {
-        userWeek['h' + weekday] = week['h' + weekday];
-        userWeek['content' + weekday] = '';
-        for (let i = 1; i <= 8; i++) {
-          if (week['content' + weekday + i].length === 0) continue;
-          userWeek['content' + weekday] += week['content' + weekday + i];
-          if (i <= 8) userWeek['content' + weekday] += '\n';
-        }
-      }
+      userWeek['weekdays'] = week.weekdays;
       userWeeks.push(userWeek);
     }
     this.settingsService.getSettings().subscribe(settings => {
