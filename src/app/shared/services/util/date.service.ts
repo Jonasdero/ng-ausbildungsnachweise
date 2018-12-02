@@ -39,12 +39,12 @@ export class DateService {
 
   getNumber(d: Date): number {
     // Ausbildungstag * 7 + 1 für die richtige Woche
-    return Math.ceil(this.getDay(d) * 7) + 1;
+    return Math.ceil(this.getDay(d) / 7) + 1;
   }
 
   getYear(d: Date): number {
     // Ausbildungstag * 365 aufgerundet
-    return Math.ceil(this.getDay(d) * 365);
+    return Math.ceil(this.getDay(d) / 365);
   }
 
   getLocaleDateString(d: Date): string {

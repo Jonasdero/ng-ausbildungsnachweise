@@ -34,7 +34,7 @@ export class ImportexportComponent implements OnInit {
   }
 
   export() {
-    var weeks = this.weekService.getWeeks();
+    var weeks: Week[] = this.weekService.weeks;
     var userWeeks = [];
 
     for (let week of weeks) {
@@ -81,30 +81,23 @@ export class ImportexportComponent implements OnInit {
       {
         "department": "Atiw Paderborn",
         "startDate": "19.07.2017",
-        "hMo": 7.5,
-        "hDi": 7.5,
-        "hMi": 7.5,
-        "hDo": 7.5,
-        "hFr": 7.5,
-        "contentMo": "AEW: Super tolle Java Klasse\nITN: Jede Menge Schwachsinn\nITÖ: Was mach ich hier eigentlich?",
-        "contentDi": "AEW: Super tolle Java Klasse2\nITN: Mehr Schwachsinn\nITÖ: Was mach ich hier eigentlich?",
-        "contentMi": "AEW: Super tolle Java Klasse3\nITN: Noch mehr Schwachsinn\nITÖ: Was mach ich hier eigentlich?",
-        "contentDo": "AEW: Super tolle Java Klasse4\nITN: Jetzt langts aber\nITÖ: Was mach ich hier eigentlich?",
-        "contentFr": "AEW: Super tolle Java Klasse5\nITN: Stop\nITÖ: Was mach ich hier eigentlich?"
-      },
-      {
-        "department": "Atiw Paderborn",
-        "startDate": "25.07.2017",
-        "hMo": 7.5,
-        "hDi": 0,
-        "hMi": 7.5,
-        "hDo": 7.5,
-        "hFr": 0,
-        "contentMo": "\n\n\nKlaus\nHerr Böhmer",
-        "contentDi": "",
-        "contentMi": "\n\n\nLoriiiii",
-        "contentDo": "\n\n\nAugschburg",
-        "contentFr": ""
+        "weekdays": [{
+          "hours": 7.5,
+          "content": "AEW: Super tolle Java Klasse\nITN: Jede Menge Schwachsinn\nITÖ: Was mach ich hier eigentlich?"
+        }, {
+          "hours": 7.5,
+          "content": "AEW: Super tolle Java Klasse2\nITN: Mehr Schwachsinn\nITÖ: Was mach ich hier eigentlich?"
+        }, {
+          "hours": 7.5,
+          "content": "AEW: Super tolle Java Klasse3\nITN: Noch mehr Schwachsinn\nITÖ: Was mach ich hier eigentlich?"
+        }, {
+          "hours": 7.5,
+          "content": "AEW: Super tolle Java Klasse4\nITN: Jetzt langts aber\nITÖ: Was mach ich hier eigentlich?"
+        }, {
+          "hours": 7.5,
+          "content": "AEW: Super tolle Java Klasse5\nITN: Stop\nITÖ: Was mach ich hier eigentlich?"
+        }
+        ]
       }
     ]
   }

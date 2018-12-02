@@ -17,6 +17,7 @@ function validateJSON(c: AbstractControl) {
 export class ImportDialogComponent implements OnInit {
   importControl = new FormControl('', [Validators.required, validateJSON]);
   checked: boolean = false;
+  clearWeeks: boolean = false;
   constructor(public dialogRef: MatDialogRef<ImportDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public params: any) {
 
@@ -27,7 +28,8 @@ export class ImportDialogComponent implements OnInit {
   public onSave(): void {
     this.dialogRef.close({
       data: this.importControl.value,
-      instantSave: this.checked
+      instantSave: this.checked,
+      clearWeeks: this.clearWeeks,
     });
   }
 }

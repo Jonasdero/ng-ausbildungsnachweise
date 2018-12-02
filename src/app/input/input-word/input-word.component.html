@@ -1,4 +1,4 @@
-<div class="action-bar" *ngIf="!authService.activateLogin || authService.loggedIn">
+<div class="action-bar" *ngIf="!auth.activateLogin || auth.loggedIn">
   <span class="fill-remaining-space"></span>
   <button mat-raised-button class="action-bar-button color-white" (click)="newWeek()"
     color="accent">
@@ -17,7 +17,7 @@
   <span class="fill-remaining-space"></span>
 </div>
 
-<div class="accordion-content" *ngIf="!authService.activateLogin || authService.loggedIn">
+<div class="accordion-content" *ngIf="!auth.activateLogin || auth.loggedIn">
   <mat-accordion *ngIf="settings">
     <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
       [step]="step" (stepChanged)="stepChanged($event)"
@@ -25,13 +25,13 @@
   </mat-accordion>
 </div>
 
-<div *ngIf="weeks.length === 0 && authService.loggedIn || weeks.length === 0 && !authService.activateLogin "
+<div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin "
   class="centered">
   <h1>Keine Wochen vorhanden.. </h1>
   <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
 </div>
 
-<div *ngIf="authService.loggedIn && !authService.loggedIn" class="centered">
+<div *ngIf="auth.loggedIn && !auth.loggedIn" class="centered">
   <h1>Nicht eingeloggt</h1>
   <h1>Melde dich an um alle Funktionen der App zu nutzen</h1>
 </div>

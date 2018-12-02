@@ -15,12 +15,12 @@ export class WordService {
   constructor(private settingsService: SettingsService, private dateService: DateService) { }
   save(weeks: Week[]) {
     for (let week of weeks) {
-      this.improveWeekDate(week);
+      this.improveWeek(week);
       this.exportToDocx(week);
     }
   }
 
-  private improveWeekDate(week: Week) {
+  private improveWeek(week: Week) {
     this.settingsService.getSettings().subscribe(settings => {
       week.nr = this.dateService.getNumber(week.date);
       week.year = this.dateService.getYear(week.date);
@@ -31,7 +31,23 @@ export class WordService {
       week.beruf = settings.beruf;
       week.name = settings.nachname;
       week.surname = settings.vorname;
-      week.hSum = +week.hMo + +week.hDi + +week.hMi + +week.hDo + +week.hFr + '';
+
+      var sum: number = 0;
+      for (let weekday of week.weekdays) {
+        // Summarize weekly hours
+        sum += weekday.hours;
+
+        // Split weekday content for word document
+        weekday.contents = weekday.content.split('\n');
+
+      }
+      var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+      for (let d = 0; d < days.length; d++) {
+        for (let i = 1; i < 9; i++)
+          week['content' + days[d] + i] = week.weekdays[d].contents[i - 1];
+      }
+
+      week.hSum = sum.toString();
     })
   }
 

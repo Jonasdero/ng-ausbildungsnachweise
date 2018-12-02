@@ -20,6 +20,8 @@ export class WelcomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if (this.settingsService.initialSettingsSet)
+      this.saveSettings(this.settingsService.testSettings);
     this.settingsService.getSettings().subscribe(settings => {
       this.nameGroup = this.formBuilder.group({
         firstName: ['', Validators.required],
@@ -35,8 +37,8 @@ export class WelcomeComponent implements OnInit {
     });
   }
 
-  saveSettings() {
-    let settings: Settings = {
+  saveSettings(s?: Settings) {
+    let settings: Settings = s ? s : {
       vorname: this.nameGroup.get('firstName').value,
       nachname: this.nameGroup.get('lastName').value,
       ausbildungsStart: this.settingsGroup.get('ausbildungsStart').value,

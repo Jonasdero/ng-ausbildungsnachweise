@@ -21,7 +21,7 @@ export class RandomFillComponent implements OnInit {
   ngOnInit() {
     var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
     var notAllowed = ['Urlaub', 'Studienpräsenz'];
-    let weeks = this.weekService.getWeeks();
+    let weeks = this.weekService.weeks;
     for (let week of weeks) for (let day of weekDays) for (let i = 1; i <= 8; i++) {
       let content: string = week['content' + day + i].trim();
       if (content === '' || notAllowed.includes(content)) continue;
@@ -44,32 +44,14 @@ export class RandomFillComponent implements OnInit {
         content.importance--;
       }
     }
-    this.settingsService.getSettings().subscribe(settings => {
-      for (var i = 0; i < weeks; i++) {
-        let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
-        var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-        let week: Week = {
-          date: currentDate, nr: this.dateService.getNumber(currentDate),
-          department: settings.praxis, year: this.dateService.getYear(currentDate),
-          startDate: this.dateService.getLocaleDateString(currentDate),
-          endDate: this.dateService.getLocaleDateString(this.dateService.getFriday(currentDate)),
-          hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,
-          contentMo1: '', contentMo2: '', contentMo3: '', contentMo4: '',
-          contentMo5: '', contentMo6: '', contentMo7: '', contentMo8: '',
-          contentDi1: '', contentDi2: '', contentDi3: '', contentDi4: '',
-          contentDi5: '', contentDi6: '', contentDi7: '', contentDi8: '',
-          contentMi1: '', contentMi2: '', contentMi3: '', contentMi4: '',
-          contentMi5: '', contentMi6: '', contentMi7: '', contentMi8: '',
-          contentDo1: '', contentDo2: '', contentDo3: '', contentDo4: '',
-          contentDo5: '', contentDo6: '', contentDo7: '', contentDo8: '',
-          contentFr1: '', contentFr2: '', contentFr3: '', contentFr4: '',
-          contentFr5: '', contentFr6: '', contentFr7: '', contentFr8: '',
-        }
-        for (let day of weekDays)
-          this.splitContent(week, 'content' + day, this.getRandomContents(contents));
-        this.weekService.addWeek(week);
-      }
-    })
+
+    for (var i = 0; i < weeks; i++) {
+      let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
+      let week: Week = this.weekService.getEmptyWeek(currentDate);
+      for (let i = 0; i < 5; i++)
+        week.weekdays[i].content = this.getRandomContents(contents).join('\n');
+      this.weekService.addWeek(week);
+    }
   }
   getRandomContents(contents: string[]): string[] {
     var result = [];
@@ -81,9 +63,11 @@ export class RandomFillComponent implements OnInit {
     }
     return result;
   }
+
+  // Template Functions
   higherImportance(content: Content) { content.importance++; }
   sort() { this.contents.sort((a: Content, b: Content) => { return b.importance - a.importance; }) }
-  onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
+  onlyMondays(d: Date): boolean { return d.getDay() === 1; }
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -94,14 +78,5 @@ export class RandomFillComponent implements OnInit {
   remove(content: Content): void {
     const index = this.contents.indexOf(content);
     if (index >= 0) this.contents.splice(index, 1);
-  }
-  splitContent(week: Week, name: string, content: string[]) {
-    let pushLast = true;
-    while (content.length < 8) {
-      pushLast ? content.push('') : content.unshift('');
-      pushLast = !pushLast;
-    }
-    for (let i = 1; i <= 8; i++)
-      week[name + i] = content[i - 1];
   }
 }
