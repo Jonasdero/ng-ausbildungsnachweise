@@ -25,8 +25,8 @@ export class ImportexportComponent implements OnInit {
         var obj = JSON.parse(paramsDialog.data);
         obj.settings.ausbildungsStart = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
         this.settingsService.saveSettings(obj.settings);
-        let weeks = this.weekService.importWeeks(obj.weeks);
-        if (paramsDialog.checked) this.wordService.save(weeks);
+        let weeks = this.weekService.importWeeks(obj.weeks, paramsDialog.clearWeeks);
+        if (paramsDialog.save) this.wordService.save(weeks);
         this.notificationService.info(weeks.length + " Wochen importiert!");
       }
       catch (e) { console.log(e); }

@@ -9,8 +9,10 @@
       [cdkAutosizeMinRows]="5" [cdkAutosizeMaxRows]="10"></textarea>
     <mat-error>Falsches Format</mat-error>
   </mat-form-field>
-  <mat-checkbox [(ngModel)]="checked">Sofortiger Download</mat-checkbox>
-  <mat-checkbox [(ngModel)]="clearWeeks">Alle Wochen löschen</mat-checkbox>
+  <div class="row">
+    <mat-checkbox class="col-6" [(ngModel)]="save">Sofortiger Download</mat-checkbox>
+    <mat-checkbox class="col-6" [(ngModel)]="clearWeeks">Alle Wochen löschen</mat-checkbox>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions [attr.align]="'center'">

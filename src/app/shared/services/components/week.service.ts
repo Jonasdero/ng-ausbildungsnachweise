@@ -44,7 +44,7 @@ export class WeekService {
     if (clearWeeks) this.clearWeeks();
     for (let week of weeks) {
       try {
-        for (let index = 0; index <= 5; index++) {
+        for (let index = 0; index < 5; index++) {
           let content = week.weekdays[index].content;
           let splitted = [];
           if (content.length > 0)
@@ -61,7 +61,7 @@ export class WeekService {
         week.nr = this.dateService.getNumber(week.date);
         this.addWeek(week);
       }
-      catch (e) { console.error('Invalid Week'); }
+      catch (e) { console.info('Invalid Week'); }
     }
     this.sortWeeks();
     return weeks;
