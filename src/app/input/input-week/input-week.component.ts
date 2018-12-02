@@ -107,7 +107,7 @@ export class InputWeekComponent implements OnInit {
       this.splitContent(name + weekday, content);
     }
   }
-  getAusbildungsnachweisNr() { return this.dateService.getAusbildungsNachweisNr(this.week.date); }
+  getAusbildungsnachweisNr() { return this.dateService.getNumber(this.week.date); }
   onlyMondays = (d: Date): boolean => { return d.getDay() === 1; }
   duplicate() {
     this.stepChanged.emit(this.step + 1);

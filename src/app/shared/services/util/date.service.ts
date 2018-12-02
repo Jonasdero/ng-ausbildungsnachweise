@@ -30,12 +30,21 @@ export class DateService {
     return new Date(d.getTime() + 7 * 24 * 60 * 60 * 1000);
   }
 
-  getAusbildungsNachweisNr(d: Date): number {
-    return Math.ceil(Math.abs(d.getTime() - new Date(this.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 7)) + 1;
+  private getDay(d: Date): number {
+    var timeDifference: number = Math.abs(d.getTime() - new Date(this.settings.ausbildungsStart).getTime());
+    // A day in milliseconds
+    var day = timeDifference / (1000 * 3600 * 24);
+    return day;
   }
 
-  getAusbildungsJahr(d: Date): number {
-    return Math.ceil(Math.abs(d.getTime() - new Date(this.settings.ausbildungsStart).getTime()) / (1000 * 3600 * 24 * 365));
+  getNumber(d: Date): number {
+    // Ausbildungstag * 7 + 1 für die richtige Woche
+    return Math.ceil(this.getDay(d) * 7) + 1;
+  }
+
+  getYear(d: Date): number {
+    // Ausbildungstag * 365 aufgerundet
+    return Math.ceil(this.getDay(d) * 365);
   }
 
   getLocaleDateString(d: Date): string {

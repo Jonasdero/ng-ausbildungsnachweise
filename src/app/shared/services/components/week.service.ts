@@ -6,13 +6,15 @@ import { DateService } from '../util/date.service';
 })
 export class WeekService {
   weeks: Week[] = [];
-  id = 0;
   constructor(private dateService: DateService) { }
 
   duplicateWeek(week: Week) {
     this.weeks.push({
-      id: this.id++, nr: week.nr + 1, department: week.department, year: week.year,
-      startDate: week.startDate, endDate: week.endDate, date: this.dateService.getNextWeekDate(week.date),
+      id: this.weeks[this.weeks.length - 1].id + 1,
+      nr: week.nr + 1,
+      department: week.department, year: week.year,
+      startDate: week.startDate, endDate: week.endDate,
+      date: this.dateService.getNextWeekDate(week.date),
       hMo: week.hMo, hDi: week.hDi, hMi: week.hMi, hDo: week.hDo, hFr: week.hFr,
       contentMo1: week.contentMo1, contentMo2: week.contentMo2, contentMo3: week.contentMo3, contentMo4: week.contentMo4,
       contentMo5: week.contentMo5, contentMo6: week.contentMo6, contentMo7: week.contentMo7, contentMo8: week.contentMo8,
@@ -27,7 +29,6 @@ export class WeekService {
     })
   }
   deleteWeek(week: Week) {
-    this.id--;
     this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
     this.sortWeeks();
   }
@@ -35,7 +36,7 @@ export class WeekService {
     this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week;
     this.sortWeeks();
   }
-  addWeek(week: Week) { week.id = this.id++; this.weeks.push(week); }
+  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); }
   getWeeks(): Week[] { return this.weeks; }
   clearWeeks() { this.weeks = []; }
   importWeeks(weeks: Week[]): Week[] {
@@ -58,22 +59,21 @@ export class WeekService {
         }
         week.startDate = this.dateService.germanLocalToDate(week.startDate).toUTCString();
         week.date = this.dateService.getMonday(new Date(week.startDate));
-        week.nr = this.dateService.getAusbildungsNachweisNr(week.date);
+        week.nr = this.dateService.getNumber(week.date);
         this.addWeek(week);
       }
-      catch (e) { console.log('Invalid Week'); }
+      catch (e) { console.error('Invalid Week'); }
     }
     this.sortWeeks();
     return weeks;
   }
+  private getID() {
+    return this.weeks[this.weeks.length - 1].id;
+  }
 
   sortWeeks() {
-    this.weeks.sort(function (a, b) {
-      return a.nr - b.nr;
-    });
+    this.weeks.sort(function (a, b) { return a.nr - b.nr; });
     var id = 0;
-    for (let week of this.weeks) {
-      week.id = id++;
-    }
+    for (let week of this.weeks) week.id = id++;
   }
 }

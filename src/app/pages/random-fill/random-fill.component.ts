@@ -49,8 +49,8 @@ export class RandomFillComponent implements OnInit {
         let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
         var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
         let week: Week = {
-          date: currentDate, nr: this.dateService.getAusbildungsNachweisNr(currentDate),
-          department: settings.praxis, year: this.dateService.getAusbildungsJahr(currentDate),
+          date: currentDate, nr: this.dateService.getNumber(currentDate),
+          department: settings.praxis, year: this.dateService.getYear(currentDate),
           startDate: this.dateService.getLocaleDateString(currentDate),
           endDate: this.dateService.getLocaleDateString(this.dateService.getFriday(currentDate)),
           hMo: 7.5, hDi: 7.5, hMi: 7.5, hDo: 7.5, hFr: 7.5,

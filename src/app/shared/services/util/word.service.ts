@@ -22,8 +22,8 @@ export class WordService {
 
   private improveWeekDate(week: Week) {
     this.settingsService.getSettings().subscribe(settings => {
-      week.nr = this.dateService.getAusbildungsNachweisNr(week.date);
-      week.year = this.dateService.getAusbildungsJahr(week.date);
+      week.nr = this.dateService.getNumber(week.date);
+      week.year = this.dateService.getYear(week.date);
 
       week.startDate = this.dateService.getLocaleDateString(week.date);
       week.endDate = this.dateService.getLocaleDateString(this.dateService.getFriday(week.date))
