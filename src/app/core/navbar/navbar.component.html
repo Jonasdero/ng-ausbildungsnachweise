@@ -2,15 +2,15 @@
   <mat-card-title>Ausbildungsnachweis Generator</mat-card-title>
   <div *ngIf="activateLogin">
     <mat-card-subtitle *ngIf="loggedIn && afAuth.auth.currentUser">
-      <button mat-stroked-button (click)="logout()">Ausloggen</button>
+      <button color="mat-warn" mat-stroked-button (click)="logout()">Ausloggen</button>
       Eingeloggt als {{afAuth.auth.currentUser.displayName}}
     </mat-card-subtitle>
     <mat-card-subtitle *ngIf="!loggedIn">
-      <button mat-stroked-button (click)="login()">Einloggen</button>
+      <button color="mat-accent" mat-stroked-button (click)="login()">Einloggen</button>
     </mat-card-subtitle>
   </div>
-  <br *ngIf="!settingsService.initialSettingsSet">
-  <br *ngIf="!settingsService.initialSettingsSet">
+  <br *ngIf="!settingsService.initialSettingsSet && !activateLogin">
+  <br *ngIf="!settingsService.initialSettingsSet && !activateLogin">
   <span class="flex" *ngIf="settingsService.initialSettingsSet">
     <span class="fill-remaining-space"></span>
     <button mat-button [routerLink]="['']">

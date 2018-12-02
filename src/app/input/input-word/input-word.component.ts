@@ -9,12 +9,14 @@ export class InputWordComponent implements OnInit {
   step = 0;
   weeks: Week[] = [];
   departments: string[] = [];
-  constructor(private weekService: WeekService, public settings: SettingsService,
-    private word: WordService, private date: DateService, public authService: AuthService) { }
+  settings: Settings;
+  constructor(private weekService: WeekService, private setService: SettingsService,
+    private word: WordService, private date: DateService, public auth: AuthService) { }
 
   ngOnInit() {
     this.getWeeks();
-    this.settings.getSettings().subscribe((settings: Settings) => {
+    this.setService.getSettings().subscribe((settings: Settings) => {
+      this.settings = settings;
       this.departments = [settings.atiw, settings.spe, settings.praxis];
     })
   }

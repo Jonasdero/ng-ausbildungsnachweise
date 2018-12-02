@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     private notificationService: NotificationService, public settingsService: SettingsService) { }
 
   ngOnInit() {
+    this.activateLogin = this.authService.activateLogin;
     this.authService.authChanged.subscribe((loggedIn: boolean) => {
       this.activateLogin = this.authService.activateLogin;
       if (this.activateLogin)

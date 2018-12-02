@@ -4,7 +4,7 @@
     dich.</h3>
   <br>
   <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="nameGroup">
+    <mat-step *ngIf="nameGroup" [stepControl]="nameGroup">
       <form [formGroup]="nameGroup">
         <ng-template matStepLabel>Dein Name</ng-template>
         <div class="row">
@@ -22,7 +22,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="settingsGroup">
+    <mat-step *ngIf="nameGroup" [stepControl]="settingsGroup">
       <form [formGroup]="settingsGroup">
         <ng-template matStepLabel>Deine Ausbildung</ng-template>
         <div class="row">

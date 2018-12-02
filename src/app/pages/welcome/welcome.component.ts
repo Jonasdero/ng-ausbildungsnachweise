@@ -46,7 +46,9 @@ export class WelcomeComponent implements OnInit {
       praxis: this.settingsGroup.get('praxis').value,
     }
     this.settingsService.saveSettings(settings);
-    this.settingsService.initialSettingsSet = true;
-    setTimeout(() => this.router.navigate(['']), 1500);
+    setTimeout(() => {
+      this.settingsService.initialSettingsSet = true;
+      this.router.navigate([''])
+    }, 1500);
   }
 }

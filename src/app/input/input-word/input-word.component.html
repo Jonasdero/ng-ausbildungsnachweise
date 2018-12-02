@@ -6,7 +6,7 @@
   </button>
   <span class="fill-remaining-space"></span>
   <button mat-raised-button class="action-bar-button color-white" (click)="save()"
-    color="accent" [disabled]="weeks.length<=0 ">
+    color="accent" [disabled]="weeks.length <= 0">
     <mat-icon>cloud_download</mat-icon> Download
   </button>
   <span class="fill-remaining-space"></span>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="accordion-content" *ngIf="!authService.activateLogin || authService.loggedIn">
-  <mat-accordion *ngIf="settings.settings">
+  <mat-accordion *ngIf="settings">
     <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
       [step]="step" (stepChanged)="stepChanged($event)"
       matExpansionPanelContent></input-week>
