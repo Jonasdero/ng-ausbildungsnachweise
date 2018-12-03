@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { SettingsService } from '../../shared';
+import { SettingsService, DateService } from '../../shared';
 
 @Component({
   selector: 'app-settings',
@@ -8,7 +8,7 @@ import { SettingsService } from '../../shared';
 })
 export class SettingsComponent implements OnInit {
   form: FormGroup;
-  constructor(private settingsService: SettingsService, private formBuilder: FormBuilder) { }
+  constructor(private settingsService: SettingsService, private dateService: DateService) { }
 
   get(prop: string) { return this.form.get(prop); }
 
@@ -17,19 +17,22 @@ export class SettingsComponent implements OnInit {
       this.form = new FormGroup({
         'vorname': new FormControl(settings.vorname, Validators.required),
         'nachname': new FormControl(settings.nachname, Validators.required),
-        'ausbildungsStart': new FormControl(settings.ausbildungsStart, Validators.required),
+        'ausbildungsStartDate': new FormControl(settings.ausbildungsStart, Validators.required),
         'beruf': new FormControl(settings.beruf, Validators.required),
         'spe': new FormControl(settings.spe, Validators.required),
         'atiw': new FormControl(settings.atiw, Validators.required),
         'praxis': new FormControl(settings.praxis, Validators.required),
       })
     })
+    this.form.valueChanges.subscribe(values => { this.save(); })
   }
+
   save() {
     let settings: Settings = {};
     for (var prop in this.form.value) {
       settings[prop] = this.get(prop).value;
     }
+    settings.ausbildungsStart = this.dateService.getLocaleDateString(settings.ausbildungsStartDate);
     this.settingsService.saveSettings(settings);
   }
 }

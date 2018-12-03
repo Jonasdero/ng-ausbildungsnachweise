@@ -45,7 +45,6 @@ export class ImportexportComponent implements OnInit {
       userWeeks.push(userWeek);
     }
     this.settingsService.getSettings().subscribe(settings => {
-      settings.ausbildungsStart = this.dateService.getLocaleDateString(new Date(settings.ausbildungsStart));
       var obj = JSON.stringify({ settings: settings, weeks: userWeeks }, null, 4);
       var element = document.createElement('a');
       element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(obj));
@@ -56,13 +55,14 @@ export class ImportexportComponent implements OnInit {
       document.body.removeChild(element);
       this.notificationService.info(userWeeks.length + " Wochen exportiert!");
     })
+    console.log(weeks);
   }
 
   importObject = {
     "settings": {
       "vorname": "Klaus",
       "nachname": "Frieder",
-      "ausbildungsStart": "07.09.2016",
+      "ausbildungsStart": "04.09.2016",
       "beruf": "Fachinformatiker Anwendungsentwicklung",
       "spe": "Siemens Professional Education Paderborn",
       "atiw": "Atiw Paderborn",

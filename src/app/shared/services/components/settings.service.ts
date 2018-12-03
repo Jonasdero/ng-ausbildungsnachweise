@@ -11,7 +11,8 @@ export class SettingsService {
   demoSettings = {
     vorname: "",
     nachname: "",
-    ausbildungsStart: "2016-09-03T22:00:00.000Z",
+    ausbildungsStart: "04.09.2016",
+    ausbildungsStartDate: new Date(1472940000000),
     beruf: "Fachinformatiker Anwendungsentwicklung",
     spe: "Siemens Professional Education Paderborn",
     atiw: "Atiw Paderborn",
@@ -20,7 +21,8 @@ export class SettingsService {
   testSettings = {
     vorname: "Jonas",
     nachname: "Roser",
-    ausbildungsStart: "2016-09-03T22:00:00.000Z",
+    ausbildungsStart: "04.09.2016",
+    ausbildungsStartDate: new Date(1472940000000),
     beruf: "Fachinformatiker Anwendungsentwicklung",
     spe: "Siemens Professional Education Paderborn",
     atiw: "Atiw Paderborn",
