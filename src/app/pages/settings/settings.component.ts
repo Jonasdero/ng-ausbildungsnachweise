@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
       this.form = new FormGroup({
         'vorname': new FormControl(settings.vorname, Validators.required),
         'nachname': new FormControl(settings.nachname, Validators.required),
-        'ausbildungsStartDate': new FormControl(settings.ausbildungsStart, Validators.required),
+        'ausbildungsStartDate': new FormControl(settings.ausbildungsStartDate, Validators.required),
         'beruf': new FormControl(settings.beruf, Validators.required),
         'spe': new FormControl(settings.spe, Validators.required),
         'atiw': new FormControl(settings.atiw, Validators.required),

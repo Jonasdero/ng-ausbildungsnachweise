@@ -90,6 +90,7 @@ export class InputWeekComponent implements OnInit {
       pushLast ? splitted.push('') : splitted.unshift('');
       pushLast = !pushLast;
     }
+    this.week.weekdays[index].contents = splitted;
     this.week.weekdays[index].content = splitted.join('\n');
   }
 

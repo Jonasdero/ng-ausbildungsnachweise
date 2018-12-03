@@ -16,7 +16,6 @@ export class WordService {
   save(weeks: Week[]) {
     for (let week of weeks) {
       this.improveWeek(week);
-      this.exportToDocx(week);
     }
   }
 
@@ -31,7 +30,6 @@ export class WordService {
       week.beruf = settings.beruf;
       week.name = settings.nachname;
       week.surname = settings.vorname;
-
       var sum: number = 0;
       for (let weekday of week.weekdays) {
         // Summarize weekly hours
@@ -43,11 +41,14 @@ export class WordService {
       }
       var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
       for (let d = 0; d < days.length; d++) {
+        week['h' + days[d]] = week.weekdays[d].hours;
         for (let i = 1; i < 9; i++)
-          week['content' + days[d] + i] = week.weekdays[d].contents[i - 1];
+          week['content' + days[d] + i] = week.weekdays[d].contents[i - 1] ? week.weekdays[d].contents[i - 1] : '';
       }
 
       week.hSum = sum.toString();
+      console.log(week);
+      this.exportToDocx(week);
     })
   }
 

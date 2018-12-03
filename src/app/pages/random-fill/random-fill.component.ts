@@ -19,20 +19,24 @@ export class RandomFillComponent implements OnInit {
   endDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
 
   ngOnInit() {
-    var weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+    var notAllowed = ['Urlaub', 'Studienpräsenz'];
     var notAllowed = ['Urlaub', 'Studienpräsenz'];
     let weeks = this.weekService.weeks;
-    for (let week of weeks) for (let day of weekDays) for (let i = 1; i <= 8; i++) {
-      let content: string = week['content' + day + i].trim();
-      if (content === '' || notAllowed.includes(content)) continue;
-      var broke = false;
-      for (let c of this.contents) if (c.value === content) {
-        broke = true;
-        break
+    for (let week of weeks)
+      for (let d = 0; d < 5; d++) {
+        week.weekdays[d].contents = week.weekdays[d].content.split('\n');
+        for (let i = 1; i <= 8; i++) {
+          let content: string = week.weekdays[d].contents[i] ? week.weekdays[d].contents[i].trim() : '';
+          if (content === '' || notAllowed.includes(content)) continue;
+          var broke = false;
+          for (let c of this.contents) if (c.value === content) {
+            broke = true;
+            break
+          }
+          if (broke) continue;
+          this.contents.push({ value: content, importance: 1 });
+        }
       }
-      if (broke) continue;
-      this.contents.push({ value: content, importance: 1 });
-    }
   }
 
   generate() {
@@ -71,7 +75,7 @@ export class RandomFillComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    if ((value || '').trim())
+    if (value)
       this.contents.push({ value: value.trim(), importance: 1 });
     if (input) input.value = '';
   }
