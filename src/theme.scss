@@ -1,15 +1,38 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300');
-@import '~@angular/material/theming';
-@import './palette.scss';
-@import './styles.scss';
-$typography: mat-typography-config( $font-family: '"Open Sans", Roboto, sans-serif',
-$body-2: mat-typography-level(15px, 24px, 600));
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300");
+@import "~@angular/material/theming";
+
+@import "./palette.scss";
+@import "./palette-atos.scss";
+@import "./styles.scss";
+
+$typography: mat-typography-config(
+  $font-family: '"Open Sans", Roboto, sans-serif',
+  $body-2: mat-typography-level(14px, 24px, 600)
+);
+
 @include mat-core($typography);
-$primary: mat-palette($md-primary);
-$secondary:mat-palette($md-secondary);
-$warn:mat-palette($md-warn);
-$light-theme: mat-light-theme( $primary,
-$secondary,
-$warn);
+/*
+    Available Colors:
+    $atos-blue
+    $atos-orange
+    $atos-yellow
+    $atos-purple
+    $atos-lightpurple
+    $atos-turquoise
+    $atos-green
+    $atos-pink
+    $atos-gray
+    $atos-lightblue
+    $atos-darkblue
+    $materialred
+    $materialgreen
+    $mat-elegant
+*/
+$primary: mat-palette($mat-indigo);
+$secondary: mat-palette($mat-stylish);
+$warn: mat-palette($mat-yellow);
+
+$light-theme: mat-light-theme($primary, $secondary, $warn);
+
 @include angular-material-theme($light-theme);
 @include app-theme($light-theme);

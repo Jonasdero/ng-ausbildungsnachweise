@@ -1,24 +1,28 @@
-<mat-card>
-  <h1>Ausbildungsnachweisgenerator</h1>
-  <h3>Funktionen</h3>
-  <ul>
-    <li>Ändern von Vor- und Nachnamen, Beruf, Ausbildungsstartdaum</li>
-    <li>Einstellen von beliebigen Abteilungsnamen</li>
-    <li>Hinzufügen von Ausbildungswochen mit Startdatum, Stunden pro Tag und
-      Tätigkeiten
-      pro Tag</li>
-    <li>Speichern aller Ausbildungswoche nach Schema
-      <code>XNR_dd.MM.yyyy.docx</code>
-    </li>
-    <li>Import von JSON zur Batch-Worderstellung</li>
-  </ul>
-  <br>
-  <h3>
-    <a href="https://github.com/Jonasdero/word2json/blob/master/pdf.js" target="_blank">Word2PDF</a>
-    in Node.JS
-  </h3>
-  <h3>Word2PDF in C#</h3>
-  <code><pre>
+<div class="container">
+  <div class="row pt-3 pt-3">
+    <mat-card class="col-md-10 mx-auto ">
+      <h1>Ausbildungsnachweisgenerator</h1>
+      <h3>Funktionen</h3>
+      <ul>
+        <li>Ändern von Vor- und Nachnamen, Beruf, Ausbildungsstartdaum</li>
+        <li>Einstellen von beliebigen Abteilungsnamen</li>
+        <li>Hinzufügen von Ausbildungswochen mit Startdatum, Stunden pro Tag
+          und
+          Tätigkeiten
+          pro Tag</li>
+        <li>Speichern aller Ausbildungswoche nach Schema
+          <code>XNR_dd.MM.yyyy.docx</code>
+        </li>
+        <li>Import von JSON zur Batch-Worderstellung</li>
+      </ul>
+      <br>
+      <h3>
+        <a href="https://github.com/Jonasdero/word2json/blob/master/pdf.js"
+          target="_blank">Word2PDF</a>
+        in Node.JS
+      </h3>
+      <h3>Word2PDF in C#</h3>
+      <code><pre>
     using Microsoft.Office.Interop.Word;
     using System;
     using System.Collections.Generic;
@@ -75,9 +79,12 @@
     ((_Application)word).Quit(ref oMissing, ref oMissing, ref oMissing);
     word = null;
   </pre></code>
-  <p>
-    <a target="_blank" rel="noopener noreferrer" href="https://github.com/Jonasdero">
-      <img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="forthebadge">
-    </a>
-  </p>
-</mat-card>
+      <p>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/Jonasdero">
+          <img src="https://forthebadge.com/images/badges/built-with-love.svg"
+            alt="forthebadge">
+        </a>
+      </p>
+    </mat-card>
+  </div>
+</div>

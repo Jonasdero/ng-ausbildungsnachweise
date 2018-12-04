@@ -11,6 +11,13 @@ import { auth } from 'firebase/app';
 export class NavbarComponent implements OnInit {
   activateLogin: boolean = false;
   loggedIn: boolean = false;
+  routes = [
+    { text: 'Start', route: '', matIcon: 'home' },
+    { text: 'Import & Export', route: '/importexport', matIcon: 'import_export' },
+    { text: 'Zufällige Generierung', route: '/random-fill', matIcon: 'cached' },
+    { text: 'Einstellungen', route: '/settings', matIcon: 'settings' },
+    { text: 'Hilfe', route: '/help', matIcon: 'help' },
+  ]
   constructor(private authService: AuthService, public afAuth: AngularFireAuth,
     private notificationService: NotificationService, public settingsService: SettingsService) { }
 

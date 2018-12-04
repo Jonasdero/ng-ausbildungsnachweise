@@ -1,26 +1,31 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~@angular/material/theming';
-@import './palette.scss';
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/theming";
+@import "./palette.scss";
 @mixin app-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
-  $error: mat-palette($md-error);
-  $info: mat-palette($md-info);
+  $error: mat-palette($mat-red);
+  $success: mat-palette($mat-green);
   .background-primary {
     background-color: mat-color($primary);
+    color: white;
   }
   .background-secondary {
     background-color: mat-color($accent);
+    color: white;
   }
   .background-warn {
     background-color: mat-color($warn);
+    color: black;
   }
   .background-error {
     background-color: mat-color($error);
+    color: white;
   }
-  .background-info {
-    background-color: mat-color($info);
+  .background-success {
+    background-color: mat-color($success);
+    color: white;
   }
   .color-primary {
     color: mat-color($primary);
@@ -34,8 +39,8 @@
   .color-error {
     color: mat-color($error);
   }
-  .color-info {
-    color: mat-color($info);
+  .color-success {
+    color: mat-color($success);
   }
   .color-white {
     color: #fff !important;
@@ -48,15 +53,9 @@
   }
 }
 
-html,
-body {
-  height: 100%;
-  background-color: #eeeeee;
-}
-
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .fill-remaining-space {
@@ -66,43 +65,6 @@ body {
 .centered {
   margin: auto;
   text-align: center;
-}
-
-.floating-div-bottom-left {
-  z-index: 5;
-  position: fixed;
-  display: flex;
-  bottom: 2%;
-  margin-left: 2%;
-  button {
-    margin-left: 3px;
-    flex-basis: auto;
-  }
-}
-
-.floating-div-bottom-right {
-  z-index: 5;
-  position: fixed;
-  right: 0;
-  bottom: 2%;
-  margin-right: 2%;
-  display: flex;
-  button {
-    margin-left: 3px;
-    flex-basis: auto;
-  }
-}
-
-.floating-div-top-left {
-  z-index: 5;
-  position: absolute;
-  display: flex;
-  top: 35px;
-  margin-left: 2%;
-  button {
-    margin-left: 3px;
-    flex-basis: auto;
-  }
 }
 
 .floating-div-top-right {
@@ -118,51 +80,6 @@ body {
   }
 }
 
-.row {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: stretch;
-}
-
-.column {
-  width: 12.5%;
-  flex-grow: 1;
-  margin: auto;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.fill-column {
-  width: 10px;
-}
-
-mat-card {
-  margin: 1% 10% 5% 10%;
-}
-
 .code {
-  margin-left: 10%;
-  margin-right: 10%;
-  background-color: #F5F5F5;
-}
-
-.accordion-content {
-  margin-bottom:50px;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.action-bar {
-  margin: 20px 10% 20px 10%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.action-bar-button {
-  flex-grow: 1;
-  max-width: 250px;
+  background-color: #f5f5f5;
 }

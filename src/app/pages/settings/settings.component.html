@@ -1,52 +1,52 @@
-<mat-card *ngIf="form">
-  <mat-card-header>
-    <h1>Einstellungen</h1>
-  </mat-card-header>
-  <form [formGroup]="form">
-    <div class="row">
-      <mat-form-field class="column">
-        <input matInput formControlName="vorname" required placeholder="Vorname">
-        <mat-error *ngIf="get('vorname').invalid && (get('vorname').dirty || get('vorname').touched)">Bitte
-          Vornamen eingeben</mat-error>
-      </mat-form-field>
-      <mat-form-field class="column">
-        <input matInput formControlName="nachname" required placeholder="Nachname">
-        <mat-error *ngIf="get('nachname').invalid && (get('nachname').dirty || get('nachname').touched)">Bitte
-          Nachnamen eingeben</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="column">
-        <input matInput formControlName="beruf" required placeholder="Beruf">
-        <mat-error *ngIf="get('beruf').invalid && (get('beruf').dirty || get('beruf').touched)">Bitte
-          Beruf eingeben</mat-error>
-      </mat-form-field>
-      <mat-form-field class="column">
-        <input matInput [matDatepicker]="picker1" placeholder="Startdatum"
-          formControlName="ausbildungsStartDate">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field class="column">
-        <input matInput formControlName="spe" required placeholder="Betrieb 1 (SPE)">
-        <mat-error *ngIf="get('spe').invalid && (get('spe').dirty || get('spe').touched)">Bitte
-          Betrieb 1 eingeben</mat-error>
-      </mat-form-field>
-      <mat-form-field class="column">
-        <input matInput formControlName="atiw" required placeholder="Betrieb 2 (ATIW)">
-        <mat-error *ngIf="get('atiw').invalid && (get('atiw').dirty || get('atiw').touched)">Bitte
-          Betrieb 2 eingeben</mat-error>
-      </mat-form-field>
-      <mat-form-field class="column">
-        <input matInput formControlName="praxis" required placeholder="Betrieb 3 (Praxisphase)">
-        <mat-error *ngIf="get('praxis').invalid && (get('praxis').dirty || get('praxis').touched)">Bitte
-          Betrieb 3 eingeben</mat-error>
-      </mat-form-field>
-    </div>
-  </form>
-  <mat-card-actions [attr.align]="'center'">
-    <button [disabled]="!form.valid" mat-button color="accent" (click)="save()">Speichern</button>
-  </mat-card-actions>
-</mat-card>
+<div class="container">
+  <div class="row pt-3 pt-3">
+    <mat-card class="col-md-10 mx-auto " *ngIf="form">
+      <mat-card-header>
+        <h1>Einstellungen</h1>
+      </mat-card-header>
+      <form [formGroup]="form">
+        <div class="row">
+          <mat-form-field class="col-md-6">
+            <input matInput formControlName="vorname" required placeholder="Vorname">
+            <mat-error *ngIf="get('vorname').invalid && (get('vorname').dirty || get('vorname').touched)">Bitte
+              Vornamen eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput formControlName="nachname" required placeholder="Nachname">
+            <mat-error *ngIf="get('nachname').invalid && (get('nachname').dirty || get('nachname').touched)">Bitte
+              Nachnamen eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput formControlName="beruf" required placeholder="Beruf">
+            <mat-error *ngIf="get('beruf').invalid && (get('beruf').dirty || get('beruf').touched)">Bitte
+              Beruf eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput [matDatepicker]="picker1" placeholder="Startdatum"
+              formControlName="ausbildungsStartDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col-md-4">
+            <input matInput formControlName="spe" required placeholder="Betrieb 1 (SPE)">
+            <mat-error *ngIf="get('spe').invalid && (get('spe').dirty || get('spe').touched)">Bitte
+              Betrieb 1 eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-4">
+            <input matInput formControlName="atiw" required placeholder="Betrieb 2 (ATIW)">
+            <mat-error *ngIf="get('atiw').invalid && (get('atiw').dirty || get('atiw').touched)">Bitte
+              Betrieb 2 eingeben</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-4">
+            <input matInput formControlName="praxis" required placeholder="Betrieb 3 (Praxisphase)">
+            <mat-error *ngIf="get('praxis').invalid && (get('praxis').dirty || get('praxis').touched)">Bitte
+              Betrieb 3 eingeben</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <mat-card-actions [attr.align]="'center'">
+        <button [disabled]="!form.valid" mat-button color="accent" (click)="save()">Speichern</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

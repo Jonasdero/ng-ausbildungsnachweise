@@ -1,33 +1,15 @@
-<mat-card>
-  <mat-card-title>Ausbildungsnachweis Generator</mat-card-title>
-  <div *ngIf="activateLogin">
-    <mat-card-subtitle *ngIf="loggedIn && afAuth.auth.currentUser">
-      <button color="mat-warn" mat-stroked-button (click)="logout()">Ausloggen</button>
-      Eingeloggt als {{afAuth.auth.currentUser.displayName}}
-    </mat-card-subtitle>
-    <mat-card-subtitle *ngIf="!loggedIn">
-      <button color="mat-accent" mat-stroked-button (click)="login()">Einloggen</button>
-    </mat-card-subtitle>
-  </div>
-  <br *ngIf="!settingsService.initialSettingsSet && !activateLogin">
-  <br *ngIf="!settingsService.initialSettingsSet && !activateLogin">
-  <span class="flex" *ngIf="settingsService.initialSettingsSet">
-    <span class="fill-remaining-space"></span>
-    <button mat-button [routerLink]="['']">
-      <mat-icon class="color-primary">home</mat-icon> Home
-    </button>
-    <button mat-button [routerLink]="['/importexport']">
-      <mat-icon class="color-primary">import_export</mat-icon> Import & Export
-    </button>
-    <button mat-button [routerLink]="['/random-fill']" *ngIf="loggedIn || !activateLogin">
-      <mat-icon class="color-primary">cached</mat-icon> Zufällige Generierung
-    </button>
-    <button mat-button [routerLink]="['/settings']" *ngIf="loggedIn || !activateLogin">
-      <mat-icon class="color-primary">settings</mat-icon> Einstellungen
-    </button>
-    <button mat-button [routerLink]="['/help']">
-      <mat-icon class="color-primary">help</mat-icon> Hilfe
-    </button>
-    <span class="fill-remaining-space"></span>
-  </span>
-</mat-card>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color">
+  <mdb-navbar-brand>
+    <a class="navbar-brand" [routerLink]="['/']">
+      Ausbildungsnachweis Generator
+    </a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngFor="let route of routes">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="[route.route]">{{route.text}}</a>
+      </li>
+
+    </ul>
+  </links>
+</mdb-navbar>

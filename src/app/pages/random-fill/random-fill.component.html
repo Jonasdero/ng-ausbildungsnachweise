@@ -1,50 +1,61 @@
-<mat-card>
-  <h1>Zufällige Füllung von Ausbildungsweisen</h1>
+<div class="container">
+  <div class="row pt-3 pt-3">
+    <mat-card class="col-md-8 mx-auto">
+      <h1>Zufällige Füllung von Ausbildungsweisen</h1>
 
-  <h4>Aus den bereits vorhandenen Ausbildungsnachweisen wurden alle Inhalte
-    extrahiert und in diese Liste eingefügt.
-    Du kannst neue Tätigkeiten hinzufügen oder vorhandene löschen.
-    Um die Häufigkeit einzustellen, mit der eine Tätigkeit erscheint, musst du
-    nur auf sie klicken.notification
-    Die Seite resettet sich wenn du sie neu lädst.
-  </h4>
-  <div class="row">
-    <button mat-stroked-button class="generate-button" color="accent" (click)="generate()"
-      *ngIf="endDateControl.valid && startDateControl.valid && contents.length > 0">
-      Generieren der Ausbildungsnachweise
-    </button>
+      <h4>Aus den bereits vorhandenen Ausbildungsnachweisen wurden alle Inhalte
+        extrahiert und in diese Liste eingefügt.
+        Du kannst neue Tätigkeiten hinzufügen oder vorhandene löschen.
+        Um die Häufigkeit einzustellen, mit der eine Tätigkeit erscheint, musst
+        du
+        nur auf sie klicken.notification
+        Die Seite resettet sich wenn du sie neu lädst.
+      </h4>
+      <div class="row">
+        <button mat-stroked-button class="generate-button" color="accent"
+          (click)="generate()" *ngIf="endDateControl.valid && startDateControl.valid && contents.length > 0">
+          Generieren der Ausbildungsnachweise
+        </button>
+      </div>
+      <div class="row ml-1">
+        <h3>Zeitspanne</h3>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1"
+            placeholder="Startdatum" [formControl]="startDateControl">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker2"
+            placeholder="Enddatum" [formControl]="endDateControl">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row ml-1">
+        <h3 class="mr-4">Tätigkeiten</h3>
+        <button mat-stroked-button color="primary" (click)="sort()">Sortiere
+          die
+          Tätigkeiten nach Wertigkeit</button>
+      </div>
+      <mat-form-field class="full-width">
+        <mat-chip-list #chipList>
+          <mat-chip color="primary" *ngFor="let content of contents"
+            [selectable]="false" [removable]="true" (removed)="remove(content)"
+            (click)="higherImportance(content)">
+            <strong>{{content.importance }}</strong> {{content.value}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Tätigkeiten" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </mat-card>
   </div>
-  <h3>Zeitspanne</h3>
-
-  <div class="row">
-    <mat-form-field class="column">
-      <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1"
-        placeholder="Startdatum" [formControl]="startDateControl">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="column">
-      <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker2"
-        placeholder="Enddatum" [formControl]="endDateControl">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <h3>Tätigkeiten</h3>
-  <button mat-stroked-button color="primary" (click)="sort()">Sortiere die
-    Tätigkeiten nach Wertigkeit</button>
-  <mat-form-field class="full-width">
-    <mat-chip-list #chipList>
-      <mat-chip color="primary" *ngFor="let content of contents" [selectable]="false"
-        [removable]="true" (removed)="remove(content)" (click)="higherImportance(content)">
-        <strong>{{content.importance }}</strong> {{content.value}}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-      <input placeholder="Tätigkeiten" [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-  </mat-form-field>
-</mat-card>
+</div>

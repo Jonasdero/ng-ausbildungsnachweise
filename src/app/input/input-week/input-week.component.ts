@@ -12,6 +12,7 @@ function validateContent(c: AbstractControl) {
 })
 export class InputWeekComponent implements OnInit {
   @Input() step: number;
+  @Input() index: number;
   @Input() departments: string[];
   @Input() week: Week;
   @Output() stepChanged: EventEmitter<number> = new EventEmitter();
@@ -21,6 +22,13 @@ export class InputWeekComponent implements OnInit {
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
     { value: 'hMi', day: 'Mittwoch' }, { value: 'hDo', day: 'Donnerstag' },
     { value: 'hFr', day: 'Freitag' }
+  ]
+  fullContents = [
+    { value: 'contentMo', day: 'Montag' },
+    { value: 'contentDi', day: 'Dienstag' },
+    { value: 'contentMi', day: 'Mittwoch' },
+    { value: 'contentDo', day: 'Donnerstag' },
+    { value: 'contentFr', day: 'Freitag' },
   ]
   hours = [];
   form: FormGroup;
@@ -102,14 +110,14 @@ export class InputWeekComponent implements OnInit {
     setTimeout(() => this.weekService.duplicateWeek(this.week), 100);
   }
   delete() {
+
     this.stepChanged.emit(this.step - 1);
     setTimeout(() => this.weekService.deleteWeek(this.week), 100);
   }
   everyWeekDayChange() {
     this.everyWeekdayEqual = !this.everyWeekdayEqual;
-    if (!this.everyWeekdayEqual) {
-      this.hours = this.fullHours;
-    }
+    if (!this.everyWeekdayEqual) this.hours = this.fullHours;
     else this.hours = [{ value: 'h', day: 'Wochenstunden' },]
   }
+  opened() { this.stepChanged.emit(this.index); }
 }

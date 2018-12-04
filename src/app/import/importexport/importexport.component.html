@@ -1,31 +1,35 @@
-<div class="action-bar">
-  <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button color-white" (click)="import()"
-    color="warn">
-    <mat-icon>keyboard_arrow_up</mat-icon> Import
-  </button>
-  <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button color-white" (click)="export()"
-    color="warn">
-    <mat-icon>keyboard_arrow_down</mat-icon> Export
-  </button>
-  <span class="fill-remaining-space"></span>
-</div>
-
-<mat-card>
-  <mat-card-header>
-    <h1>Export & Import</h1>
-  </mat-card-header>
-  <h3 class="centered">Datenformat</h3>
-  <p class="centered">Damit die Daten richtig akzepiert werden ist folgendes Datenformat zu beachten:
-  </p>
-  <mat-divider></mat-divider>
-  <div class="code">
-    <code><pre>{{importObject |json}}</pre></code>
+<div class="container">
+  <div class="row pt-3 pt-3">
+    <div class="col-md-8 mx-auto row">
+      <button mat-raised-button class="col-md-4 mx-auto mb-2 background-primary"
+        (click)="import()">
+        <mat-icon>keyboard_arrow_up</mat-icon> Import
+      </button>
+      <button mat-raised-button class="col-md-4 mx-auto mb-2 background-primary"
+        (click)="export()">
+        <mat-icon>keyboard_arrow_down</mat-icon> Export
+      </button>
+    </div>
   </div>
-  <mat-divider></mat-divider>
-  <p class="centered">Probier es aus, indem du einfach den aktuellen Stand exportierst.</p>
-  <p class="centered">
-    <b>Achte darauf, die Kommas direkt vor den Klammern zu entfernen!</b>
-  </p>
-</mat-card>
+
+
+  <mat-card class="mb-2">
+    <mat-card-header>
+      <mat-card-title>Export & Import</mat-card-title>
+    </mat-card-header>
+    <h3 class="centered">Datenformat</h3>
+    <p class="centered">Damit die Daten richtig akzepiert werden ist folgendes
+      Datenformat zu beachten:
+    </p>
+    <mat-divider></mat-divider>
+    <div class="code mr-1 ml-1">
+      <code><pre>{{importObject |json}}</pre></code>
+    </div>
+    <mat-divider></mat-divider>
+    <p class="centered">Probier es aus, indem du einfach den aktuellen Stand
+      exportierst.</p>
+    <p class="centered">
+      <b>Achte darauf, die Kommas direkt vor den Klammern zu entfernen!</b>
+    </p>
+  </mat-card>
+</div>

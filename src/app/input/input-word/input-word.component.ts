@@ -28,7 +28,11 @@ export class InputWordComponent implements OnInit {
     this.weekService.addWeek(this.weekService.getEmptyWeek());
     this.getWeeks();
   }
-  stepChanged(value: number) { this.step = value; }
+  stepChanged(value: number) {
+    if (this.step === 0 && this.weeks.length > 0) this.step = 0;
+    else if (this.step === 0 && this.weeks.length === 0) this.step = -1;
+    else this.step = value;
+  }
   clearWeeks() { this.step = -1; this.weekService.clearWeeks(); this.getWeeks(); }
   save() { this.word.save(this.weeks); }
 }

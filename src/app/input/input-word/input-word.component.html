@@ -1,37 +1,37 @@
-<div class="action-bar" *ngIf="!auth.activateLogin || auth.loggedIn">
-  <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button color-white" (click)="newWeek()"
-    color="accent">
-    <mat-icon>playlist_add</mat-icon> Neu
-  </button>
-  <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button color-white" (click)="save()"
-    color="accent" [disabled]="weeks.length <= 0">
-    <mat-icon>cloud_download</mat-icon> Download
-  </button>
-  <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="action-bar-button" (click)="clearWeeks()"
-    color="warn">
-    <mat-icon>delete_sweep</mat-icon> Löschen
-  </button>
-  <span class="fill-remaining-space"></span>
-</div>
+<div class="container" *ngIf="!auth.activateLogin || auth.loggedIn">
+  <div class="row pt-3 pt-3">
+    <div class="col-md-8 mx-auto row">
+      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success"
+        (click)="newWeek()">
+        <mat-icon>playlist_add</mat-icon> Neu
+      </button>
+      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success"
+        (click)="save()" [disabled]="weeks.length <= 0">
+        <mat-icon>cloud_download</mat-icon> Download
+      </button>
+      <button mat-raised-button class="mx-auto col-md-3 mb-2" (click)="clearWeeks()"
+        color="warn">
+        <mat-icon>delete_sweep</mat-icon> Löschen
+      </button>
+    </div>
+  </div>
 
-<div class="accordion-content" *ngIf="!auth.activateLogin || auth.loggedIn">
-  <mat-accordion *ngIf="settings">
-    <input-week *ngFor="let week of weeks" [week]="week" [departments]="departments"
-      [step]="step" (stepChanged)="stepChanged($event)"
-      matExpansionPanelContent></input-week>
-  </mat-accordion>
-</div>
+  <div class="row" *ngIf="!auth.activateLogin || auth.loggedIn">
+    <mat-accordion class="col-md-10 mx-auto mt-2 mb-2" *ngIf="settings">
+      <input-week *ngFor="let week of weeks; let i=index" [week]="week"
+        [departments]="departments" [step]="step" [index]="i" (stepChanged)="stepChanged($event)"
+        matExpansionPanelContent></input-week>
+    </mat-accordion>
+  </div>
 
-<div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin "
-  class="centered">
-  <h1>Keine Wochen vorhanden.. </h1>
-  <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
-</div>
+  <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin "
+    class="centered">
+    <h1>Keine Wochen vorhanden.. </h1>
+    <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
+  </div>
 
-<div *ngIf="auth.loggedIn && !auth.loggedIn" class="centered">
-  <h1>Nicht eingeloggt</h1>
-  <h1>Melde dich an um alle Funktionen der App zu nutzen</h1>
+  <div *ngIf="auth.loggedIn && !auth.loggedIn" class="centered">
+    <h1>Nicht eingeloggt</h1>
+    <h1>Melde dich an um alle Funktionen der App zu nutzen</h1>
+  </div>
 </div>
