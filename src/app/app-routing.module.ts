@@ -7,7 +7,7 @@ import { HelpComponent } from './pages/help/help.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { RandomFillComponent } from './pages/random-fill/random-fill.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { SettingsGuard } from './shared/settings.guard';
+import { SettingsGuard } from './shared/guards/settings.guard';
 import { LandingComponent } from './pages/landing/landing.component';
 
 const routes: Routes = [

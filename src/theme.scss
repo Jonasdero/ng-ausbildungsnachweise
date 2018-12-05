@@ -29,8 +29,8 @@ $typography: mat-typography-config(
     $mat-elegant
 */
 $primary: mat-palette($mat-indigo);
-$secondary: mat-palette($mat-stylish);
-$warn: mat-palette($mat-yellow);
+$secondary: mat-palette($mat-yellow);
+$warn: mat-palette($mat-red);
 
 $light-theme: mat-light-theme($primary, $secondary, $warn);
 

@@ -5,7 +5,7 @@
     </a>
   </mdb-navbar-brand>
   <links>
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto" *ngIf="settingsService.hasSettings">
       <li class="nav-item" *ngFor="let route of routes">
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="[route.route]">{{route.text}}</a>
       </li>

@@ -1,6 +1,6 @@
 <div class="container" *ngIf="!auth.activateLogin || auth.loggedIn">
-  <div class="row pt-3 pt-3">
-    <div class="col-md-8 mx-auto row">
+  <div class="row pt-3 pb-3">
+    <div class="col-md-10 mx-auto row">
       <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success"
         (click)="newWeek()">
         <mat-icon>playlist_add</mat-icon> Neu
@@ -24,14 +24,19 @@
     </mat-accordion>
   </div>
 
-  <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin "
-    class="centered">
-    <h1>Keine Wochen vorhanden.. </h1>
-    <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
+  <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin"
+    class="row">
+    <div class="col-md-10 mx-auto centered">
+      <h1>Keine Wochen vorhanden.. </h1>
+      <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
+    </div>
   </div>
 
-  <div *ngIf="auth.loggedIn && !auth.loggedIn" class="centered">
-    <h1>Nicht eingeloggt</h1>
-    <h1>Melde dich an um alle Funktionen der App zu nutzen</h1>
+
+  <div *ngIf="auth.loggedIn && !auth.loggedIn" class="row">
+    <div class="col-md-10 mx-auto centered">
+      <h1>Nicht eingeloggt</h1>
+      <h1>Melde dich an um alle Funktionen der App zu nutzen</h1>
+    </div>
   </div>
 </div>

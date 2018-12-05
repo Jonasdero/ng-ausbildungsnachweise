@@ -8,6 +8,7 @@ export { NotificationService } from './services/components/notification.service'
 
 
 
-export { AuthGuard } from './auth.guard';
+export { AuthGuard } from './guards/auth.guard';
+export { SettingsGuard } from './guards/settings.guard';
 
 export { MaterialModule } from './modules/material.module';

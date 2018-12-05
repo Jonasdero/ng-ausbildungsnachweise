@@ -28,7 +28,7 @@ export class WelcomeComponent implements OnInit {
         lastName: ['', Validators.required],
       });
       this.settingsGroup = this.formBuilder.group({
-        ausbildungsStart: [settings.ausbildungsStart, Validators.required],
+        ausbildungsStart: [settings.ausbildungsStartDate, Validators.required],
         beruf: [settings.beruf, Validators.required],
         spe: [settings.spe, Validators.required],
         atiw: [settings.atiw, Validators.required],
@@ -50,7 +50,7 @@ export class WelcomeComponent implements OnInit {
     settings.ausbildungsStart = this.dateService.getLocaleDateString(settings.ausbildungsStartDate);
     this.settingsService.saveSettings(settings);
     setTimeout(() => {
-      this.settingsService.initialSettingsSet = true;
+      this.settingsService.hasSettings = true;
       this.router.navigate([''])
     }, 500);
   }
