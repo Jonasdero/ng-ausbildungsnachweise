@@ -47,13 +47,12 @@ export class WordService {
       }
 
       week.hSum = sum.toString();
-      console.log(week);
       this.exportToDocx(week);
     })
   }
 
   private exportToDocx(week: Week) {
-    JSZipUtils.getBinaryContent("assets/VorlageGeneric.docx", function (error, content) {
+    JSZipUtils.getBinaryContent("assets/word/VorlageGeneric.docx", function (error, content) {
       if (error) { throw error };
       var zip = new JSZip(content);
       var doc = new Docxtemplater().loadZip(zip)
