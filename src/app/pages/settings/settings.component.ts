@@ -22,14 +22,14 @@ export class SettingsComponent implements OnInit {
         'spe': new FormControl(settings.spe, Validators.required),
         'atiw': new FormControl(settings.atiw, Validators.required),
         'praxis': new FormControl(settings.praxis, Validators.required),
-      })
-    })
-    this.form.valueChanges.subscribe(values => { this.save(); })
+      });
+    });
+    this.form.valueChanges.subscribe(values => { this.save(); });
   }
 
   save() {
-    let settings: Settings = {};
-    for (var prop in this.form.value) {
+    const settings: Settings = {};
+    for (const prop in this.form.value) {
       settings[prop] = this.get(prop).value;
     }
     settings.ausbildungsStart = this.dateService.getLocaleDateString(settings.ausbildungsStartDate);

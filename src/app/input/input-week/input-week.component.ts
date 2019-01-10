@@ -17,19 +17,19 @@ export class InputWeekComponent implements OnInit {
   @Input() week: Week;
   @Output() stepChanged: EventEmitter<number> = new EventEmitter();
   @Output() weekChanged: EventEmitter<Week> = new EventEmitter();
-  everyWeekdayEqual: boolean = false;
+  everyWeekdayEqual = false;
   fullHours = [
     { value: 'hMo', day: 'Montag' }, { value: 'hDi', day: 'Dienstag' },
     { value: 'hMi', day: 'Mittwoch' }, { value: 'hDo', day: 'Donnerstag' },
     { value: 'hFr', day: 'Freitag' }
-  ]
+  ];
   fullContents = [
     { value: 'contentMo', day: 'Montag' },
     { value: 'contentDi', day: 'Dienstag' },
     { value: 'contentMi', day: 'Mittwoch' },
     { value: 'contentDo', day: 'Donnerstag' },
     { value: 'contentFr', day: 'Freitag' },
-  ]
+  ];
   hours = [];
   form: FormGroup;
 
@@ -54,45 +54,51 @@ export class InputWeekComponent implements OnInit {
       'contentMi': new FormControl(this.week.weekdays[2].content, [Validators.required, validateContent]),
       'contentDo': new FormControl(this.week.weekdays[3].content, [Validators.required, validateContent]),
       'contentFr': new FormControl(this.week.weekdays[4].content, [Validators.required, validateContent]),
-    })
+    });
     this.form.valueChanges.subscribe(() => {
-      for (var prop in this.form.value) {
-        var currentValue = this.get(prop).value;
+      for (const prop in this.form.value) {
         if (this.everyWeekdayEqual) {
+          const currentValue = this.get(prop).value;
           // Skip everything that has nothing to do with everyWeekdayEqual
           // eg contentMo hMo etc
           if (prop.startsWith('content') && prop.length === 8
-            || prop.startsWith('h') && prop.length === 3) continue;
+            || prop.startsWith('h') && prop.length === 3) {
+            continue;
+          }
 
           if (prop === 'content') {
             for (let i = 0; i < 5; i++) {
               this.splitContent(i, currentValue);
             }
-          }
-          else if (prop === 'h') {
-            for (let i = 0; i < 5; i++)
+          } else if (prop === 'h') {
+            for (let i = 0; i < 5; i++) {
               this.week.weekdays[i].hours = currentValue;
+            }
+          } else {
+            this.week[prop] = currentValue;
           }
-          else this.week[prop] = currentValue;
-        }
-        else {
-          if (prop === 'content' || prop === 'h') continue;
+        } else {
+          const currentValue = this.get(prop).value;
+          if (prop === 'content' || prop === 'h') {
+            continue;
+          }
           if (prop.startsWith('content')) {
-            var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-            var dayIndex = days.findIndex(val => {
-              return prop.substr(7) === val
+            const days = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
+            const dayIndex = days.findIndex(val => {
+              return prop.substr(7) === val;
             });
             this.splitContent(dayIndex, currentValue);
+          } else {
+            this.week[prop] = currentValue;
           }
-          else this.week[prop] = currentValue;
         }
       }
       this.weekService.saveWeek(this.week);
-    })
+    });
   }
 
   splitContent(index: number, content: string) {
-    let splitted = content.split('\n');
+    const splitted = content.split('\n');
     let pushLast = true;
     while (splitted.length < 8) {
       pushLast ? splitted.push('') : splitted.unshift('');
@@ -116,8 +122,11 @@ export class InputWeekComponent implements OnInit {
   }
   everyWeekDayChange() {
     this.everyWeekdayEqual = !this.everyWeekdayEqual;
-    if (!this.everyWeekdayEqual) this.hours = this.fullHours;
-    else this.hours = [{ value: 'h', day: 'Wochenstunden' },]
+    if (!this.everyWeekdayEqual) {
+      this.hours = this.fullHours;
+    } else {
+      this.hours = [{ value: 'h', day: 'Wochenstunden' }];
+    }
   }
   opened() { this.stepChanged.emit(this.index); }
 }
