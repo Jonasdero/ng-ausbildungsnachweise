@@ -16,7 +16,7 @@ export class WeekService {
       startDate: week.startDate, endDate: week.endDate,
       date: this.dateService.getNextWeekDate(week.date),
       weekdays: week.weekdays
-    })
+    });
   }
   deleteWeek(week: Week) {
     this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
@@ -36,19 +36,18 @@ export class WeekService {
         { hours: 7.5, content: '' },
         { hours: 7.5, content: '' },
       ]
-    }
+    };
   }
-  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); }
+  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); console.log(this.weeks); }
   clearWeeks() { this.weeks = []; }
   importWeeks(weeks: Week[], clearWeeks?: boolean): Week[] {
-    if (clearWeeks) this.clearWeeks();
-    for (let week of weeks) {
+    if (clearWeeks) { this.clearWeeks(); }
+    for (const week of weeks) {
       try {
         for (let index = 0; index < 5; index++) {
-          let content = week.weekdays[index].content;
+          const content = week.weekdays[index].content;
           let splitted = [];
-          if (content.length > 0)
-            splitted = content.split('\n');
+          if (content.length > 0) { splitted = content.split('\n'); }
           let pushLast = true;
           while (splitted.length < 8) {
             pushLast ? splitted.push('') : splitted.unshift('');
@@ -60,21 +59,20 @@ export class WeekService {
         week.date = this.dateService.getMonday(new Date(week.startDate));
         week.nr = this.dateService.getNumber(week.date);
         this.addWeek(week);
-      }
-      catch (e) { console.info('Invalid Week'); }
+      } catch (e) { console.log('Invalid Week'); }
     }
     this.sortWeeks();
     return weeks;
   }
 
   private getID() {
-    if (this.weeks.length === 0) return 0;
-    return this.weeks[this.weeks.length - 1].id;
+    if (this.weeks.length === 0) { return 0; }
+    return this.weeks[this.weeks.length - 1].id + 1;
   }
 
   private sortWeeks() {
     this.weeks.sort(function (a, b) { return a.nr - b.nr; });
-    var id = 0;
-    for (let week of this.weeks) week.id = id++;
+    let id = 0;
+    for (const week of this.weeks) { week.id = id++; }
   }
 }
