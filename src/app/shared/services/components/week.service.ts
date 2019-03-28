@@ -38,7 +38,7 @@ export class WeekService {
       ]
     };
   }
-  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); console.log(this.weeks); }
+  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week);  }
   clearWeeks() { this.weeks = []; }
   importWeeks(weeks: Week[], clearWeeks?: boolean): Week[] {
     if (clearWeeks) { this.clearWeeks(); }
@@ -59,7 +59,7 @@ export class WeekService {
         week.date = this.dateService.getMonday(new Date(week.startDate));
         week.nr = this.dateService.getNumber(week.date);
         this.addWeek(week);
-      } catch (e) { console.log('Invalid Week'); }
+      } catch (e) { console.log('Invalid Week'); console.error(e); }
     }
     this.sortWeeks();
     return weeks;

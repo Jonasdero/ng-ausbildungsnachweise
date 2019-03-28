@@ -23,7 +23,7 @@ export class ImportexportComponent implements OnInit {
       if (!paramsDialog) { return; }
       try {
         var obj = JSON.parse(paramsDialog.data);
-        obj.settings.ausbildungsStart = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
+        obj.settings.ausbildungsStartDate = this.dateService.germanLocalToDate(obj.settings.ausbildungsStart);
         this.settingsService.saveSettings(obj.settings);
         let weeks = this.weekService.importWeeks(obj.weeks, paramsDialog.clearWeeks);
         if (paramsDialog.save) this.wordService.save(weeks);
