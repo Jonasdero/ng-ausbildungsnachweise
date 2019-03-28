@@ -12,14 +12,12 @@ import { FormControl, Validators } from '@angular/forms';
 export class RandomFillComponent implements OnInit {
   contents: Content[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  constructor(private weekService: WeekService, private dateService: DateService,
-    private settingsService: SettingsService) { }
+  constructor(private weekService: WeekService, private dateService: DateService) { }
 
   startDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
   endDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
 
   ngOnInit() {
-    var notAllowed = ['Urlaub', 'Studienpräsenz'];
     var notAllowed = ['Urlaub', 'Studienpräsenz'];
     let weeks = this.weekService.weeks;
     for (let week of weeks)
@@ -41,6 +39,7 @@ export class RandomFillComponent implements OnInit {
 
   generate() {
     var weeks = this.dateService.calculateWeeksBetween(this.startDateControl.value, this.endDateControl.value) + 1;
+
     var contents = [];
     for (let content of this.contents) {
       while (content.importance > 0) {
@@ -48,7 +47,7 @@ export class RandomFillComponent implements OnInit {
         content.importance--;
       }
     }
-
+    this.contents = [];
     for (var i = 0; i < weeks; i++) {
       let currentDate = this.dateService.addWeeksToDate(this.startDateControl.value, i);
       let week: Week = this.weekService.getEmptyWeek(currentDate);
