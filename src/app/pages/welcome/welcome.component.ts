@@ -21,7 +21,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     // TODO : Comment for production
-    this.saveSettings(this.settingsService.testSettings);
+    // this.saveSettings(this.settingsService.testSettings);
     this.settingsService.getSettings().subscribe(settings => {
       this.nameGroup = this.formBuilder.group({
         firstName: ['', Validators.required],
