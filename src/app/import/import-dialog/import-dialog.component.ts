@@ -3,10 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, AbstractControl } from '@angular/forms';
 
 function validateJSON(c: AbstractControl) {
-  if (/^[\],:{}\s]*$/.test(c.value.replace(/\\["\\\/bfnrtu]/g, '@').
+  return /^[\],:{}\s]*$/.test(c.value.replace(/\\["\\\/bfnrtu]/g, '@').
     replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-    replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) return null;
-  else return { validJSON: false };
+    replace(/(?:^|:|,)(?:\s*\[)+/g, '')) ? null : { validJSON: false };
 }
 
 @Component({
@@ -16,12 +15,10 @@ function validateJSON(c: AbstractControl) {
 })
 export class ImportDialogComponent implements OnInit {
   importControl = new FormControl('', [Validators.required, validateJSON]);
-  save: boolean = false;
-  clearWeeks: boolean = false;
+  save = false;
+  clearWeeks = false;
   constructor(public dialogRef: MatDialogRef<ImportDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public params: any) {
-
-  }
+    @Inject(MAT_DIALOG_DATA) public params: any) { }
 
   ngOnInit() { }
 

@@ -20,12 +20,13 @@ const MY_DATE_FORMATS = {
 
 export class GermanDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
-    if (displayFormat != "input")
+    if (displayFormat !== 'input') {
       return date.toDateString();
+    }
 
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
     return this._to2digit(day) + '.' + this._to2digit(month) + '.' + year;
   }
 

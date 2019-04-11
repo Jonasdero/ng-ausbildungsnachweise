@@ -38,7 +38,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   saveSettings(s?: Settings) {
-    let settings: Settings = s ? s : {
+    const settings: Settings = s ? s : {
       vorname: this.nameGroup.get('firstName').value,
       nachname: this.nameGroup.get('lastName').value,
       ausbildungsStartDate: this.settingsGroup.get('ausbildungsStart').value,
@@ -46,12 +46,12 @@ export class WelcomeComponent implements OnInit {
       spe: this.settingsGroup.get('spe').value,
       atiw: this.settingsGroup.get('atiw').value,
       praxis: this.settingsGroup.get('praxis').value,
-    }
+    };
     settings.ausbildungsStart = this.dateService.getLocaleDateString(settings.ausbildungsStartDate);
     this.settingsService.saveSettings(settings);
     setTimeout(() => {
       this.settingsService.hasSettings = true;
-      this.router.navigate([''])
+      this.router.navigate(['']);
     }, 500);
   }
 }

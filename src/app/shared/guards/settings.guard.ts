@@ -10,8 +10,9 @@ export class SettingsGuard implements CanActivate {
   constructor(private settingsService: SettingsService, private router: Router) { }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Observable<boolean> | Promise<boolean> | boolean {
-    if (this.settingsService.hasSettings)
+    if (this.settingsService.hasSettings) {
       return true;
+    }
     this.router.navigate(['welcome']);
     return false;
   }

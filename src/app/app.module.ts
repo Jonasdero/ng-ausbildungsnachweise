@@ -12,8 +12,8 @@ import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe, 'de');
 
 // Firebase
-import { AngularFireModule } from '@angular/fire'
-import { AngularFireAuthModule } from '@angular/fire/auth';;
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 // Modules
@@ -57,7 +57,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     ComponentsModule,
 
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "de" }],
+  providers: [{ provide: LOCALE_ID, useValue: 'de' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

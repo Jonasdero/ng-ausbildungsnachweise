@@ -18,9 +18,9 @@
 
   <div class="row" *ngIf="!auth.activateLogin || auth.loggedIn">
     <mat-accordion class="col-md-10 mx-auto mt-2 mb-2" *ngIf="settings">
-      <input-week *ngFor="let week of weeks; let i=index" [week]="week"
+      <app-input-week *ngFor="let week of weeks; let i=index" [week]="week"
         [departments]="departments" [step]="step" [index]="i" (stepChanged)="stepChanged($event)"
-        matExpansionPanelContent></input-week>
+        matExpansionPanelContent></app-input-week>
     </mat-accordion>
   </div>
 

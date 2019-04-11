@@ -7,7 +7,7 @@ function validateContent(c: AbstractControl) {
 }
 
 @Component({
-  selector: 'input-week',
+  selector: 'app-input-week',
   templateUrl: './input-week.component.html'
 })
 export class InputWeekComponent implements OnInit {

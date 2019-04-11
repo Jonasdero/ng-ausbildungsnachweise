@@ -6,8 +6,8 @@ import { NotificationService } from '../components/notification.service';
   providedIn: 'root'
 })
 export class AuthService {
-  activateLogin: boolean = false;
-  loggedIn: boolean = true;
+  activateLogin = false;
+  loggedIn = true;
   authChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public afAuth: AngularFireAuth, private notificationService: NotificationService) {
@@ -18,12 +18,13 @@ export class AuthService {
     }
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid && res.emailVerified) {
-        if (!this.loggedIn && this.activateLogin)
+        if (!this.loggedIn && this.activateLogin) {
           this.notificationService.info('Eingeloggt :)');
+        }
         this.loggedIn = true;
       }
-      else this.loggedIn = false;
+      else { this.loggedIn = false; }
       this.authChanged.emit(this.loggedIn);
-    })
+    });
   }
 }

@@ -22,49 +22,51 @@ export class NotificationComponent implements OnInit, OnDestroy {
   @Input() notification: NotificationContent;
   @Output() finished: EventEmitter<NotificationContent> = new EventEmitter();
   interval: any;
-  progressbarvalue: number = 0;
+  progressbarvalue = 0;
 
   constructor() { }
 
   ngOnInit() {
-    if (!this.notification.currentDuration)
+    if (!this.notification.currentDuration) {
       this.notification.currentDuration = 0;
+    }
     this.startTimer();
   }
 
   getBackgroundColor(): string {
     switch (this.notification.type) {
       case 0: // Info (green)
-        return "#4caf50";
+        return '#4caf50';
       case 1: // Warning (yellow/orange)
-        return "#ffeb3b";
+        return '#ffeb3b';
       case 2: // Error (red)
-        return "#f44336";
+        return '#f44336';
       default: // return blue
-        return "#29b6f6";
+        return '#29b6f6';
     }
   }
   getColor(): string {
-    if (this.notification.type === 1)
-      return 'black';
-    return 'white'
+    return this.notification.type === 1 ? 'black' : 'white';
   }
+
   startTimer() {
     this.interval = setInterval(() => {
       this.notification.currentDuration++;
       this.progressbarvalue = Math.round(this.notification.currentDuration / this.notification.duration * 100);
       if (this.notification.currentDuration >= this.notification.duration) {
         this.notification.currentDuration = this.notification.duration;
-        if (this)
+        if (this) {
           this.ngOnDestroy();
+        }
         setTimeout(() => this.finished.emit(this.notification), 1000);
       }
-    }, 1000)
+    }, 1000);
   }
 
   close() {
-    if (this)
+    if (this) {
       this.ngOnDestroy();
+    }
     this.notification.currentDuration = this.notification.duration;
     setTimeout(() => this.finished.emit(this.notification), 1000);
   }
