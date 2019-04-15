@@ -15,6 +15,8 @@ export class InputWeekComponent implements OnInit {
   @Input() index: number;
   @Input() departments: string[];
   @Input() week: Week;
+  @Input() page: number;
+  @Input() pageSize: number;
   @Output() stepChanged: EventEmitter<number> = new EventEmitter();
   @Output() weekChanged: EventEmitter<Week> = new EventEmitter();
   everyWeekdayEqual = false;
@@ -116,7 +118,6 @@ export class InputWeekComponent implements OnInit {
     setTimeout(() => this.weekService.duplicateWeek(this.week), 100);
   }
   delete() {
-
     this.stepChanged.emit(this.step - 1);
     setTimeout(() => this.weekService.deleteWeek(this.week), 100);
   }
@@ -129,4 +130,8 @@ export class InputWeekComponent implements OnInit {
     }
   }
   opened() { this.stepChanged.emit(this.index); }
+  isExpanded() {
+    if (this.page === 1) { return this.step === this.week.id; }
+    return this.step === this.week.id - this.pageSize * (this.page - 1);
+  }
 }

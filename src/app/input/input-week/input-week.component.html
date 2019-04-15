@@ -1,5 +1,4 @@
-<mat-expansion-panel class="mt-1 mb-1" *ngIf="departments" [expanded]="step === week.id"
-  (opened)="opened()">
+<mat-expansion-panel class="mt-1 mb-1" *ngIf="departments" [expanded]="isExpanded()" (opened)="opened()">
   <mat-expansion-panel-header>
     <b>Nr {{getNumber()}} </b> ---- {{week.date | date: 'dd.
     MMMM yyyy'}} ---- {{week.department}}
@@ -13,8 +12,8 @@
       </mat-slide-toggle>
 
       <mat-form-field class="col-md-4 col-xs-12">
-        <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1"
-          placeholder="Startdatum" formControlName="date">
+        <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1" placeholder="Startdatum"
+          formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
@@ -29,17 +28,15 @@
     </div>
 
     <mat-form-field *ngFor="let hour of hours" class="col-md-2 col-xs-12">
-      <input type="number" matInput formControlName="{{hour.value}}" required
-        placeholder="Stunden {{hour.day}}">
+      <input type="number" matInput formControlName="{{hour.value}}" required placeholder="Stunden {{hour.day}}">
       <mat-error *ngIf="get(hour.value).invalid && (get(hour.value).dirty || get(hour.value).touched)">
         Bitte korrekte Stundenzahl eintragen
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="col-md-10" *ngIf="everyWeekdayEqual">
-      <textarea matInput formControlName="content" placeholder="Inhalt"
-        [cdkTextareaAutosize]="true" [cdkAutosizeMinRows]="2"
-        [cdkAutosizeMaxRows]="8"></textarea>
+      <textarea matInput formControlName="content" placeholder="Inhalt" [cdkTextareaAutosize]="true"
+        [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
       <mat-error *ngIf="get('content').invalid ">
         Bitte den Inhalt eingeben
       </mat-error>
@@ -48,8 +45,7 @@
     <div *ngIf="!everyWeekdayEqual">
       <mat-form-field class="col-sm-6" *ngFor="let content of fullContents">
         <textarea matInput formControlName="{{content.value}}" placeholder="{{content.day}}"
-          [cdkTextareaAutosize]="true" [cdkAutosizeMinRows]="2"
-          [cdkAutosizeMaxRows]="8"></textarea>
+          [cdkTextareaAutosize]="true" [cdkAutosizeMinRows]="2" [cdkAutosizeMaxRows]="8"></textarea>
         <mat-error *ngIf="get(content.value).invalid ">
           Bitte den Inhalt für {{content.day}} eingeben
         </mat-error>

@@ -1,31 +1,41 @@
-<div class="container" *ngIf="!auth.activateLogin || auth.loggedIn">
+<div class="container " *ngIf="!auth.activateLogin || auth.loggedIn">
   <div class="row pt-3 pb-3">
     <div class="col-md-10 mx-auto row">
-      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success"
-        (click)="newWeek()">
+      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success" (click)="newWeek()">
         <mat-icon>playlist_add</mat-icon> Neu
       </button>
-      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success"
-        (click)="save()" [disabled]="weeks.length <= 0">
+      <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success" (click)="save()"
+        [disabled]="weeks.length <= 0">
         <mat-icon>cloud_download</mat-icon> Download
       </button>
-      <button mat-raised-button class="mx-auto col-md-3 mb-2" (click)="clearWeeks()"
-        color="warn">
+      <button mat-raised-button class="mx-auto col-md-3 mb-2" (click)="clearWeeks()" color="warn">
         <mat-icon>delete_sweep</mat-icon> Löschen
       </button>
     </div>
   </div>
 
   <div class="row" *ngIf="!auth.activateLogin || auth.loggedIn">
+    <div class="col-md-1 mt-2 mb-2 row">
+      <button mat-raised-button class="col-md-4 mx-auto background-primary" [disabled]="page === 1"
+        (click)="setPage(page - 1)">
+        <mat-icon [ngClass]="{'color-white': page !== 1 }">chevron_left</mat-icon>
+      </button>
+    </div>
     <mat-accordion class="col-md-10 mx-auto mt-2 mb-2" *ngIf="settings">
-      <app-input-week *ngFor="let week of weeks; let i=index" [week]="week"
-        [departments]="departments" [step]="step" [index]="i" (stepChanged)="stepChanged($event)"
-        matExpansionPanelContent></app-input-week>
+      <app-input-week
+        *ngFor="let week of weeks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i=index"
+        [week]="week" [departments]="departments" [step]="step" [index]="i" (stepChanged)="stepChanged($event)"
+        [page]="page" [pageSize]="pageSize" matExpansionPanelContent></app-input-week>
     </mat-accordion>
+    <div class="col-md-1 mt-2 mb-2 row">
+      <button mat-raised-button class="col-md-4 mx-auto background-primary" [disabled]="nextPageIsVisible()"
+        (click)="setPage(page + 1)">
+        <mat-icon [ngClass]="{'color-white': !nextPageIsVisible() }">chevron_right</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin"
-    class="row">
+  <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin" class="row">
     <div class="col-md-10 mx-auto centered">
       <h1>Keine Wochen vorhanden.. </h1>
       <h1>Um neue Wochen einzutragen klicke unten auf den Button</h1>
