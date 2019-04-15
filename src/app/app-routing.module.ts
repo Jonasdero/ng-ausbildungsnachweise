@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'random-fill', component: RandomFillComponent, canActivate: [SettingsGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [SettingsGuard, AuthGuard] },
+  { path: 'about', loadChildren: './about/about.module#AboutModule' },
   { path: '**', redirectTo: 'landing', pathMatch: 'full' }
 ];
 

@@ -1,9 +1,24 @@
 <footer class="page-footer font-small stylish-color">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row text-center">
+      <div class="col-md-3 mt-3 mb-3">
+        <a class="waves-light" mdbWavesEffect [routerLink]="'/about/terms'">Terms of Service</a>
+      </div>
+      <div class="col-md-3 mt-3 mb-3">
+        <a class="waves-light" mdbWavesEffect [routerLink]="'/about/impressum'">Impressum</a>
+      </div>
+      <div class="col-md-3 mt-3 mb-3">
+        <a class="waves-light" mdbWavesEffect [routerLink]="'/about/disclaimer'">Disclaimer</a>
+      </div>
+      <div class="col-md-3 mt-3 mb-3">
+        <a class="waves-light" mdbWavesEffect [routerLink]="'/about/dsgvo'">DSGVO</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
     &copy; {{currentDate | date: 'yyyy'}} Jonas Roser
   </div>
   <!-- Copyright -->
-
 </footer>
