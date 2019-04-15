@@ -7,13 +7,11 @@
         extrahiert und in diese Liste eingefügt.
         Du kannst neue Tätigkeiten hinzufügen oder vorhandene löschen.
         Um die Häufigkeit einzustellen, mit der eine Tätigkeit erscheint, musst
-        du
-        nur auf sie klicken.notification
-        Die Seite resettet sich wenn du sie neu lädst.
+        du nur auf sie klicken. Die Seite resettet sich wenn du sie neu lädst.
       </h4>
       <div class="row">
-        <button mat-stroked-button class="generate-button" color="primary"
-          (click)="generate()" *ngIf="endDateControl.valid && startDateControl.valid && contents.length > 0">
+        <button mat-stroked-button class="generate-button" color="primary" (click)="generate()"
+          *ngIf="endDateControl.valid && startDateControl.valid && contents.length > 0">
           Generieren der Ausbildungsnachweise
         </button>
       </div>
@@ -23,15 +21,15 @@
 
       <div class="row">
         <mat-form-field class="col-md-6">
-          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1"
-            placeholder="Startdatum" [formControl]="startDateControl">
+          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker1" placeholder="Startdatum"
+            [formControl]="startDateControl">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field class="col-md-6">
-          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker2"
-            placeholder="Enddatum" [formControl]="endDateControl">
+          <input matInput [matDatepickerFilter]="onlyMondays" [matDatepicker]="picker2" placeholder="Enddatum"
+            [formControl]="endDateControl">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
@@ -45,15 +43,14 @@
       </div>
       <mat-form-field class="full-width">
         <mat-chip-list #chipList>
-          <mat-chip color="primary" *ngFor="let content of contents"
-            [selectable]="false" [removable]="true" (removed)="remove(content)"
-            (click)="higherImportance(content)">
+          <mat-chip color="primary" *ngFor="let content of contents" [selectable]="false" [removable]="true"
+            (removed)="remove(content)" (click)="higherImportance(content)">
             <strong>{{content.importance }}</strong> {{content.value}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
           <input placeholder="Tätigkeiten" [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
       </mat-form-field>
     </mat-card>

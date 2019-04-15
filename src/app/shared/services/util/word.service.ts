@@ -14,12 +14,12 @@ export class WordService {
 
   constructor(private settingsService: SettingsService, private dateService: DateService) { }
   save(weeks: Week[]) {
-    for (const week of weeks) {
-      this.improveWeek(week);
+    for (let i = 0; i < weeks.length; i++) {
+      this.improveWeek(weeks[i], i);
     }
   }
 
-  private improveWeek(week: Week) {
+  private improveWeek(week: Week, index: number) {
     this.settingsService.getSettings().subscribe(settings => {
       week.nr = this.dateService.getNumber(week.date);
       week.year = this.dateService.getYear(week.date);
@@ -48,7 +48,9 @@ export class WordService {
       }
 
       week.hSum = sum.toString();
-      this.exportToDocx(week);
+      setTimeout(() => {
+        this.exportToDocx(week);
+      }, 250 * index);
     });
   }
 
