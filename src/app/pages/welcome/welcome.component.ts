@@ -20,12 +20,12 @@ export class WelcomeComponent implements OnInit {
     private router: Router, private dateService: DateService) { }
 
   ngOnInit() {
-    // TODO : Comment for production
+    // Comment for production
     // this.saveSettings(this.settingsService.testSettings);
     this.settingsService.getSettings().subscribe(settings => {
       this.nameGroup = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        firstName: [settings.vorname, Validators.required],
+        lastName: [settings.nachname, Validators.required],
       });
       this.settingsGroup = this.formBuilder.group({
         ausbildungsStart: [settings.ausbildungsStartDate, Validators.required],
@@ -34,6 +34,11 @@ export class WelcomeComponent implements OnInit {
         atiw: [settings.atiw, Validators.required],
         praxis: [settings.praxis, Validators.required],
       });
+
+      if (settings.vorname !== '' && settings.nachname !== '') {
+        settings.ausbildungsStartDate = new Date(settings.ausbildungsStartDate);
+        this.saveSettings(settings);
+      }
     });
   }
 

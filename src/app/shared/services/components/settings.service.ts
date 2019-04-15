@@ -1,5 +1,8 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, Inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+
+const STORAGE_KEY = 'ng-ausbildungsnachweise-settings';
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +21,22 @@ export class SettingsService {
     atiw: 'Atiw Paderborn',
     praxis: 'Atos, AIS GER HR PD Azubi'
   };
-  constructor() { }
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService) { }
 
   getSettings(): Observable<Settings> {
-    if (this.settings) {
-      return of(this.settings);
-    }
-    this.settings = this.demoSettings;
+    // If settings are already saved then return them
+    if (this.settings) { return of(this.settings); }
+    // Else get settings from session storage
+    const settings = this.storage.get(STORAGE_KEY);
+    if (settings !== null && settings !== undefined) { this.settings = settings; }
+    // If no settings are retrieved set demoSettings to settings
+    else { this.settings = this.demoSettings; }
     this.updatedSettings.emit(this.settings);
+    // return
     return of(this.settings);
   }
   saveSettings(settings: Settings): void {
+    this.storage.set(STORAGE_KEY, settings);
     this.settings = settings;
     this.updatedSettings.emit(settings);
   }
