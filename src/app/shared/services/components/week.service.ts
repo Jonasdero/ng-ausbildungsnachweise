@@ -31,8 +31,28 @@ export class WeekService {
     });
     this.saveToStorage();
   }
+  duplicateMultipleWeeks(weeks: Week[]) {
+    for (const week of weeks) {
+      this.weeks.push({
+        id: this.weeks[this.weeks.length - 1].id + 1,
+        nr: week.nr + 1,
+        department: week.department, year: week.year,
+        startDate: week.startDate, endDate: week.endDate,
+        date: this.dateService.getNextWeekDate(week.date),
+        weekdays: week.weekdays
+      });
+    }
+    this.saveToStorage();
+  }
   deleteWeek(week: Week) {
     this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
+    this.sortWeeks();
+    this.saveToStorage();
+  }
+  deleteMultipleWeeks(weeks: Week[]) {
+    for (const week of weeks) {
+      this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
+    }
     this.sortWeeks();
     this.saveToStorage();
   }

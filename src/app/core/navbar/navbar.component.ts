@@ -9,15 +9,16 @@ import { auth } from 'firebase/app';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  activateLogin: boolean = false;
-  loggedIn: boolean = false;
+  activateLogin = false;
+  loggedIn = false;
   routes = [
     { text: 'Start', route: '', matIcon: 'home' },
+    { text: 'Übersicht', route: '/table-view', matIcon: 'table_chart' },
     { text: 'Import & Export', route: '/importexport', matIcon: 'import_export' },
     { text: 'Zufällige Generierung', route: '/random-fill', matIcon: 'cached' },
     { text: 'Einstellungen', route: '/settings', matIcon: 'settings' },
     { text: 'Hilfe', route: '/help', matIcon: 'help' },
-  ]
+  ];
   constructor(private authService: AuthService, public afAuth: AngularFireAuth,
     private notificationService: NotificationService, public settingsService: SettingsService) { }
 
@@ -25,10 +26,11 @@ export class NavbarComponent implements OnInit {
     this.activateLogin = this.authService.activateLogin;
     this.authService.authChanged.subscribe((loggedIn: boolean) => {
       this.activateLogin = this.authService.activateLogin;
-      if (this.activateLogin)
+      if (this.activateLogin) {
         this.loggedIn = loggedIn;
-      else this.loggedIn = true;
-    })
+      }
+      else { this.loggedIn = true; }
+    });
   }
 
   login() {
@@ -37,6 +39,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.afAuth.auth.signOut();
-    this.notificationService.warning('Ausgeloggt :)')
+    this.notificationService.warning('Ausgeloggt :)');
   }
 }

@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row pt-3 pb-3">
+    <mat-card class="col-md-10 mt-2 mx-auto">
+      <h1>Übersicht</h1>
+
+      <div class="row mb-3">
+        <button mat-raised-button class="col-4 mx-auto color-white" color="warn" (click)="clearWeeks()"
+          [disabled]="selection.selected.length === 0">
+          <mat-icon>delete</mat-icon> Löschen
+        </button>
+        <button mat-raised-button class="col-4 mx-auto color-white" color="accent" (click)="duplicateWeeks()"
+          [disabled]="selection.selected.length === 0">
+          <mat-icon>file_copy</mat-icon> Duplizieren
+        </button>
+      </div>
+      <div class="row mb-3">
+        <mat-form-field class="col-md-10 mx-auto">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Nummer Column -->
+        <ng-container matColumnDef="nr">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nummer </th>
+          <td mat-cell *matCellDef="let element"> {{getNumber(element)}} </td>
+        </ng-container>
+
+        <!-- Startdate Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Anfangsdatum </th>
+          <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd.
+              MMMM yyyy'}} </td>
+        </ng-container>
+
+        <!-- Department Column -->
+        <ng-container matColumnDef="department">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Abteilung </th>
+          <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+        </ng-container>
+
+        <!-- Wochenstunden Column -->
+        <ng-container matColumnDef="hsum">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Wochenstunden </th>
+          <td mat-cell *matCellDef="let element"> {{getHSum(element)}} </td>
+        </ng-container>
+
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab class="color-white" color="warn" (click)="deleteWeek(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-mini-fab class="color-white" color="accent" (click)="duplicateWeek(element)">
+              <mat-icon>file_copy</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"> </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </div>
+</div>
