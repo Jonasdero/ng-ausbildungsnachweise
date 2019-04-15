@@ -28,7 +28,8 @@ export class WeekService {
   }
   getEmptyWeek(date?: Date): Week {
     return {
-      department: 'Atiw Paderborn', date: date ? date : this.dateService.getMonday(new Date()),
+      department: this.weeks.length > 1 ? this.weeks[this.weeks.length - 1].department : 'Atiw Paderborn',
+      date: date ? date : this.dateService.getMonday(new Date()),
       weekdays: [
         { hours: 7.5, content: '' },
         { hours: 7.5, content: '' },
@@ -38,7 +39,7 @@ export class WeekService {
       ]
     };
   }
-  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week);  }
+  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); }
   clearWeeks() { this.weeks = []; }
   importWeeks(weeks: Week[], clearWeeks?: boolean): Week[] {
     if (clearWeeks) { this.clearWeeks(); }
