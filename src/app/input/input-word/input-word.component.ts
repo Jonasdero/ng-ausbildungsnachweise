@@ -27,7 +27,7 @@ export class InputWordComponent implements OnInit {
 
   // Template Functions
   newWeek() {
-    this.step++;
+    this.step = this.weeks.length;
     this.weekService.addWeek(this.weekService.getEmptyWeek());
     this.getWeeks();
   }
