@@ -1,13 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { DateService } from '../util/date.service';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+
+const STORAGE_KEY = 'ng-ausbildungsnachweise-weeks';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeekService {
   weeks: Week[] = [];
-  constructor(private dateService: DateService) { }
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private dateService: DateService) { }
 
+  getFromStorage() {
+    this.weeks = this.storage.get(STORAGE_KEY);
+    for (const week of this.weeks) {
+      week.date = new Date(week.date);
+    }
+  }
+  saveToStorage() {
+    this.storage.set(STORAGE_KEY, this.weeks);
+  }
   duplicateWeek(week: Week) {
     this.weeks.push({
       id: this.weeks[this.weeks.length - 1].id + 1,
@@ -17,14 +29,17 @@ export class WeekService {
       date: this.dateService.getNextWeekDate(week.date),
       weekdays: week.weekdays
     });
+    this.saveToStorage();
   }
   deleteWeek(week: Week) {
     this.weeks.splice(this.weeks.findIndex((w) => w.id === week.id), 1);
     this.sortWeeks();
+    this.saveToStorage();
   }
   saveWeek(week: Week) {
     this.weeks[this.weeks.findIndex((w) => w.id === week.id)] = week;
     this.sortWeeks();
+    this.saveToStorage();
   }
   getEmptyWeek(date?: Date): Week {
     return {
@@ -39,8 +54,8 @@ export class WeekService {
       ]
     };
   }
-  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); }
-  clearWeeks() { this.weeks = []; }
+  addWeek(week: Week) { week.id = this.getID(); this.weeks.push(week); this.saveToStorage(); }
+  clearWeeks() { this.weeks = []; this.saveToStorage(); }
   importWeeks(weeks: Week[], clearWeeks?: boolean): Week[] {
     if (clearWeeks) { this.clearWeeks(); }
     for (const week of weeks) {

@@ -11,6 +11,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    this.weekService.addWeek(this.weekService.getEmptyWeek());
+    this.weekService.getFromStorage();
+    if (this.weekService.weeks.length === 0) {
+      this.weekService.addWeek(this.weekService.getEmptyWeek());
+    }
   }
 }
