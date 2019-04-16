@@ -42,6 +42,7 @@ export class InputWordComponent implements OnInit {
   }
   clearWeeks() {
     this.step = -1;
+    this.page = 1;
     this.weekService.clearWeeks();
     this.getWeeks();
   }
