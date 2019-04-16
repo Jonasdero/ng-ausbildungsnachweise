@@ -12,7 +12,10 @@ export class WeekService {
   constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private dateService: DateService) { }
 
   getFromStorage() {
-    this.weeks = this.storage.get(STORAGE_KEY);
+    const weeks = this.storage.get(STORAGE_KEY);
+    if (weeks !== null && weeks !== undefined) { this.weeks = weeks; }
+    else { this.weeks = []; }
+
     for (const week of this.weeks) {
       week.date = new Date(week.date);
     }

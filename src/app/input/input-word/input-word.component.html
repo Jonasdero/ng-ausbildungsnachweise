@@ -13,27 +13,20 @@
       </button>
     </div>
   </div>
-
+  <div class="row mr-1 ml-1" *ngIf="!auth.activateLogin || auth.loggedIn">
+    <mat-paginator class="col-md-10 mx-auto " [length]="weeks.length" [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="paginatorChange($event)">
+    </mat-paginator>
+  </div>
   <div class="row" *ngIf="!auth.activateLogin || auth.loggedIn">
-    <div class="col-md-1 mt-2 mb-2 row">
-      <button mat-raised-button class="col-md-4 mx-auto background-primary" [disabled]="page === 1"
-        (click)="setPage(page - 1)">
-        <mat-icon [ngClass]="{'color-white': page !== 1 }">chevron_left</mat-icon>
-      </button>
-    </div>
     <mat-accordion class="col-md-10 mx-auto mt-2 mb-2" *ngIf="settings">
       <app-input-week
         *ngFor="let week of weeks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i=index"
         [week]="week" [departments]="departments" [step]="step" [index]="i" (stepChanged)="stepChanged($event)"
         [page]="page" [pageSize]="pageSize" matExpansionPanelContent></app-input-week>
     </mat-accordion>
-    <div class="col-md-1 mt-2 mb-2 row">
-      <button mat-raised-button class="col-md-4 mx-auto background-primary" [disabled]="nextPageIsVisible()"
-        (click)="setPage(page + 1)">
-        <mat-icon [ngClass]="{'color-white': !nextPageIsVisible() }">chevron_right</mat-icon>
-      </button>
-    </div>
   </div>
+
 
   <div *ngIf="weeks.length === 0 && auth.loggedIn || weeks.length === 0 && !auth.activateLogin" class="row">
     <div class="col-md-10 mx-auto centered">
