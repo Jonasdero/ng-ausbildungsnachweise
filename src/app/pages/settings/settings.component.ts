@@ -8,11 +8,13 @@ import { SettingsService, DateService } from '../../shared';
 })
 export class SettingsComponent implements OnInit {
   form: FormGroup;
+  templates = [];
   constructor(private settingsService: SettingsService, private dateService: DateService) { }
 
   get(prop: string) { return this.form.get(prop); }
 
   ngOnInit() {
+    this.templates = this.settingsService.getAllTemplates()
     this.settingsService.getSettings().subscribe((settings) => {
       this.form = new FormGroup({
         'vorname': new FormControl(settings.vorname, Validators.required),
@@ -22,6 +24,7 @@ export class SettingsComponent implements OnInit {
         'spe': new FormControl(settings.spe, Validators.required),
         'atiw': new FormControl(settings.atiw, Validators.required),
         'praxis': new FormControl(settings.praxis, Validators.required),
+        'template': new FormControl(settings.template, Validators.required),
       });
     });
     this.form.valueChanges.subscribe(values => { this.save(); });

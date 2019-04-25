@@ -11,7 +11,7 @@ export class SettingsService {
   @Output() updatedSettings = new EventEmitter<Settings>();
   private settings: Settings;
   hasSettings = false;
-  demoSettings = {
+  demoSettings: Settings = {
     vorname: '',
     nachname: '',
     ausbildungsStart: '04.09.2016',
@@ -19,7 +19,8 @@ export class SettingsService {
     beruf: 'Fachinformatiker Anwendungsentwicklung',
     spe: 'Siemens Professional Education Paderborn',
     atiw: 'Atiw Paderborn',
-    praxis: 'Atos, AIS GER HR PD Azubi'
+    praxis: 'Atos, AIS GER HR PD Azubi',
+    template: 'VorlageGeneric'
   };
   constructor(@Inject(SESSION_STORAGE) private storage: StorageService) { }
 
@@ -39,5 +40,11 @@ export class SettingsService {
     this.storage.set(STORAGE_KEY, settings);
     this.settings = settings;
     this.updatedSettings.emit(settings);
+  }
+
+  getAllTemplates(): string[] {
+    return [
+      'VorlageGeneric'
+    ];
   }
 }

@@ -49,13 +49,13 @@ export class WordService {
 
       week.hSum = sum.toString();
       setTimeout(() => {
-        this.exportToDocx(week);
+        this.exportToDocx(week, settings);
       }, 250 * index);
     });
   }
 
-  private exportToDocx(week: Week) {
-    JSZipUtils.getBinaryContent('assets/word/VorlageGeneric.docx', function (error, content) {
+  private exportToDocx(week: Week, settings: Settings) {
+    JSZipUtils.getBinaryContent('assets/word/' + settings.template + '.docx', function (error, content) {
       if (error) { throw error; }
       const doc = new Docxtemplater().loadZip(new JSZip(content));
       doc.setData(week);

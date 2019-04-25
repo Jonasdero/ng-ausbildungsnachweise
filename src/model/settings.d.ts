@@ -7,4 +7,5 @@ interface Settings {
   spe?: string,
   atiw?: string,
   praxis?: string,
+  template?: string,
 }

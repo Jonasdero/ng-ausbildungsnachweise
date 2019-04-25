@@ -4,6 +4,9 @@
       <mat-card-header>
         <h1>Einstellungen</h1>
       </mat-card-header>
+      <mat-card-actions [attr.align]="'center'">
+        <button [disabled]="!form.valid" mat-button color="primary" (click)="save()">Speichern</button>
+      </mat-card-actions>
       <form [formGroup]="form">
         <div class="row">
           <mat-form-field class="col-md-6">
@@ -22,8 +25,7 @@
               Beruf eingeben</mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-6">
-            <input matInput [matDatepicker]="picker1" placeholder="Startdatum"
-              formControlName="ausbildungsStartDate">
+            <input matInput [matDatepicker]="picker1" placeholder="Startdatum" formControlName="ausbildungsStartDate">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -42,11 +44,17 @@
             <mat-error *ngIf="get('praxis').invalid && (get('praxis').dirty || get('praxis').touched)">Bitte
               Betrieb 3 eingeben</mat-error>
           </mat-form-field>
+          <mat-form-field class="col-md-6 mx-auto">
+            <mat-label>Word Template</mat-label>
+            <mat-select formControlName="template" name="food">
+              <mat-option *ngFor="let template of templates" [value]="template">
+                {{template}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </form>
-      <mat-card-actions [attr.align]="'center'">
-        <button [disabled]="!form.valid" mat-button color="primary" (click)="save()">Speichern</button>
-      </mat-card-actions>
+      <img class="img-fluid" src="assets/img/{{form.get('template').value}}.jpg">
     </mat-card>
   </div>
 </div>
