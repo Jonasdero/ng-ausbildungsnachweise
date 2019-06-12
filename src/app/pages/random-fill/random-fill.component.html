@@ -10,9 +10,13 @@
         du nur auf sie klicken. Die Seite resettet sich wenn du sie neu lädst.
       </h4>
       <div class="row">
-        <button mat-stroked-button class="generate-button" color="primary" (click)="generate()"
+        <button mat-stroked-button class="generate-button col-md-6" color="primary" (click)="generate()"
           *ngIf="endDateControl.valid && startDateControl.valid && contents.length > 0">
           Generieren der Ausbildungsnachweise
+        </button>
+        <button mat-stroked-button class="generate-button col-md-6" color="primary" (click)="clear()"
+          *ngIf="contents.length > 0">
+          Leeren der Inhalte
         </button>
       </div>
       <div class="row ml-1">
@@ -36,10 +40,10 @@
       </div>
 
       <div class="row ml-1">
-        <h3 class="col-md-6">Tätigkeiten</h3>
-        <button class="col-md-6" mat-stroked-button color="primary" (click)="sort()">Sortiere
-          die
-          Tätigkeiten nach Wertigkeit</button>
+        <h3 class="col-md-4">Tätigkeiten</h3>
+        <button class="col-md-8" mat-stroked-button color="primary" (click)="sort()">
+          Sortiere die Tätigkeiten nach Wertigkeit
+        </button>
       </div>
       <mat-form-field class="full-width">
         <mat-chip-list #chipList>

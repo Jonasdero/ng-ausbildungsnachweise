@@ -40,6 +40,8 @@ export class RandomFillComponent implements OnInit {
     }
   }
 
+  clear() { this.contents = []; }
+
   generate() {
     const weeks = this.dateService.calculateWeeksBetween(this.startDateControl.value, this.endDateControl.value) + 1;
 
