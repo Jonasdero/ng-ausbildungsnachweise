@@ -19,7 +19,8 @@ export class ImportexportComponent implements OnInit {
       'beruf': 'Fachinformatiker Anwendungsentwicklung',
       'spe': 'Siemens Professional Education Paderborn',
       'atiw': 'Atiw Paderborn',
-      'praxis': 'Atos, AIS GER HR PD Azubi'
+      'praxis': 'Atos, AIS GER HR PD Azubi',
+      'template': 'VorlageGeneric'
     },
     'weeks': [
       {

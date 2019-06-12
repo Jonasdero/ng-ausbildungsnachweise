@@ -51,6 +51,7 @@ export class WelcomeComponent implements OnInit {
       spe: this.settingsGroup.get('spe').value,
       atiw: this.settingsGroup.get('atiw').value,
       praxis: this.settingsGroup.get('praxis').value,
+      template: this.settingsService.getAllTemplates()[0]
     };
     settings.ausbildungsStart = this.dateService.getLocaleDateString(settings.ausbildungsStartDate);
     this.settingsService.saveSettings(settings);

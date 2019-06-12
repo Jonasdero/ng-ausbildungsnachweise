@@ -5,7 +5,7 @@
         <mat-icon>playlist_add</mat-icon> Neu
       </button>
       <button mat-raised-button class="mx-auto col-md-3 mb-2 color-white background-success" (click)="save()"
-        [disabled]="weeks.length <= 0">
+        [disabled]="weeks.length <= 0 || !settings.template">
         <mat-icon>cloud_download</mat-icon> Download
       </button>
       <button mat-raised-button class="mx-auto col-md-3 mb-2" (click)="clearWeeks()" color="warn">
