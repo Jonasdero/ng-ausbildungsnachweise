@@ -1,15 +1,18 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark stylish-color">
-  <mdb-navbar-brand>
+<nav class="navbar navbar-expand-lg navbar-dark stylish-color">
+  <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/']">
       Ausbildungsnachweis Generator
     </a>
-  </mdb-navbar-brand>
-  <links>
-    <ul class="navbar-nav mr-auto" *ngIf="settingsService.hasSettings">
-      <li class="nav-item" *ngFor="let route of routes">
-        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="[route.route]">{{route.text}}</a>
-      </li>
-
-    </ul>
-  </links>
-</mdb-navbar>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar" aria-expanded="false" aria-label="Navigation umschalten">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto" *ngIf="settingsService.hasSettings">
+        <li class="nav-item" *ngFor="let route of routes">
+          <a class="nav-link" [routerLink]="[route.route]">{{route.text}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

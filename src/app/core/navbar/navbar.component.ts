@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, NotificationService, SettingsService } from '../../shared';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { Auth, signInWithRedirect, signOut, GoogleAuthProvider } from '@angular/fire/auth';
 
 @Component({
+  standalone: false,
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   activateLogin = false;
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
     { text: 'Einstellungen', route: '/settings', matIcon: 'settings' },
     { text: 'Hilfe', route: '/help', matIcon: 'help' },
   ];
-  constructor(private authService: AuthService, public afAuth: AngularFireAuth,
+  constructor(private authService: AuthService, public auth: Auth,
     private notificationService: NotificationService, public settingsService: SettingsService) { }
 
   ngOnInit() {
@@ -34,11 +34,11 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
+    signInWithRedirect(this.auth, new GoogleAuthProvider());
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    signOut(this.auth);
     this.notificationService.warning('Ausgeloggt :)');
   }
 }

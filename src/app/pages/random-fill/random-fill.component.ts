@@ -1,10 +1,11 @@
-import { COMMA, ENTER, DASH } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import { WeekService, DateService, SettingsService } from 'src/app/shared';
-import { MatChipInputEvent } from '@angular/material';
+import { WeekService, DateService } from '../../shared';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-random-fill',
   templateUrl: './random-fill.component.html',
   styleUrls: ['./random-fill.component.scss']
@@ -12,10 +13,14 @@ import { FormControl, Validators } from '@angular/forms';
 export class RandomFillComponent implements OnInit {
   contents: Content[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  constructor(private weekService: WeekService, private dateService: DateService) { }
 
-  startDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
-  endDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
+  startDateControl: FormControl;
+  endDateControl: FormControl;
+
+  constructor(private weekService: WeekService, private dateService: DateService) {
+    this.startDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
+    this.endDateControl = new FormControl(this.dateService.getMonday(new Date()), Validators.required);
+  }
 
   ngOnInit() {
     const notAllowed = ['Urlaub', 'Studienpräsenz'];
@@ -78,12 +83,11 @@ export class RandomFillComponent implements OnInit {
   sort() { this.contents.sort((a: Content, b: Content) => b.importance - a.importance); }
   onlyMondays(d: Date): boolean { return d.getDay() === 1; }
   add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
+    const value = (event.value || '').trim();
     if (value) {
-      this.contents.push({ value: value.trim(), importance: 1 });
+      this.contents.push({ value, importance: 1 });
     }
-    if (input) { input.value = ''; }
+    event.chipInput!.clear();
   }
   remove(content: Content): void {
     const index = this.contents.indexOf(content);

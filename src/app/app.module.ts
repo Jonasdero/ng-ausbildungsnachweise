@@ -3,17 +3,16 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Localization
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe, 'de');
 
-// Firebase
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+// Firebase (modular API)
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 // Modules
@@ -43,13 +42,7 @@ import { TableViewComponent } from './pages/table-view/table-view.component';
   imports: [
     AppRoutingModule,
     BrowserModule, BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    MDBBootstrapModule.forRoot(),
-
-    // Firebase
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
 
     // Angular Material
     LayoutModule,
@@ -57,9 +50,15 @@ import { TableViewComponent } from './pages/table-view/table-view.component';
 
     CoreModule,
     ComponentsModule,
-
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'de' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'de' },
+    provideHttpClient(withInterceptorsFromDi()),
+
+    // Firebase
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

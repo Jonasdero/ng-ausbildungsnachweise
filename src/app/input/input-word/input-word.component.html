@@ -13,7 +13,7 @@
       </button>
     </div>
   </div>
-  <div class="row mr-1 ml-1" *ngIf="!auth.activateLogin || auth.loggedIn">
+  <div class="row me-1 ms-1" *ngIf="!auth.activateLogin || auth.loggedIn">
     <mat-paginator class="col-md-10 mx-auto " [length]="weeks.length" [pageSize]="pageSize"
       [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)="paginatorChange($event)">
     </mat-paginator>

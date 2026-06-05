@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-impressum',
   templateUrl: './impressum.component.html'
 })
-export class ImpressumComponent implements OnInit {
+export class ImpressumComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

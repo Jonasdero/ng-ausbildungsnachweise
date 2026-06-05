@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { MaterialModule } from '../shared';
 import { ComponentsModule } from '../components/components.module';
@@ -16,7 +15,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     ComponentsModule,
     MaterialModule,
     RouterModule,
-    MDBBootstrapModule,
   ],
   declarations: [
     FooterComponent,

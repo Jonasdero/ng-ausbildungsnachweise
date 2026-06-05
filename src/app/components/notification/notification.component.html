@@ -9,7 +9,7 @@
     </div>
     <div class="progress" [ngStyle]="{'background-color':getBackgroundColor()}">
       <div class="progress-bar" role="progressbar" [ngStyle]="{'width':progressbarvalue+'%', 'background-color':getColor()}"
-        aria-valuenow="progressbarvalue" aria-valuemin="0" aria-valuemax="100"></div>
+        [attr.aria-valuenow]="progressbarvalue" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </mat-card-content>
 </mat-card>

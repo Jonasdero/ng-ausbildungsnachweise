@@ -1,20 +1,30 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { WeekService, DateService } from '../../shared';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-table-view',
   templateUrl: './table-view.component.html',
   styleUrls: ['./table-view.component.scss']
 })
-export class TableViewComponent implements OnInit {
+export class TableViewComponent implements OnInit, AfterViewInit {
   weeks = [];
   dataSource: MatTableDataSource<Week>;
   displayedColumns = ['select', 'nr', 'date', 'department', 'hsum', 'delete'];
   selection = new SelectionModel<Week>(true, []);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    if (this.dataSource) {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }
+  }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.weeks.length;

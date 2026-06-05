@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as JSZip from 'jszip';
-import * as JSZipUtils from 'jszip-utils';
-import * as Docxtemplater from 'docxtemplater';
-import * as FileSaver from 'file-saver';
+import PizZip from 'pizzip';
+import PizZipUtils from 'pizzip/utils/index.js';
+import Docxtemplater from 'docxtemplater';
+import { saveAs } from 'file-saver';
 
 import { SettingsService } from '../components/settings.service';
 import { DateService } from './date.service';
@@ -55,29 +55,30 @@ export class WordService {
   }
 
   private exportToDocx(week: Week, settings: Settings) {
-    JSZipUtils.getBinaryContent('assets/word/' + settings.template + '.docx', function (error, content) {
+    PizZipUtils.getBinaryContent('assets/word/' + settings.template + '.docx', (error: Error, content: string) => {
       if (error) { throw error; }
-      const doc = new Docxtemplater().loadZip(new JSZip(content));
-      doc.setData(week);
+      const zip = new PizZip(content);
+      const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
 
-      try { doc.render(); }
-      catch (error) {
-        console.log(JSON.stringify({
+      try {
+        doc.render(week);
+      } catch (err: any) {
+        console.error(JSON.stringify({
           error: {
-            message: error.message,
-            name: error.name,
-            stack: error.stack,
-            properties: error.properties
+            message: err.message,
+            name: err.name,
+            stack: err.stack,
+            properties: err.properties
           }
         }));
-        throw error;
+        throw err;
       }
-      const out = doc.getZip().generate({
+      const out = (doc.getZip() as any).generate({
         type: 'blob',
         mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       const filename = week.nr.toString().padStart(3, '0') + '_' + week.startDate + '.docx';
-      FileSaver.saveAs(out, filename);
+      saveAs(out, filename);
     });
   }
 }

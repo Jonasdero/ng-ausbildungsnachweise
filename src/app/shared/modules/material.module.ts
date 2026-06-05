@@ -1,12 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatDialog, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS,
-  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
-  MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-  MatTooltipModule, MatSlideToggleModule, MatChipsModule, MatStepperModule, MatTableModule, MatPaginatorModule,
-} from '@angular/material';
+import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MY_DATE_FORMATS = {
   parse: { dateInput: { month: 'short', year: 'numeric', day: 'numeric' } },
@@ -19,7 +34,7 @@ const MY_DATE_FORMATS = {
 };
 
 export class GermanDateAdapter extends NativeDateAdapter {
-  format(date: Date, displayFormat: Object): string {
+  override format(date: Date, displayFormat: any): string {
     if (displayFormat !== 'input') {
       return date.toDateString();
     }
@@ -35,19 +50,21 @@ export class GermanDateAdapter extends NativeDateAdapter {
   }
 }
 
+const MATERIAL_MODULES = [
+  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
+  MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
+  MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
+  MatTooltipModule, MatSlideToggleModule, MatChipsModule, MatStepperModule, MatTableModule,
+  MatSortModule, MatPaginatorModule
+];
+
 @NgModule({
   imports: [
     CommonModule,
-    MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
-    MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatTooltipModule, MatSlideToggleModule, MatChipsModule, MatStepperModule, MatTableModule, MatPaginatorModule
+    ...MATERIAL_MODULES
   ],
   exports: [
-    MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSelectModule,
-    MatFormFieldModule, MatInputModule, MatListModule, MatSidenavModule, MatExpansionModule,
-    MatToolbarModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule,
-    MatTooltipModule, MatSlideToggleModule, MatChipsModule, MatStepperModule, MatTableModule, MatPaginatorModule
+    ...MATERIAL_MODULES
   ],
   providers: [
     MatDialog,

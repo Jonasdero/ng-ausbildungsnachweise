@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { Component } from '@angular/core';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 import { WeekService, SettingsService, DateService, WordService, NotificationService } from '../../shared';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
 
 @Component({
+  standalone: false,
   selector: 'app-importexport',
   templateUrl: './importexport.component.html'
 })
-export class ImportexportComponent implements OnInit {
+export class ImportexportComponent {
   dialogRef: MatDialogRef<ImportDialogComponent> | null;
 
   importObject = {
@@ -50,8 +51,6 @@ export class ImportexportComponent implements OnInit {
   constructor(private weekService: WeekService, private settingsService: SettingsService,
     private wordService: WordService, private dateService: DateService, public dialog: MatDialog,
     private notificationService: NotificationService) { }
-
-  ngOnInit() { }
 
   import() {
     this.dialogRef = this.dialog.open(ImportDialogComponent, {});

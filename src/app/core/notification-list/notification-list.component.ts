@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../shared';
 
 @Component({
+  standalone: false,
   selector: 'app-notifications',
   templateUrl: './notification-list.component.html',
   styleUrls: ['./notification-list.component.scss']
