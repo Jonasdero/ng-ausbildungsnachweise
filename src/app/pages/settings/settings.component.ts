@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { SettingsService, DateService } from '../../shared';
 
 @Component({
+  standalone: false,
   selector: 'app-settings',
   templateUrl: './settings.component.html'
 })
@@ -27,7 +28,7 @@ export class SettingsComponent implements OnInit {
         'template': new FormControl(settings.template, Validators.required),
       });
     });
-    this.form.valueChanges.subscribe(values => { this.save(); });
+    this.form.valueChanges.subscribe(() => { this.save(); });
   }
 
   save() {

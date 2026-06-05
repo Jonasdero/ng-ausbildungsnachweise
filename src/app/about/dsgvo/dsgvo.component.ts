@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-dsgvo',
   templateUrl: './dsgvo.component.html'
 })
-export class DsgvoComponent implements OnInit {
+export class DsgvoComponent {
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WeekService, SettingsService, DateService, WordService, AuthService } from '../../shared';
-import { PageEvent } from '@angular/material';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-input-word',
   templateUrl: './input-word.component.html'
 })

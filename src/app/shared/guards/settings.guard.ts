@@ -1,19 +1,14 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 import { SettingsService } from '../services/components/settings.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SettingsGuard implements CanActivate {
-  constructor(private settingsService: SettingsService, private router: Router) { }
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-    : Observable<boolean> | Promise<boolean> | boolean {
-    if (this.settingsService.hasSettings) {
-      return true;
-    }
-    this.router.navigate(['welcome']);
-    return false;
+export const settingsGuard: CanActivateFn = () => {
+  const settingsService = inject(SettingsService);
+  const router = inject(Router);
+
+  if (settingsService.hasSettings) {
+    return true;
   }
-}
+  router.navigate(['welcome']);
+  return false;
+};

@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-terms-of-service',
   templateUrl: './terms-of-service.component.html'
 })
-export class TermsOfServiceComponent implements OnInit {
+export class TermsOfServiceComponent {
   constructor() { }
-
-  ngOnInit() {
-  }
 }

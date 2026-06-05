@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Auth, authState } from '@angular/fire/auth';
 import { NotificationService } from '../components/notification.service';
 
 @Injectable({
@@ -10,13 +10,13 @@ export class AuthService {
   loggedIn = true;
   authChanged: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(public afAuth: AngularFireAuth, private notificationService: NotificationService) {
+  constructor(public auth: Auth, private notificationService: NotificationService) {
     if (!this.activateLogin) {
       this.loggedIn = true;
       this.authChanged.emit(this.loggedIn);
       return;
     }
-    this.afAuth.authState.subscribe(res => {
+    authState(this.auth).subscribe(res => {
       if (res && res.uid && res.emailVerified) {
         if (!this.loggedIn && this.activateLogin) {
           this.notificationService.info('Eingeloggt :)');

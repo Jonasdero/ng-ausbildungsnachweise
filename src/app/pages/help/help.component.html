@@ -45,7 +45,7 @@
     word.ScreenUpdating = false;
 
     foreach (FileInfo wordFile in wordFiles)
-    {{ '{' }}
+    &#123;
     // Cast as Object for word Open method
     Object filename = (Object)wordFile.FullName;
 
@@ -72,7 +72,7 @@
     object saveChanges = WdSaveOptions.wdDoNotSaveChanges;
     ((_Document)doc).Close(ref saveChanges, ref oMissing, ref oMissing);
     doc = null;
-    }
+    &#125;
 
     // word has to be cast to type _Application so that it will find
     // the correct Quit method.

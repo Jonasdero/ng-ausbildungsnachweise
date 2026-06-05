@@ -1,55 +1,58 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~@angular/material/theming";
-@import "./palette.scss";
-@mixin app-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
-  $error: mat-palette($mat-red);
-  $success: mat-palette($mat-green);
+@use '@angular/material' as mat;
+@use './palette' as palette;
+
+// Application-specific theme: exposes helper colour classes that mirror the
+// Material palette. Invoked from `theme.scss` after the Material theme is set up.
+@mixin app-theme() {
+  $primary: mat.m2-define-palette(palette.$mat-indigo);
+  $accent: mat.m2-define-palette(palette.$mat-amber);
+  $warn: mat.m2-define-palette(palette.$mat-red);
+  $error: mat.m2-define-palette(palette.$mat-red);
+  $success: mat.m2-define-palette(palette.$mat-green);
+
   .background-primary {
-    background-color: mat-color($primary);
+    background-color: mat.m2-get-color-from-palette($primary);
     color: white;
   }
   .background-accent {
-    background-color: mat-color($accent);
+    background-color: mat.m2-get-color-from-palette($accent);
     color: white;
   }
   .background-warn {
-    background-color: mat-color($warn);
+    background-color: mat.m2-get-color-from-palette($warn);
     color: black;
   }
   .background-error {
-    background-color: mat-color($error);
+    background-color: mat.m2-get-color-from-palette($error);
     color: white;
   }
   .background-success {
-    background-color: mat-color($success);
+    background-color: mat.m2-get-color-from-palette($success);
     color: white;
   }
   .color-primary {
-    color: mat-color($primary);
+    color: mat.m2-get-color-from-palette($primary);
   }
   .color-accent {
-    color: mat-color($accent);
+    color: mat.m2-get-color-from-palette($accent);
   }
   .color-warn {
-    color: mat-color($warn);
+    color: mat.m2-get-color-from-palette($warn);
   }
   .color-error {
-    color: mat-color($error);
+    color: mat.m2-get-color-from-palette($error);
   }
   .color-success {
-    color: mat-color($success);
+    color: mat.m2-get-color-from-palette($success);
   }
   .color-white {
     color: #fff !important;
   }
   .mat-drawer {
-    background-color: mat-color($accent);
+    background-color: mat.m2-get-color-from-palette($accent);
   }
   .mat-drawer.mat-drawer-push {
-    background-color: mat-color($accent);
+    background-color: mat.m2-get-color-from-palette($accent);
   }
 }
 
@@ -86,4 +89,27 @@ body {
 
 mat-paginator {
   border-radius: 4px;
+}
+
+// Replacement for the former angular-bootstrap-md (MDB) helper classes used by
+// the navbar and footer.
+.stylish-color {
+  background-color: #4b515d;
+}
+
+.page-footer {
+  color: #fff;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.font-small {
+  font-size: 0.9rem;
 }

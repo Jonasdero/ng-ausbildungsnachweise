@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeekService } from './shared/services/components/week.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

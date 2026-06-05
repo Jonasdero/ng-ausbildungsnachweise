@@ -1,21 +1,30 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300");
-@import "~@angular/material/theming";
+@use '@angular/material' as mat;
+@use './palette' as palette;
+@use './styles' as styles;
 
-@import "./palette.scss";
-@import "./palette-atos.scss";
-@import "./styles.scss";
+// Initialise the Material core styles (no theme-specific styling here).
+@include mat.core();
 
-$typography: mat-typography-config(
+// Build the palettes from the project's custom colour definitions.
+$primary: mat.m2-define-palette(palette.$mat-indigo);
+$accent: mat.m2-define-palette(palette.$mat-amber);
+$warn: mat.m2-define-palette(palette.$mat-red);
+
+$typography: mat.m2-define-typography-config(
   $font-family: '"Open Sans", Roboto, sans-serif',
-  $body-2: mat-typography-level(14px, 24px, 600)
+  $body-2: mat.m2-define-typography-level(14px, 24px, 600)
 );
 
-@include mat-core($typography);
-$primary: mat-palette($mat-indigo);
-$secondary: mat-palette($mat-amber);
-$warn: mat-palette($mat-red);
+$light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+  typography: $typography,
+  density: 0,
+));
 
-$light-theme: mat-light-theme($primary, $secondary, $warn);
-
-@include angular-material-theme($light-theme);
-@include app-theme($light-theme);
+// Apply the Material theme to all components and our custom helper classes.
+@include mat.all-component-themes($light-theme);
+@include styles.app-theme();

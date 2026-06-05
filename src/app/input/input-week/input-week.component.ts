@@ -7,6 +7,7 @@ function validateContent(c: AbstractControl) {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-input-week',
   templateUrl: './input-week.component.html'
 })

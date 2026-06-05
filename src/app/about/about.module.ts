@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { DsgvoComponent } from './dsgvo/dsgvo.component';
 import { ImpressumComponent } from './impressum/impressum.component';
@@ -19,7 +18,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MDBBootstrapModule,
   ],
   declarations: [
     DsgvoComponent,
